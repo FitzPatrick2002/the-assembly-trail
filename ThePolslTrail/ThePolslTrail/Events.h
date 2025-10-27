@@ -4,6 +4,11 @@
 #include "Utils.h"
 #include "Player.h"
 
+/// @file Events.h
+/// @brief Events.h file provides functions with events that will occur during gameplay
+///		   Events can modify the properties of the 'player' object
+
+/// @brief Function pointer for all event functions
 typedef void(*eventPointer)();
 
 void playerAttacked() {
@@ -86,8 +91,13 @@ void blankEvent() {
 	}
 }
 
+/// @brief Array with events that are considered single time
+///		   After they are called, they will be removed from the rooms events list in which the event was fired
 eventPointer singleTimeEvents[] = { blankEvent, nothingHappens, nullptr };
 
+/// @brief Checks if given event is in the list @singleTimeEvents
+/// @param ev Event that we want to check against constents of @singleTimeEvents
+/// @returns true if ev is in the list, false otherwise
 bool isSingleTimeEvent(eventPointer ev) {
 	for (eventPointer singleTime : singleTimeEvents) {
 		if (singleTime == ev)
