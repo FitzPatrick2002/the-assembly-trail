@@ -20,10 +20,7 @@
 // 8. Inventory + player status is displayed (ok)
 
 // TO DO:
-// 1. Function for event modification, basically event removal
-//	   - Could be that event modifies itself somehow?
-// 6. Slow printing (text printed letter by letter)
-// 7. Pretty styling of the terminal 
+// 1. Function for event modification, basically event removal (ok)
 
 // 8. loadRoom() -> error checking, max numebr of room
 // 9. Utils -> variables specifying number of rooms, etc
@@ -48,10 +45,15 @@ int main() {
 			return 0;
 		}
 
-		// Check modifiers
+		// Check modifiers.
+		// Modifiers print messages and affect the player based on the current players status.
 		if (player.water <= 0) {
-			std::cout << "Your water level is too low\n";
+			std::cout << "Your water level is too low, you're suffering!\n";
 			changeHP(player.water);
+		}
+
+		if (player.water <= 3 && player.water > 0) {
+			std::cout << "Your water level is low, watch out!\n";
 		}
 
 		// Losing condition

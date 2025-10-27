@@ -4,18 +4,26 @@
 #include "Utils.h"
 #include "Player.h"
 
-/// @file Events.h
-/// @brief Events.h file provides functions with events that will occur during gameplay
-///		   Events can modify the properties of the 'player' object
+/// @file Events.h 
+/// @brief Events.h file provides functions with events that will occur during gameplay.
+///		   Events can modify the properties of the 'player' object.
 
-/// @brief Function pointer for all event functions
+/// @brief Function pointer for all event functions.
 typedef void(*eventPointer)();
 
+bool isSingleTimeEvent(eventPointer);
+
+/// @brief Typical event function.
 void playerAttacked() {
+	// Write information about the event
 	std::cout << "You're being attacked by the Alien!\n";
 	std::cout << "Duck?\n";
+
+	// Get user input
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	
+	// Decide about the consequences for the player based on the input
 	if (c == 'n') {
 		std::cout << "Alien jumps at you and flies over your head as you stand still, you manage to flee.\n";
 	}
@@ -81,23 +89,24 @@ void foundItem() {
 }
 
 void blankEvent() {
-	std::cout << "This is a blank event\nIt is a single time vent, should not appear more than once.\n";
-	std::cout << "Search it?\n";
+	std::cout << "This is a blank event\nIt is a single time event, should not appear more than once.\n";
 	char c;
-	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	utils::getUserYNinput(c, utils::inputPrompts[5]);
 	if (c == 'y') {
 		std::cout << "Nothing in here\n";
 		changeChemfuel(1);
 	}
+
+	isSingleTimeEvent(blankEvent);
 }
 
-/// @brief Array with events that are considered single time
-///		   After they are called, they will be removed from the rooms events list in which the event was fired
-eventPointer singleTimeEvents[] = { blankEvent, nothingHappens, nullptr };
+/// @brief Array with events that are considered single time.
+///		   After they are called, they will be removed from the rooms events list in which the event was fired.
+eventPointer singleTimeEvents[] = { blankEvent, nothingHappens };
 
-/// @brief Checks if given event is in the list @singleTimeEvents
-/// @param ev Event that we want to check against constents of @singleTimeEvents
-/// @returns true if ev is in the list, false otherwise
+/// @brief Checks if given event is in the list @singleTimeEvents.
+/// @param ev Event that we want to check against constents of @singleTimeEvents.
+/// @returns true if ev is in the list, false otherwise.
 bool isSingleTimeEvent(eventPointer ev) {
 	for (eventPointer singleTime : singleTimeEvents) {
 		if (singleTime == ev)

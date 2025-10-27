@@ -12,8 +12,8 @@
 struct Room {
 	const char* info; ///< Pointer to text displayed when the room is loaded. Can be a description of how the room looks like.
 	int8_t eventsNumber; ///< Current number of events stored in this room. If a single time event is fired, this value may or may not go dwon by -1.
-	eventPointer eventsList[4]; ///< List of function pointers which specify which event function will be called when particular event number is chosen.
-	int8_t connections[5]; ///< Ids of rooms with which the room is connected with. Their Ids are the same as place in the rooms table.
+	eventPointer eventsList[MAX_EVENTS]; ///< List of function pointers which specify which event function will be called when particular event number is chosen.
+	int8_t connections[MAX_CONNECTIONS]; ///< Ids of rooms with which the room is connected with. Their Ids are the same as place in the rooms table.
 };
 
 /// @brief Prints a short message about changing the room and lets the user choose to which one they want to go
@@ -28,7 +28,7 @@ void changeRoom(Room* room) {
 		roomChosen = c - 48;
 		std::cout << "You chose room number: " << c << "\n";
 
-	} while (!utils::checkIfInArray(roomChosen, room->connections, 5));
+	} while (!utils::checkIfInArray(roomChosen, room->connections, MAX_ROOMS) || roomChosen < 0 || roomChosen >= MAX_ROOMS);
 
 	player.roomNumber = roomChosen;
 }
@@ -39,13 +39,19 @@ void changeRoom(Room* room) {
 ///		   3. Prompts user for input.
 /// @param room Pointer to currently occupied room from the rooms table.
 void loadRoom(Room* room) {
+	// Print info about the roomm and list rooms which can be accessed from it
 	std::cout << room->info << "\n";
 	std::cout << "You can go to: ";
-	for (int i = 0; i < 5; i++) {
-		int r = room->connections[i];
-		if (r == 20)
+
+	// Iterate over the rooms and print their id's 
+	for (int8_t i = 0; i < MAX_ROOMS; i++) {
+		int8_t r = room->connections[i];
+
+		// If the room has fewer connections than the maximal number of connections
+		// then stop printing
+		if (r >= MAX_ROOMS || r < 0)
 			break;
-		std::cout << r << ", ";
+		std::cout << (int)r << ", ";
 	}
 	std::cout << "\n\n";
 }
@@ -57,7 +63,6 @@ void loadRoom(Room* room) {
 void loadEvent(Room* room) {
 	int id = rand() % room->eventsNumber;
 	eventPointer ev = room->eventsList[id];
-	//int eventId = rooms[roomId].eventsList[id];
 
 	std::cout << "Event id == " << ev << "\n"; // Print the address of the event function, for debug purposes only
 	if (ev != nullptr) {
@@ -65,23 +70,22 @@ void loadEvent(Room* room) {
 
 		// If event is a single time event it will be removed from the events list of the room
 		if (isSingleTimeEvent(ev)) {
-			// Swap the last element with the current event
-			uint8_t lastRoomIdx = room->eventsNumber - 1;
-			room->eventsList[id] = room->eventsList[lastRoomIdx];
-
-			// Set the alst element as nullptr and decrese number of stored events
-			room->eventsList[lastRoomIdx] = nullptr;
-
+			// Delete the event from the list
+			room->eventsList[id] = nullptr;
 		}
 	}
 }
 
 /// @brief Table of rooms used in the game
+///		   Regarding the random events choosing.
+///		   Events are randomply chosen by randomly choosing an index from 0 to room.eventsNumber - 1
+///		   So if there are some nullptr events or some repeating events, that is beacuse we want to increase chances for some event to occur.
+///		   Not a perffect system and probably doesn't work.
 Room rooms[5] = {
 	{
 		"You are in a large, dark room. The atmosphere is damp and warm, you can hear the water droplets falling off the chains.\n", // Room description
 		4, // Number of events
-		{playerAttacked, playerAttacked, thirst, nullptr}, // Events 
+		{blankEvent, blankEvent, blankEvent, foundItem}, // Events 
 		{1, 3, 4, 20, 20} // Connections with other rooms
 	},
 	{
@@ -95,7 +99,7 @@ Room rooms[5] = {
 		3,
 		{foundItem, foundItem, foundItem, nullptr},
 		{20, 20, 20, 20, 20}
-	}, // For now it's a dummy like model, just to mess around
+	}, 
 	{
 		"You find yourself in a narrow passage with 2 doors on both ends.\n",
 		3,
