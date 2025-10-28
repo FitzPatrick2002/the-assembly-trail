@@ -33,12 +33,42 @@ void playerAttacked() {
 	}
 }
 
+void bridgeConsole() {
+	std::cout << "As you look around the Bridge you notice a dim blinking light on one of the distant consoles.\nYou have never used it before, it was never your responsibility.\nCheck it out?\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y') {
+		std::cout << "Careful not to make any noise, you approach the console.\nThe blinking light appears to be an indicator...But of what?\nIt highlights the MEDLAB.\nThere's a button not covered by dust on the keyboard.\nDo you press it? Think it over.\n";
+		utils::getUserYNinput(c, utils::inputPrompts[0]);
+		if (c == 'y' || c == 'Y') {
+			std::cout << "You press the button and then a wave of dust covers you.\nA cabinet under the console suddenly opens up just a bit.\nInside you find 2 litres of CHEMFUEL.\nIt must have been Dallas... Did he want to leave?\n";
+			changeChemfuel(2);
+		}
+		else if (c == 'n' || c == 'N') {
+			std::cout << "Too scared for your own good you leave this console be.\nWhat did that button do?\nWho must have recently pressed it?\nNow you will never know.\n";
+		}
+		else {
+			std::cout << "You were so confused you pressed all the buttons on the keyboard.\nA wave of thick dust covers you and your fingers.\nYou jump in fright as all the cabinets around you burst open!\nOne of the cabinets hits you in the back of your head.\nYou kneel and hide your head in your hands.\nAs you come to your senses, you see 2 litres of CHEMFUEL in a cabinet across you.\n";
+			changeChemfuel(2);
+			changeHP(-1);
+		}
+
+	}
+	else if (c == 'n' || c=='N') {
+		std::cout << "You leave this suspicious light be as suspicious as it needs to be.\n";
+	}
+	else {
+		std::cout << "You look around and see that there are lights on other consoles.\nThis one is blinking, but it is of none of your concerns.\nYou order yourself to snap out of it.\nYou have more pressing issues than this after all.\n";
+	}
+
+}
+
 void thirst() {
 	std::cout << "You're thirsty\n";
 	std::cout << "Take a sip?\n";
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
-	if (c == 'y') {
+	if (c == 'y' || c == 'Y') {
 		std::cout << "Water is delightful." << "\n";
 		changeWater(-2);
 	}

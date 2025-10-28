@@ -1,6 +1,8 @@
 #include <iostream>
 #include <ctime>
 
+#include <stdlib.h> //for clear screen
+
 #include "Utils.h"
 #include "Room.h"
 #include "Player.h"
@@ -33,7 +35,9 @@ int main() {
 
 	// Main loop is continued as long as the gameOn variable is set to true
 	while (gameOn) {
-		std::cout << "\n\n# -------------------------------------- #\n\n";
+
+		system("cls");
+		std::cout << "# -------------------------------------- #\n\n";
 		printPlayerStatus();
 		loadRoom(&rooms[player.roomNumber]);
 		loadEvent(&rooms[player.roomNumber]);

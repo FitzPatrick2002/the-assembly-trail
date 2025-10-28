@@ -4,7 +4,7 @@
 /// @file Utils.h
 /// @brief File contains utility functions regarding user input / output and some constants used in the game.
 
-#define MAX_ROOMS 5 ///< Maximal number of rooms on the map
+#define MAX_ROOMS 11 ///< Maximal number of rooms on the map
 #define MAX_CONNECTIONS 5
 #define MAX_EVENTS 4
 
@@ -55,6 +55,19 @@ namespace utils {
 		}
 
 		return false;
+	}
+
+	/// @brief Return the char value of the room (0 to A for now).
+	/// @param room_no Number of the given room. Can range from 0 to 10.
+	const char* roomNumberHex(int8_t room_no)
+	{
+		static char c[2];
+		c[1] = '\0'; //end of string
+		if (room_no > 9 && room_no < 16)
+			c[0] = 55 + room_no;
+		else
+			c[0] = 48 + room_no;
+		return c;
 	}
 
 }
