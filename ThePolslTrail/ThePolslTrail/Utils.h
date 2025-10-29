@@ -7,6 +7,7 @@
 #define MAX_ROOMS 11 ///< Maximal number of rooms on the map
 #define MAX_CONNECTIONS 5
 #define MAX_EVENTS 4
+#define CHEMFUEL_GOAL 5
 
 /// @brief Contains functions for dealing with user input and stores some global variables.
 namespace utils {

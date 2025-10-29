@@ -17,7 +17,7 @@ void printPlayerStatus() {
 	//std::cout << "Room: " << (int)player.roomNumber << "\n";
 	std::cout << "HP: " << (int)player.hp << "\n";
 	std::cout << "Water: " << (int)player.water << "\n";
-	std::cout << "Chemfuel: " << (int)player.chemfuel << "\n";
+	std::cout << "Chemfuel: " << (int)player.chemfuel << " / "<<CHEMFUEL_GOAL<<"\n";
 }
 
 /// @brief Cheanges players hp by given value and informs the user about it.

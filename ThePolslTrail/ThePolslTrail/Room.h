@@ -128,7 +128,7 @@ Room rooms[11] = {
 	},
 	//6 - Junction A-2
 	{
-		"JUNCTION A-2.\n",
+		"JUNCTION A-2.\nThe ladder stands in the middle of the junction, but you have no business of going down there.\nCHEMFUEL must be on this floor, you seem to be sure.\nVents are jagged and ripped apart, but only darkness and dust follows your gaze.\nThe JUNCTION A-2 is connected to GALLEY (2), CORRIDOR (4),\nHYPERSLEEP VAULT(7) and to the LIVING AREA (8).\n",
 		4,
 		{thirst, nullptr, nullptr, nullptr},
 		{2,4,7,8,20}
@@ -142,7 +142,7 @@ Room rooms[11] = {
 	},
 	//8 - Living Area
 	{
-		"LIVING AREA.\n",
+		"LIVING AREA.\nThere is a fairly long l-shaped sofa in the corner of this room and a coffee table in front of it.\nThe cigarrette smell fills up the room and you almost trip on a can.\nThe lights are gone and you wouldn't notice a threat if it was hiding here.\nThe LIVING AREA is connected to the JUNCTION A-2 (6) and to WC (A).\n",
 		4,
 		{thirst, nullptr, nullptr, nullptr},
 		{6,9,20,20,20}
@@ -156,10 +156,10 @@ Room rooms[11] = {
 	},
 	//10 - ESCAPE PODS
 	{
-		"ESCAPE PODS.\n",
-		4,
+		"ESCAPE PODS.\nYou are extremely visible right now, it is unnaturally white around.\nNobody has ever used this room before.\nThree pods but only one could work.\nYour only way out.\nYou just need to find the fuel.\nBefore someone finds you...\nThe ESCAPE PODS are connected to the CORRIDOR (4).\n",
+		4, //event to notice that one of the pods has some fuel so you swap it, one time event
 		{thirst, nullptr, nullptr, nullptr},
-		{6,20,20,20,20}
+		{4,20,20,20,20}
 	}
 
 };
