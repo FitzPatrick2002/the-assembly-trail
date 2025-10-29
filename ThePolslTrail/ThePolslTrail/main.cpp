@@ -44,7 +44,7 @@ int main() {
 		changeRoom(&rooms[player.roomNumber]);
 
 		// Winning condition, must have enough fuel and be in the escape pods area
-		if (player.chemfuel >= CHEMFUEL_GOAL-4 && player.roomNumber == 10) {
+		if (player.chemfuel >= CHEMFUEL_GOAL && player.roomNumber == 10) {
 			std::cout << "As soon as you open the useless vault, you pour the CHEMFUEL into the reservoir.\nIt is ready now.\nBy forcing yourself to stop checking your back for just a few seconds, you barge into the pod.\nA small ginger creature slithers between your legs. It is Jonesy.\nYou close the pad and prepare for takeoff.\nAfter a short while, which feels like your last moments, the spaceship starts to move away from you...\nYou are alive.\n";
 			return 0;
 		}
