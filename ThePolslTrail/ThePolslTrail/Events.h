@@ -13,25 +13,60 @@ typedef void(*eventPointer)();
 
 bool isSingleTimeEvent(eventPointer);
 
-/// @brief Typical event function.
-void playerAttacked() {
-	// Write information about the event
-	std::cout << "You're being attacked by the Alien!\n";
-	std::cout << "Duck?\n";
-
-	// Get user input
-	char c;
-	utils::getUserYNinput(c, utils::inputPrompts[0]);
-	
-	// Decide about the consequences for the player based on the input
-	if (c == 'n') {
-		std::cout << "Alien jumps at you and flies over your head as you stand still, you manage to flee.\n";
-	}
-	else {
-		std::cout << "You lunge but alien manages to snatch you. After some rummaging on the floor you manage to run away\n";
-		changeHP(-2);
-	}
+void medbayGlass() {
+	std::cout << "Across the area you see some cabinets mm glass";
+	isSingleTimeEvent(medbayGlass);
 }
+
+void medbayAsh() {
+	std::cout << "Loud ass Ash";
+	//NOT SINGLE TIME EVENT HEHE
+}
+
+void jonesyJumpscare() {
+	std::cout << "You open the cabinet and then MEOW!";
+	///multiple locations
+}
+
+void alienHide() {
+	std::cout << "You must hide!";
+	std::cout << rooms[player.roomNumber].hidingLocations;
+	//a or b? kurwa ale to sie gracz skapnie ze zawsze jest A czy cos damnit... a moze losowo... ale to tez sensu nie ma ! jezel number pokoju jest parzysty to A jak nie to B..
+	//dependent on the room
+}
+
+void galleyWater() {
+	std::cout << "You've found some water";
+	
+}
+
+void motherWater() {
+	//very interesting because Ash did not need water but could drink it, Ripley is weirded out at this thought
+	std::cout << "";
+	isSingleTimeEvent(motherWater);
+}
+
+void motherPanel() {
+	std::cout << "something about checking the panel and then wanting to either look at vents or at the escape pods status, add temperature for vibes";
+
+}
+
+void podsFoundChemfuel() {
+	std::cout << "one of the pods had chemfuel left"; //remember to add more events to the escape pods like thirst
+	isSingleTimeEvent(podsFoundChemfuel);
+}
+
+void WCHiddenPassage() {
+	std::cout << "You opened up the stall door and you saw a broken crate leading up to something go through? y/n";
+	isSingleTimeEvent(WCHiddenPassage);
+
+}
+
+void alienFire() {
+	std::cout << "Type in quickly fire to fire at the ALIEN";
+	//first some text, then a y/n for fire? and then if fire then type in quickly FIRE to succeed
+}
+
 
 void bridgeConsole() {
 	std::cout << "As you look around the Bridge you notice a dim blinking light on one of the distant consoles.\nYou have never used it before, it was never your responsibility.\nCheck it out?\n";
@@ -52,9 +87,9 @@ void bridgeConsole() {
 			changeChemfuel(2);
 			changeHP(-1);
 		}
-
+		isSingleTimeEvent(bridgeConsole);
 	}
-	else if (c == 'n' || c=='N') {
+	else if (c == 'n' || c == 'N') {
 		std::cout << "You leave this suspicious light be as suspicious as it needs to be.\n";
 	}
 	else {
@@ -62,6 +97,27 @@ void bridgeConsole() {
 	}
 
 }
+
+/// @brief Typical event function.
+void playerAttacked() {
+	// Write information about the event
+	std::cout << "You're being attacked by the Alien!\n";
+	std::cout << "Duck?\n";
+
+	// Get user input
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	
+	// Decide about the consequences for the player based on the input
+	if (c == 'n') {
+		std::cout << "Alien jumps at you and flies over your head as you stand still, you manage to flee.\n";
+	}
+	else {
+		std::cout << "You lunge but alien manages to snatch you. After some rummaging on the floor you manage to run away\n";
+		changeHP(-2);
+	}
+}
+
 
 void thirst() {
 	std::cout << "You're thirsty\n";
