@@ -14,8 +14,45 @@ typedef void(*eventPointer)();
 bool isSingleTimeEvent(eventPointer);
 
 void medbayGlass() {
-	std::cout << "Across the area you see some cabinets mm glass";
-	isSingleTimeEvent(medbayGlass);
+
+	std::cout << "Since the MEDBAY is so well equipped,\nyou think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\nBut the glass on the floor...\nThe last thing you'd want is to slip and bleed here.\nDo you want to proceed? Prepare to be quick.\n";
+	//reading the user's choice
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y')
+	{
+		int choice = rand() % 2;
+		const char* word = choice == 1 ? "alertly" : "closely";
+
+		std::cout << "Deciding to move forward. Write '"<<word<<"' quick!\n";
+		time_t start = std::time(nullptr); //start the timer
+		char text[8];
+		utils::getUserInputString(text, 8);
+		if (utils::charCompare(text,word) && utils::fitTimeframe(start,10)) //managed to write correct input in a specified timeframe
+		{
+			std::cout << "\nYou somehow managed to get across the room safely.\nTo the rhythm of your pouding chest you open each cabinet around you.\nYou find CHEMFUEL and WATER.\n";
+			changeWater(1);
+			changeChemfuel(2);
+
+			//very merciful, allows for retries in case of failure
+			isSingleTimeEvent(medbayGlass);
+		}
+		else
+		{
+			std::cout << "Your walk starts out promising, but you fail to realise one crucial fact.\nThese broken vials had liquids in them.\nYou slip and the shards dig into your skin.\nYou manage to retreat relatively undamaged.\n";
+			changeHP(-1);
+		}
+
+	}
+	else if (c == 'n' || c == 'N')
+	{
+		std::cout << "'This idea seems to risky to execute at this moment.'\nis the thought that flashes your mind.\nYou turn back and check the exit of the area...\nNo movements, good sign.\n";
+	}
+	else
+	{
+		std::cout << "'What if I slip? It will come, it will come to me' those thoughts are racing through your mind.\nYou nervously look around the room\nand even though you saw that Lambert killed Ash, his 'corpse' still surprised you right now.\nYou should be going. Your mind is not stable.\nNot enough for this.\n";
+	}
+
 }
 
 void medbayAsh() {
@@ -30,8 +67,8 @@ void jonesyJumpscare() {
 
 void alienHide() {
 	std::cout << "You must hide!";
-	std::cout << rooms[player.roomNumber].hidingLocations;
-	//a or b? kurwa ale to sie gracz skapnie ze zawsze jest A czy cos damnit... a moze losowo... ale to tez sensu nie ma ! jezel number pokoju jest parzysty to A jak nie to B..
+	//std::cout << rooms[player.roomNumber].hidingLocations;
+	//a or b? ??? parzysty to A jak nie to B..
 	//dependent on the room
 }
 

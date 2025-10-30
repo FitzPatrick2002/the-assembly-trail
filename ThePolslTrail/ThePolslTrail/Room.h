@@ -54,7 +54,10 @@ void loadRoom(Room* room) {
 		// then stop printing
 		if (r >= MAX_ROOMS || r < 0)
 			break;
-		std::cout << utils::roomNumberHex(r) << " | ";
+		
+		char c;
+		utils::roomNumberHex(c, r);
+		std::cout << c << " | ";
 	}
 	std::cout << "\n\n";
 }
@@ -129,8 +132,8 @@ Room rooms[11] = {
 	{
 		"MEDLAB.\nAll the laboratory equipment that Ash was using is still on the floor,\nhe himself is thankfully still a burned 'corpse' on the counter.\nYour tired mind sees a few opened ventilation crates above...\nAnd many shelves near the observation pod, but the road to them is full of shattered glass.\nThe MEDBAY is connected to the CORRIDOR (4).\n",
 		"",
-		4,
-		{thirst, nullptr, nullptr, nullptr},
+		2,
+		{medbayGlass, medbayAsh, nullptr, nullptr},
 		{4,20,20,20,20}
 	},
 	//6 - Junction A-2

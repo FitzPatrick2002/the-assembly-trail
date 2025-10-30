@@ -12,8 +12,9 @@ struct Player {
 
 /// @brief Prints the current player status. Hp, room number, etc.
 void printPlayerStatus() {
+	char room;   utils::roomNumberHex(room, player.roomNumber);
 	std::cout << "Status: \n";
-	std::cout << "Room: " << utils::roomNumberHex(player.roomNumber) << "\n";
+	std::cout << "Room: " << room << "\n";
 	//std::cout << "Room: " << (int)player.roomNumber << "\n";
 	std::cout << "HP: " << (int)player.hp << "\n";
 	std::cout << "Water: " << (int)player.water << "\n";
