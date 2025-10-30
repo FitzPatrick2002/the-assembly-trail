@@ -43,7 +43,7 @@ void changeRoom(Room* room) {
 /// @param room Pointer to currently occupied room from the rooms table.
 void loadRoom(Room* room) {
 	// Print info about the roomm and list rooms which can be accessed from it
-	std::cout << room->info << "\n";
+	std::cout << "\n"<< room->info << "\n";
 	std::cout << "You can go to: | ";
 
 	// Iterate over the rooms and print their id's 
@@ -70,7 +70,7 @@ void loadEvent(Room* room) {
 	int id = rand() % room->eventsNumber;
 	eventPointer ev = room->eventsList[id];
 
-	std::cout << "Event id == " << ev << "\n"; // Print the address of the event function, for debug purposes only
+	//std::cout << "Event id == " << ev << "\n"; // Print the address of the event function, for debug purposes only
 	if (ev != nullptr) {
 		(ev)(); // Call the event function
 

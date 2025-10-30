@@ -27,7 +27,7 @@ void medbayGlass() {
 		std::cout << "Deciding to move forward. Write '"<<word<<"' quick!\n";
 		time_t start = std::time(nullptr); //start the timer
 		char text[8];
-		utils::getUserInputString(text, 8);
+		utils::getUserInputString(text, 8,utils::inputPrompts[1]);
 		if (utils::charCompare(text,word) && utils::fitTimeframe(start,10)) //managed to write correct input in a specified timeframe
 		{
 			std::cout << "\nYou somehow managed to get across the room safely.\nTo the rhythm of your pouding chest you open each cabinet around you.\nYou find CHEMFUEL and WATER.\n";

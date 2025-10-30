@@ -15,7 +15,11 @@ namespace utils {
 	/// @brief Reads user input from the standard stream.
 	/// @param[out] dest Array to which the user input will be saved.
 	/// @param[in] len Number of bytes to read from the stream.
-	void getUserInputString(char dest[], int8_t len) {
+	/// @param message Message displayed before waiting for user input.
+	void getUserInputString(char dest[], int8_t len, const char* message) {
+		// Print the message
+		std::cout << message;
+
 		std::cin.getline(dest, len); // Read len number of bytes from the stream
 		
 		// Empty the buffer if there is something more
