@@ -1,0 +1,5 @@
+cd C:\masm32\mycode
+C:\masm32\bin\ml /c /coff hello.asm
+C:\masm32\bin\link /subsystem:windows hello.obj
+link /SUBSYSTEM:CONSOLE test.obj
+hello.exe
