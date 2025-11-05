@@ -117,7 +117,7 @@ Room rooms[11] = {
 		"JUNCTION A-1.\nThere's a broken ladder right in the middle of the junction.\nYou mutter to yourself that probably it has always been broken, but you cannot be sure.\nBig metal crates almost block the passage to the GALLEY, but there's an ideal gap both for you and for the ALIEN.\nJust don't think about it too much.\nThe JUNCTION A-1 is connected to the BRIDGE (0), GALLEY (2) and to the CORRIDOR (4).\n",
 		"",
 		3,
-		{nothingHappens, playerAttacked, nullptr, nullptr},
+		{nothingHappens, nullptr, nullptr, nullptr},
 		{0,2,4,20,20}
 	},
 	//4 - Corridor
@@ -125,7 +125,7 @@ Room rooms[11] = {
 		"CORRIDOR.\nThe entire corridor is filled with steam.\nThe pipes are moderately damaged and so are the vents up above.\nYou try your hardest to breathe.\nNormally, you would be annoyed at Brett and Parker, those engineers were lazy as they could be,\nbut now you only wanted to pass through.\nThe CORRIDOR is connected to JUNCTION A-1 (3), MEDLAB (5), JUNCTION A-2 (6)\nand finally to ESCAPE PODS (A).\n",
 		"",
 		4,
-		{thirst, nullptr, nullptr, nullptr},
+		{tooHot, nullptr, nullptr, nullptr},
 		{3,5,6,10,20}
 	},
 	//5 - Medlab
@@ -141,7 +141,7 @@ Room rooms[11] = {
 		"JUNCTION A-2.\nThe ladder stands in the middle of the junction, but you have no business of going down there.\nCHEMFUEL must be on this floor, you seem to be sure.\nVents are jagged and ripped apart, but only darkness and dust follows your gaze.\nThe JUNCTION A-2 is connected to GALLEY (2), CORRIDOR (4),\nHYPERSLEEP VAULT(7) and to the LIVING AREA (8).\n",
 		"",
 		4,
-		{thirst, nullptr, nullptr, nullptr},
+		{tooHot, nullptr, nullptr, nullptr},
 		{2,4,7,8,20}
 	},
 	//7 - Hypersleep vault
@@ -149,7 +149,7 @@ Room rooms[11] = {
 		"HYPERSLEEP VAULT.\nThere are seven simple cots with glass lids,\ncreating a circle shape in the middle of this massive bedroom.\nSeven simple lockers, seven simple stools next to them.\nIt seems like all but one have been moved,\nbut it could be just jitter inside your mind.\nThe HYPERSLEEP VAULT is connected to the JUNCTION A-2 (6).\n",
 		"",
 		4,
-		{thirst, nullptr, nullptr, nullptr},
+		{tooHot, nullptr, nullptr, nullptr},
 		{6,20,20,20,20}
 	},
 	//8 - Living Area
@@ -157,7 +157,7 @@ Room rooms[11] = {
 		"LIVING AREA.\nThere is a fairly long l-shaped sofa in the corner of this room and a coffee table in front of it.\nThe cigarrette smell fills up the room and you almost trip on a can.\nThe lights are gone and you wouldn't notice a threat if it was hiding here.\nThe LIVING AREA is connected to the JUNCTION A-2 (6) and to WC (A).\n",
 		"",
 		4,
-		{thirst, nullptr, nullptr, nullptr},
+		{tooHot, nullptr, nullptr, nullptr},
 		{6,9,20,20,20}
 	},
 	//9 - WC
@@ -165,7 +165,7 @@ Room rooms[11] = {
 		"WC.\nIt stinks in here. Why would you come here?\nDo you think the ALIEN will let you pee in peace?\nIt probably watches you from that stall over there.\nThe WC is connected to the LIVING AREA (8).\n",
 		"",
 		4,
-		{thirst, nullptr, nullptr, nullptr},
+		{tooHot, nullptr, nullptr, nullptr},
 		{8,20,20,20,20}
 	},
 	//10 - ESCAPE PODS
@@ -173,7 +173,7 @@ Room rooms[11] = {
 		"ESCAPE PODS.\nYou are extremely visible right now, it is unnaturally white around.\nNobody has ever used this room before.\nThree pods but only one could work.\nYour only way out.\nYou just need to find the fuel.\nBefore someone finds you...\nThe ESCAPE PODS are connected to the CORRIDOR (4).\n",
 		"",
 		4, //event to notice that one of the pods has some fuel so you swap it, one time event
-		{thirst, nullptr, nullptr, nullptr},
+		{tooHot, nullptr, nullptr, nullptr},
 		{4,20,20,20,20}
 	}
 

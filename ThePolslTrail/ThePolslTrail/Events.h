@@ -88,6 +88,7 @@ void motherPanel() {
 
 }
 
+/// @brief Typical event function.
 void podsFoundChemfuel() {
 	std::cout << "one of the pods had chemfuel left"; //remember to add more events to the escape pods like thirst
 	isSingleTimeEvent(podsFoundChemfuel);
@@ -103,7 +104,6 @@ void alienFire() {
 	std::cout << "Type in quickly fire to fire at the ALIEN";
 	//first some text, then a y/n for fire? and then if fire then type in quickly FIRE to succeed
 }
-
 
 void bridgeConsole() {
 	std::cout << "As you look around the Bridge you notice a dim blinking light on one of the distant consoles.\nYou have never used it before, it was never your responsibility.\nCheck it out?\n";
@@ -135,38 +135,21 @@ void bridgeConsole() {
 
 }
 
-/// @brief Typical event function.
-void playerAttacked() {
-	// Write information about the event
-	std::cout << "You're being attacked by the Alien!\n";
-	std::cout << "Duck?\n";
-
-	// Get user input
-	char c;
-	utils::getUserYNinput(c, utils::inputPrompts[0]);
-	
-	// Decide about the consequences for the player based on the input
-	if (c == 'n') {
-		std::cout << "Alien jumps at you and flies over your head as you stand still, you manage to flee.\n";
-	}
-	else {
-		std::cout << "You lunge but alien manages to snatch you. After some rummaging on the floor you manage to run away\n";
-		changeHP(-2);
-	}
-}
-
-
-void thirst() {
-	std::cout << "You're thirsty\n";
-	std::cout << "Take a sip?\n";
+void tooHot() {
+	std::cout << "As you enter the area, you start feeling increasingly dizzy.\n";
+	std::cout << "The fire that broke out one level below increased the temperature all around.\n";
+	std::cout << "Will you pour water on yourself to cool down?\n";
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
 	if (c == 'y' || c == 'Y') {
-		std::cout << "Water is delightful." << "\n";
+		std::cout << "You can see more clearly now." << "\n";
+		std::cout << "It is time to focus." << "\n";
 		changeWater(-2);
 	}
 	else {
-		std::cout << "Your throat is sore with thirst." << "\n";
+		std::cout << "You feel yourself slipping away." << "\n";
+		std::cout << "To stay concious you try to punch yourself." << "\n";
+		std::cout << "It will work for now, but you need to find more water." << "\n";
 		changeHP(-1);
 	}
 }
@@ -174,23 +157,6 @@ void thirst() {
 void nothingHappens() {
 	std::cout << "Nothing happens.\nYou lose hp due to boredom." << "\n";
 	changeHP(-1);
-}
-
-void strangePassage() {
-	std::cout << "One of the walls seems fishy to you. Check it out?\n";
-	char c;
-	utils::getUserYNinput(c, utils::inputPrompts[0]);
-	if (c == 'y') {
-		std::cout << "Your swift fingers run across the bumps on the wall but you cannot sense any sensible pattern\n";
-	}
-	else if (c == 'n') {
-		std::cout << "You decide not to entice the fate this time and leave the wall alone.\n";
-		// If it's possible increase accessability to some other room (randomly chosen maybe?
-	}
-	else {
-		std::cout << "You stare at the wall and the wall stares at you.\nIt takes so much time you get hurt by the hunger.\n";
-		player.hp -= 1;
-	}
 }
 
 void foundItem() {
@@ -209,18 +175,6 @@ void foundItem() {
 		std::cout << "Yo mama's fat, ya' know?\n";
 	}
 
-}
-
-void blankEvent() {
-	std::cout << "This is a blank event\nIt is a single time event, should not appear more than once.\n";
-	char c;
-	utils::getUserYNinput(c, utils::inputPrompts[5]);
-	if (c == 'y') {
-		std::cout << "Nothing in here\n";
-		changeChemfuel(1);
-	}
-
-	isSingleTimeEvent(blankEvent);
 }
 
 /// @brief Array with events that are considered single time.
