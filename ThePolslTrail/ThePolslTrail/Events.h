@@ -30,7 +30,7 @@ void openingScene()
 	std::cout << "Type in start to start the ";
 
 	char text[8];
-	utils::getUserInputString(text, 8);
+	utils::getUserInputString(text, 8, utils::inputPrompts[1]);
 	if (utils::charCompare(text, "help"))
 	{
 		help();
@@ -210,7 +210,7 @@ void foundItem() {
 
 /// @brief Array with events that are considered single time.
 ///		   After they are called, they will be removed from the rooms events list in which the event was fired.
-eventPointer singleTimeEvents[] = { blankEvent, nothingHappens };
+eventPointer singleTimeEvents[] = { nothingHappens };
 
 /// @brief Checks if given event is in the list @singleTimeEvents.
 /// @param ev Event that we want to check against constents of @singleTimeEvents.
