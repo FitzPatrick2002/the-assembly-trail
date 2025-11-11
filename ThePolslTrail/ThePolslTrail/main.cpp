@@ -32,7 +32,7 @@ bool gameOn = true;
 
 int main() {
 	time(0); // Random numbers generation
-
+	openingScene();
 	// Main loop is continued as long as the gameOn variable is set to true
 	while (gameOn) {
 

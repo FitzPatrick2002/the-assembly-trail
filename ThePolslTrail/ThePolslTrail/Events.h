@@ -13,6 +13,37 @@ typedef void(*eventPointer)();
 
 bool isSingleTimeEvent(eventPointer);
 
+void help()
+{
+	std::cout << "HELP\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+}
+
+void map()
+{
+	std::cout << "Map\n";
+}
+
+void openingScene()
+{
+	std::cout << "Type in start to start the ";
+
+	char text[8];
+	utils::getUserInputString(text, 8);
+	if (utils::charCompare(text, "help"))
+	{
+		help();
+		return;
+	}
+	else if(utils::charCompare(text, "start"))
+	{
+		std::cout << "start\n";
+		char c;
+		utils::getUserYNinput(c, utils::inputPrompts[0]);
+	}
+}
+
 void medbayGlass() {
 
 	std::cout << "Since the MEDBAY is so well equipped,\nyou think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\nBut the glass on the floor...\nThe last thing you'd want is to slip and bleed here.\nDo you want to proceed? Prepare to be quick.\n";
