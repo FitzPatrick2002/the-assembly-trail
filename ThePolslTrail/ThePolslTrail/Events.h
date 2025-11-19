@@ -87,7 +87,7 @@ void medbayGlass() {
 }
 
 void medbayAsh() {
-	std::cout << "Loud ass Ash";
+	std::cout << "Loud Ash";
 	//NOT SINGLE TIME EVENT HEHE
 }
 
@@ -121,13 +121,76 @@ void motherPanel() {
 
 /// @brief Typical event function.
 void podsFoundChemfuel() {
-	std::cout << "one of the pods had chemfuel left"; //remember to add more events to the escape pods like thirst
+	std::cout << "You look around and you decide to inspect one of the broken pods.\n"; //remember to add more events to the escape pods like thirst
+	std::cout << "Hidden under the steering panels is a full canister of unused CHEMFUEL.\n";
+	std::cout << "The God, if They even exist, must be looking out for you...\n";
+	changeChemfuel(1);
 	isSingleTimeEvent(podsFoundChemfuel);
 }
 
 void WCHiddenPassage() {
-	std::cout << "You opened up the stall door and you saw a broken crate leading up to something go through? y/n";
-	isSingleTimeEvent(WCHiddenPassage);
+	std::cout << "You opened up the stall door and you saw a broken crate to the vents.\n";
+	std::cout << "It is leading up to something you cannot see.\n";
+	std::cout << "Do you dare to go through?";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y')
+	{
+		std::cout << "Goosebumps appear on your skin, it must be shocked by your decision.\n";
+		std::cout << "You crawl through the vents slowly. Your movements are making a lot of noise.\n";
+		std::cout << "Hotter than before you emerge on the other side.\n";
+		std::cout << "You have found yourself in a broken escape pod that was barred from the outside.\n";
+		std::cout << "There must be some abandoned equipment you think to yourself.\n";
+		std::cout << "Found hidden all around are 1 CHEMFUEL and 2 WATER.\n";
+		changeChemfuel(1); changeWater(2);
+		std::cout << "Quickly, but steadily you go back to the WC stall.\n";
+		std::cout << "You feel so hot, this journey has made you sweat.\n";
+		std::cout << "Do you pour WATER on yourself to cool down?";
+		utils::getUserYNinput(c, utils::inputPrompts[0]);
+		if (c == 'y' || c == 'Y')
+		{
+			//no need to check for water because we have JUST found some.
+			std::cout << "You're so lucky you have just found some WATER.\n";
+			std::cout << "It helps you keep your head and thoughts straight and focused on the goal.\n";
+			changeWater(-1);
+		}
+		else if (c == 'n' || c == 'N')
+		{
+			std::cout << "Even though you have just found WATER, you want to keep it for special occasions.\n";
+			std::cout << "But you feel so sick you collapse on the bathroom floor...\n";
+			std::cout << "Thankfully it seems like the ALIEN is not nearby.\n";
+			std::cout << "Maybe IT does not feel the need to pee.\n";
+			std::cout << "You are safe for now, but you have slightly damaged yourself.\n";
+			changeHP(-1);
+		}
+		else {
+			std::cout << "The flashes of hot air have made you lose your mind even more.\n";
+			std::cout << "As you try to open the bottle of WATER you trip and land on the bathroom floor.\n";
+			std::cout << "The bottle spills all of its contents around and you're left with nothing.\n";
+			std::cout << "Some of it has sprinkled on you, but you still have damaged yourself.\n";
+			changeHP(-1); changeWater(-1);
+		}
+		isSingleTimeEvent(WCHiddenPassage);
+
+	}
+	else if (c == 'n' || c == 'N')
+	{
+		std::cout << "This is dangerous, you think to yourself.\n";
+		std::cout << "No matter what goods I could potentially find on the side,\n";
+		std::cout << "It is not worth it.\n";
+		std::cout << "You turn around.\n";
+	}
+	else {
+		std::cout << "You try to examine the fallen crate for whatever reason.\n";
+		std::cout << "You wonder what made it break? You slide your hand against the side.\n";
+		std::cout << "It just stabs you in the finger. Obviously.\n";
+		std::cout << "You try to stop the bleeding. It could alert the ALIEN.\n";
+		std::cout << "Thankfully, since you are in the WC, you find some toilet paper right next to you.\n";
+		std::cout << "Ripley, Ripley, you are such an idiot, what were you thinking? You mutter to yourself.\n";
+		std::cout << "You have just wasted time here and needlessly hurt yourself.\n";
+		std::cout << "Resignated, you turn around.\n";
+		changeHP(-1);
+	}
 
 }
 
@@ -203,7 +266,7 @@ void foundItem() {
 		std::cout << "You search the corpse but cannot find anything.\n";
 	}
 	else {
-		std::cout << "Yo mama's fat, ya' know?\n";
+		std::cout << "You are confused.\n";
 	}
 
 }

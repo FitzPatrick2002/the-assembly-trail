@@ -101,7 +101,7 @@ Room rooms[11] = {
 		"MOTHER.\nYou were never allowed in there, but now that Douglas and the rest are gone...\nThe room is surrounded with LED panels and small buttons positioned all over the walls and the ceiling.\nYou immediately see the main control panel, the one used to talk directly to MOTHER.\nAll is pure white and so you quickly notice a sizzling with acid hole in the back.\nThe MOTHER is connected only to the BRIDGE (0).\n",
 		"",
 		3,
-		{nothingHappens, strangePassage, foundItem, nullptr},
+		{nothingHappens, nothingHappens, foundItem, nullptr},
 		{0, 20, 20, 20, 20}
 	},
 	//2 - Galley (ship kitchen)
@@ -165,7 +165,7 @@ Room rooms[11] = {
 		"WC.\nIt stinks in here. Why would you come here?\nDo you think the ALIEN will let you pee in peace?\nIt probably watches you from that stall over there.\nThe WC is connected to the LIVING AREA (8).\n",
 		"",
 		4,
-		{tooHot, nullptr, nullptr, nullptr},
+		{tooHot, WCHiddenPassage, nullptr, nullptr},
 		{8,20,20,20,20}
 	},
 	//10 - ESCAPE PODS
