@@ -28,7 +28,7 @@ void help()
 	std::cout << ".________________________________.\n";
 	std::cout << "Nostromo Escape is a game developed by:\n";
 	std::cout << "Daniil Khortov, Magdalena Rapala, Milosz Liniewiecki and Ruth Zhou\n";
-	std::cout << "As a Asembler Programming Language project, made in 2025.\n\n";
+	std::cout << "As Asembler Programming Language project, made in 2025.\n\n";
 	std::cout << "You play as Ellen Ripley, the last Nostromo survivor.\n";
 	std::cout << "Still stuck on the ship, your goal is to collect 5 chemical fuels\n";
 	std::cout << "And survive long enough to escape via an escape pod.\n";
