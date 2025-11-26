@@ -11,8 +11,8 @@
 /// @brief Room structure defines parameters associated with each room.
 struct Room {
 	const char* info; ///< Pointer to text displayed when the room is loaded. Can be a description of how the room looks like.
-	const char* hidingLocationCorrect;
-	const char* hidingLocationWrong;
+	const char* hidingLocationCorrect; ///< The character array containing the text of the correct hiding location for the event alienHide and jonesyJumpscare.
+	const char* hidingLocationWrong; ///< The character array containing the text of the wrong hiding location for the event alienHide.
 	int8_t eventsNumber; ///< Current number of events stored in this room. If a single time event is fired, this value may or may not go dwon by -1.
 	eventPointer eventsList[MAX_EVENTS]; ///< List of function pointers which specify which event function will be called when particular event number is chosen.
 	int8_t connections[MAX_CONNECTIONS]; ///< Ids of rooms with which the room is connected with. Their Ids are the same as place in the rooms table.
@@ -27,8 +27,8 @@ Room rooms[11] = {
 	//0 - Bridge
 	{
 		"BRIDGE.\nNow presumably empty, it was your work environment for the past XX years.\nIn the front there are two pilot seats and just behind them, another two.\nThe rest of the area is filled with cabinets, tall consoles and a bunch of everyday junk.\nThe BRIDGE is connected to MOTHER unit (1), GALLEY (2) and JUNCTION-1 (3).\n", // Room description
-		"Behind the tall cabinets next to you.",
-		"Near the main console, under the desk.",
+		"Behind the tall cabinets next to you.", // Correct Hiding Spot
+		"Near the main console, under the desk.", // Wrong Hiding Spot
 		4, // Number of events
 		{alienHide, foundChemfuel ,bridgeConsole,jonesyJumpscare}, // Events bridgeConsole
 		{1,2,3,20,20} // Connections with other rooms
@@ -133,7 +133,7 @@ void changeRoom(Room* room) {
 	int8_t roomChosen = 0;
 	char c;
 	do {
-		std::cout << "Choose room to which you want to go\n";
+		std::cout << "Choose room to which you want to go:\n";
 		utils::getUserYNinput(c, utils::inputPrompts[4]);
 		roomChosen = c - 48;
 		if (roomChosen >= 17 && roomChosen <= 22)
