@@ -1,8 +1,13 @@
 #pragma once
 #include <iostream>
 
+//for sleep
+#include <chrono>
+#include <thread>
+
 #include "Utils.h"
 #include "Player.h"
+
 
 /// @file Events.h 
 /// @brief Events.h file provides functions with events that will occur during gameplay.
@@ -15,9 +20,41 @@ bool isSingleTimeEvent(eventPointer);
 
 void help()
 {
-	std::cout << "HELP\n";
+	std::cout << ".________________________________.\n";
+	std::cout << "|     _  _  ____  __    ____     |\n";
+	std::cout << "|    / )( \\(  __)(  )  (  _ \\    |\n";
+	std::cout << "|    ) __ ( ) _) / (_/\\ ) __/    |\n";
+	std::cout << "|    \\_)(_/(____)\\____/(__)      |\n";
+	std::cout << ".________________________________.\n";
+	std::cout << "Nostromo Escape is a game developed by:\n";
+	std::cout << "Daniil Khortov, Magdalena Rapala, Milosz Liniewiecki and Ruth Zhou\n";
+	std::cout << "As a Asembler Programming Language project, made in 2025.\n\n";
+	std::cout << "You play as Ellen Ripley, the last Nostromo survivor.\n";
+	std::cout << "Still stuck on the ship, your goal is to collect 5 chemical fuels\n";
+	std::cout << "And survive long enough to escape via an escape pod.\n";
+	std::cout << "How to play?\n";
+	std::cout << "This is a text-based game, everything you do, you do so by writing in the terminal.\n";
+	std::cout << "There are time dependent decisions, you must pay attention.\n";
+	std::cout << "Now, good luck and remember:\n\n";
+	std::cout << "|      __  __ _    ____  ____   __    ___  ____                |\n";
+	std::cout << "|     (  )(  ( \\  / ___)(  _ \\ / _\\  / __)(  __) _             |\n";
+	std::cout << "|      )( /    /  \\___ \\ ) __//    \\( (__  ) _) ( )            |\n";
+	std::cout << "|     (__)\\_)__)  (____/(__)  \\_/\\_/ \\___)(____)(/             |\n";
+	std::cout << "|     __ _   __      __   __ _  ____     ___   __   __ _       |\n";
+	std::cout << "|    (  ( \\ /  \\    /  \\ (  ( \\(  __)   / __) / _\\ (  ( \\      |\n";
+	std::cout << "|    /    /(  O )  (  O )/    / ) _)   ( (__ /    \\/    /      |\n";
+	std::cout << "|    \\_)__) \\__/    \\__/ \\_)__)(____)   \\___)\\_/\\_/\\_)__)      |\n";
+	std::cout << "|     _  _  ____   __   ____    _  _  __   _  _                |\n";
+	std::cout << "|    / )( \\(  __) / _\\ (  _ \\  ( \\/ )/  \\ / )( \\               |\n";
+	std::cout << "|    ) __ ( ) _) /    \\ )   /   )  /(  O )) \\/ (               |\n";
+	std::cout << "|    \\_)(_/(____)\\_/\\_/(__\\_)  (__/  \\__/ \\____/               |\n";
+	std::cout << "|     ____   ___  ____  ____   __   _  _                       |\n";
+	std::cout << "|    / ___) / __)(  _ \\(  __) / _\\ ( \\/ )                      |\n";
+	std::cout << "|    \\___ \\( (__  )   / ) _) /    \\/ \\/ \\ _                    |\n";
+	std::cout << "|    (____/ \\___)(__\\_)(____)\\_/\\_/\\_)(_/(_)                   |\n\n";
+	std::cout << "Press anything go back and start the game immediately: ";
 	char c;
-	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	utils::getUserYNinput(c, utils::inputPrompts[5]);
 }
 
 void map()
@@ -27,10 +64,29 @@ void map()
 
 void openingScene()
 {
-	std::cout << "Type in start to start the ";
+
+	std::cout << "._______________________________________________________.\n"
+		"|     __ _   __   ____  ____  ____   __   _  _   __     |\n"
+		"|    (  ( \\ /  \\ / ___)(_  _)(  _ \\ /  \\ ( \\/ ) /  \\    |\n"
+		"|    /    /(  O )\\___ \\  )(   )   /(  O )/ \\/ \\(  O )   |\n"
+		"|    \\_)__) \\__/ (____/ (__) (__\\_) \\__/ \\_)(_/ \\__/    |\n"
+		"|          ____  ____   ___   __   ____  ____           |\n"
+		"|         (  __)/ ___) / __) / _\\ (  _ \\(  __)          |\n"
+		"|          ) _) \\___ \\( (__ /    \\ ) __/ ) _)           |\n"
+		"|         (____)(____/ \\___)\\_/\\_/(__)  (____)          |\n"
+		"._______________________________________________________.\n";
+	std::cout << "MENU:\n";
+	std::cout << "[start]\n";
+	std::cout << "[help]\n";
+	std::cout << "[exit]\n";
+
 
 	char text[8];
-	utils::getUserInputString(text, 8, utils::inputPrompts[1]);
+
+	do {
+		utils::getUserInputString(text, 8, utils::inputPrompts[1]);
+	} while (!utils::charCompare(text, "help") && !utils::charCompare(text, "start") && !utils::charCompare(text, "exit"));
+	
 	if (utils::charCompare(text, "help"))
 	{
 		help();
@@ -38,9 +94,10 @@ void openingScene()
 	}
 	else if(utils::charCompare(text, "start"))
 	{
-		std::cout << "start\n";
-		char c;
-		utils::getUserYNinput(c, utils::inputPrompts[0]);
+		return;
+	}
+	else if (utils::charCompare(text, "exit")) {
+		exit(0); //bad idea can be cut out
 	}
 }
 
@@ -64,9 +121,6 @@ void medbayGlass() {
 			std::cout << "\nYou somehow managed to get across the room safely.\nTo the rhythm of your pouding chest you open each cabinet around you.\nYou find CHEMFUEL and WATER.\n";
 			changeWater(1);
 			changeChemfuel(2);
-
-			//very merciful, allows for retries in case of failure
-			isSingleTimeEvent(medbayGlass);
 		}
 		else
 		{
@@ -91,17 +145,90 @@ void medbayAsh() {
 	//NOT SINGLE TIME EVENT HEHE
 }
 
-void jonesyJumpscare() {
-	std::cout << "You open the cabinet and then MEOW!";
-	///multiple locations
+void jonesyJumpscare() {///multiple locations
+	std::cout << "As you walk inside, you hear shallow breathing...\n";
+	std::cout << "The sound is coming from\n";
+	std::cout << player.roomHidingLocations[0];
+	std::cout << "\nYou walk closer...\n";
+	std::this_thread::sleep_for(std::chrono::seconds(5));
+	std::cout << "MEOW!!!\n";
+	std::cout << "It's Jonesy! He flees in fear before you can catch him.\n";
+	std::cout << "You hope you can see him again.\n";
 }
 
 void alienHide() {
-	std::cout << "You must hide!";
-	//std::cout << rooms[player.roomNumber].hidingLocations;
-	//a or b? ??? parzysty to A jak nie to B..
-	//dependent on the room
+	std::cout << "You hear Alien footsteps! Where will you hide?\n";
+	const char* hidingLocations[2] = { player.roomHidingLocations[0], player.roomHidingLocations[1] }; // 0 - correct, 1 - incorrect
+	int x = rand() % 2;
+	for (int i = 0; i <= x; i++)
+	{
+		const char* buffer = hidingLocations[0];
+		hidingLocations[0] = hidingLocations[1]; //switching, shuffing random amount of times
+		hidingLocations[1] = buffer;
+	}
+	std::cout << "1. ";
+	std::cout << hidingLocations[0];
+	std::cout << "\n2. ";
+	std::cout << hidingLocations[1];
+	std::cout << "\nType in your answer quickly! Choose 1 or 2!\n";
+
+	time_t start = std::time(nullptr); //start the timer
+	int end = 12; //in seconds
+
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[3]);
+	
+	if ((c == '1' || c == '2') && utils::fitTimeframe(start, end)) //managed to write correct input in a specified timeframe
+	{
+		std::cout << "Carefully, but swiftly, you slip away to the hiding spot.\n";
+		std::cout << "Hoping that the ALIEN won't see you, you freeze and hold your breath.\n";
+		std::cout << "The ALIEN in all of its glory searches for you.\n";
+		for (int i = 1; i <= 5; i++)
+		{
+			std::cout << i;
+			std::cout << "...\n";
+			std::this_thread::sleep_for(std::chrono::seconds(1)); //for dramatic effect
+		}
+		
+		if (player.roomHidingLocations[0] == hidingLocations[c - 49]) //typed in correctly 49 - ascii and then -1 beceause of index
+		{
+			std::cout << "It looks around and for a moment you feel as if you were going to die.\n";
+			std::cout << "But you will not. You will persist.\n";
+			std::cout << "At least for now.\n";
+			std::cout << "The ALIEN hears a distant rustle and marches towards the noise.\n";
+			std::cout << "You wait a short while and leave your hiding spot, still alive.\n";
+		}
+		else {
+			std::cout << "It looks around and for a moment you feel as if you are going to die.\n";
+			std::cout << "You have a hunch that you have been noticed.\n";
+			std::cout << "Before you can think, the ALIEN jumps towards you and slashes you with its tail.\n";
+			std::cout << "As you fall to your knees, your predator is content.\n";
+			std::cout << "The ALIEN dissapears as suddenly as it appeared.\n";
+			changeHP(-2);
+		}
+	}
+	else if(c != '1' && c !='2' && utils::fitTimeframe(start,end)){ //fit withing time limit but failed to write the spot correctly
+		std::cout << "You must be delirious, at a time like this you cannot decide.\n";
+		std::cout << "Full of horror, you try to hide in the plain sight.\n";
+		std::cout << "The ALIEN sees you almost immediately.\n";
+		std::cout << "You have a feeling that the ALIEN is dissapointed in you.\n";
+		std::cout << "You are such an easy prey and it wants to play.\n";
+		std::cout << "Before you can think, the ALIEN jumps towards you and slashes you with its tail.\n";
+		std::cout << "As you fall to your knees, your predator is unsatisfied.\n";
+		std::cout << "The ALIEN dissapears as suddenly as it appeared.\n";
+		changeHP(-2);
+	}
+	else { //ran out of time
+		std::cout << "You freezed for too long and now the ALIEN has seen you.\n";
+		std::cout << "There is no escape.\n";
+		std::cout << "Before you can think, the ALIEN jumps towards you and slashes you with its tail.\n";
+		std::cout << "As you fall to your knees, your predator is content.\n";
+		std::cout << "The ALIEN dissapears as suddenly as it appeared.\n";
+		changeHP(-2);
+	}
 }
+
+//those three events will be written later
 
 void galleyWater() {
 	std::cout << "You've found some water";
@@ -111,13 +238,13 @@ void galleyWater() {
 void motherWater() {
 	//very interesting because Ash did not need water but could drink it, Ripley is weirded out at this thought
 	std::cout << "";
-	isSingleTimeEvent(motherWater);
 }
 
 void motherPanel() {
 	std::cout << "something about checking the panel and then wanting to either look at vents or at the escape pods status, add temperature for vibes";
 
 }
+/////
 
 /// @brief Typical event function.
 void podsFoundChemfuel() {
@@ -125,13 +252,12 @@ void podsFoundChemfuel() {
 	std::cout << "Hidden under the steering panels is a full canister of unused CHEMFUEL.\n";
 	std::cout << "The God, if They even exist, must be looking out for you...\n";
 	changeChemfuel(1);
-	isSingleTimeEvent(podsFoundChemfuel);
 }
 
 void WCHiddenPassage() {
 	std::cout << "You opened up the stall door and you saw a broken crate to the vents.\n";
 	std::cout << "It is leading up to something you cannot see.\n";
-	std::cout << "Do you dare to go through?";
+	std::cout << "Do you dare to go through? ";
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
 	if (c == 'y' || c == 'Y')
@@ -170,8 +296,6 @@ void WCHiddenPassage() {
 			std::cout << "Some of it has sprinkled on you, but you still have damaged yourself.\n";
 			changeHP(-1); changeWater(-1);
 		}
-		isSingleTimeEvent(WCHiddenPassage);
-
 	}
 	else if (c == 'n' || c == 'N')
 	{
@@ -218,7 +342,6 @@ void bridgeConsole() {
 			changeChemfuel(2);
 			changeHP(-1);
 		}
-		isSingleTimeEvent(bridgeConsole);
 	}
 	else if (c == 'n' || c == 'N') {
 		std::cout << "You leave this suspicious light be as suspicious as it needs to be.\n";
@@ -248,32 +371,59 @@ void tooHot() {
 	}
 }
 
-void nothingHappens() {
-	std::cout << "Nothing happens.\nYou lose hp due to boredom." << "\n";
-	changeHP(-1);
-}
 
-void foundItem() {
-	std::cout << "There are human remains lying on the floor.\nCorpse is old and dried, clothes are are already gone, only bones and steel of the armour withstood the trial of time.\n";
+void foundChemfuel() {
+	std::cout << "You notice a fresh acid-made hole on the ground.\n";
 	std::cout << "Search it?\n";
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
-	if (c >= 97 && c <= 110) {
-		std::cout << "Under the corpse you discover the item you've been seeking\n";
+	if (c == 'y' || c == 'Y') {
+		std::cout << "Nothing can stop you now!\n";
+		std::cout << "With a steady hand you reach out and...\n";
+		std::cout << "Bingo! You have no idea why, but you have got 1 CHEMFUEL.\n";
 		changeChemfuel(1);
 	}
-	else if (c == 'y') {
-		std::cout << "You search the corpse but cannot find anything.\n";
+	else if (c == 'n' || c == 'N') {
+		std::cout << "You know better than to risk getting acid on your hands.\n";
+		std::cout << "The hole sizzles evilly.\n";
 	}
 	else {
-		std::cout << "You are confused.\n";
+		std::cout << "As you stick your hand inside the hole, your weak body trembles.\n";
+		std::cout << "OUCH! A speck of acid nuzzles your sleeve...\n";
+		std::cout << "It has not damaged you greatly, but you feel a new wound forming right under.\n";
+		changeHP(-1);
 	}
 
+}
+
+void foundWater() {
+	std::cout << "There's an open vent, that was closed before...\n";
+	std::cout << "Search it?\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y') {
+		std::cout << "Nothing can stop you now!\n";
+		std::cout << "You climb up and...\n";
+		std::cout << "Bingo! Hidden, left by nobody knows who, there lies 1 WATER.\n";
+		changeWater(1);
+	}
+	else if (c == 'n' || c == 'N') {
+		std::cout << "Really? You really do not want to see inside the vents?\n";
+		std::cout << "The vents that the ALIEN uses almost all the time?\n";
+		std::cout << "You turn your back to the open vent\n";
+		std::cout << "And you feel yourself getting more, and more vulnerable.\n";
+	}
+	else {
+		std::cout << "You try to climb up the vents,\n";
+		std::cout << "But you are too weak and your hands slip away from the ledge...\n";
+		std::cout << "Falling on your latter end did hurt a lot.\n";
+		changeHP(-1);
+	}
 }
 
 /// @brief Array with events that are considered single time.
 ///		   After they are called, they will be removed from the rooms events list in which the event was fired.
-eventPointer singleTimeEvents[] = { nothingHappens };
+eventPointer singleTimeEvents[] = { foundWater, foundChemfuel, bridgeConsole, WCHiddenPassage, medbayAsh, motherPanel, motherWater, galleyWater, podsFoundChemfuel};
 
 /// @brief Checks if given event is in the list @singleTimeEvents.
 /// @param ev Event that we want to check against constents of @singleTimeEvents.
@@ -283,6 +433,5 @@ bool isSingleTimeEvent(eventPointer ev) {
 		if (singleTime == ev)
 			return true;
 	}
-
 	return false;
 }

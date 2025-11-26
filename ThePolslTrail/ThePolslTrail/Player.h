@@ -5,6 +5,8 @@
 ///		   There is only a single instance of player in the program
 struct Player {
 	int8_t roomNumber = 0; // Id of the currently occupied room. It corresponds to the location in the rooms table from Room.h file.
+	const char* roomHidingLocations[2] = { "Behind the tall cabinets next to you.",
+											"Near the main console, under the desk." }; //< two hiding locations that are updated each time the player moves into a room, 0 - correct 1 - incorrect
 	int8_t hp = 5; ///< Health points, if they go down to zero, player dies
 	int8_t water = 10; ///< Water needs to be consumed during specific events, if it goes below zero, player will be loosing hp proportionally
 	int8_t chemfuel = 0; ///< Chemical fuel which the player is seeking. If the number collected is greater than some value, end of game happens

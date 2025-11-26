@@ -99,5 +99,4 @@ namespace utils {
 		else
 			c = 48 + room_no;
 	}
-
 }

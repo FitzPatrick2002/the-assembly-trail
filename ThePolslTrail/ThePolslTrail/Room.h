@@ -18,6 +18,114 @@ struct Room {
 	int8_t connections[MAX_CONNECTIONS]; ///< Ids of rooms with which the room is connected with. Their Ids are the same as place in the rooms table.
 };
 
+/// @brief Table of rooms used in the game
+///		   Regarding the random events choosing.
+///		   Events are randomply chosen by randomly choosing an index from 0 to room.eventsNumber - 1
+///		   So if there are some nullptr events or some repeating events, that is beacuse we want to increase chances for some event to occur.
+///		   Not a perffect system and probably doesn't work.
+Room rooms[11] = {
+	//0 - Bridge
+	{
+		"BRIDGE.\nNow presumably empty, it was your work environment for the past XX years.\nIn the front there are two pilot seats and just behind them, another two.\nThe rest of the area is filled with cabinets, tall consoles and a bunch of everyday junk.\nThe BRIDGE is connected to MOTHER unit (1), GALLEY (2) and JUNCTION-1 (3).\n", // Room description
+		"Behind the tall cabinets next to you.",
+		"Near the main console, under the desk.",
+		4, // Number of events
+		{alienHide, foundChemfuel ,bridgeConsole,jonesyJumpscare}, // Events bridgeConsole
+		{1,2,3,20,20} // Connections with other rooms
+	},
+	//1 - Mother
+	{
+		"MOTHER.\nYou were never allowed in there, but now that Douglas and the rest are gone...\nThe room is surrounded with LED panels and small buttons positioned all over the walls and the ceiling.\nYou immediately see the main control panel, the one used to talk directly to MOTHER.\nAll is pure white and so you quickly notice a sizzling with acid hole in the back.\nThe MOTHER is connected only to the BRIDGE (0).\n",
+		"Inside spacious cabinet.",
+		"Under the desk.",
+		2,
+		{nullptr, nullptr, foundWater, jonesyJumpscare},
+		{0, 20, 20, 20, 20}
+	},
+	//2 - Galley (ship kitchen)
+	{
+		"GALLEY.\nThe kitchen's a spacey room, it has a round table that used to be enough for 7 persons crew (and for Jones too).\nThe coffee's spilled, and so is his blood.\nIt seems like yesterday, the day when Kane died. It was yesterday.\nThe kitchen was always such a frantic mess, now more than ever.\nThe GALLEY is connected to the BRIDGE (0), JUNCTION A-1 (3) and to JUNCTION A-2 (6).\n",
+		"Inside one of the bigger drawers.",
+		"Under the main round table.",
+		4,
+		{galleyWater, foundWater, jonesyJumpscare, alienHide},
+		{0,3,6,20,20}
+	}, 
+	//3 - Junction A-1
+	{
+		"JUNCTION A-1.\nThere's a broken ladder right in the middle of the junction.\nYou mutter to yourself that probably it has always been broken, but you cannot be sure.\nBig metal crates almost block the passage to the GALLEY, but there's an ideal gap both for you and for the ALIEN.\nJust don't think about it too much.\nThe JUNCTION A-1 is connected to the BRIDGE (0), GALLEY (2) and to the CORRIDOR (4).\n",
+		"Behind a tower of crates.",
+		"In that gap.",
+		2,
+		{jonesyJumpscare, alienHide, nullptr, nullptr},
+		{0,2,4,20,20}
+	},
+	//4 - Corridor
+	{
+		"CORRIDOR.\nThe entire corridor is filled with steam.\nThe pipes are moderately damaged and so are the vents up above.\nYou try your hardest to breathe.\nNormally, you would be annoyed at Brett and Parker, those engineers were lazy as they could be,\nbut now you only wanted to pass through.\nThe CORRIDOR is connected to JUNCTION A-1 (3), MEDLAB (5), JUNCTION A-2 (6)\nand finally to ESCAPE PODS (A).\n",
+		"Behind a broken wall.",
+		"Inside a pipe.",
+		3,
+		{tooHot, alienHide, jonesyJumpscare, nullptr},
+		{3,5,6,10,20}
+	},
+	//5 - Medlab
+	{
+		"MEDLAB.\nAll the laboratory equipment that Ash was using is still on the floor,\nhe himself is thankfully still a burned 'corpse' on the counter.\nYour tired mind sees a few opened ventilation crates above...\nAnd many shelves near the observation pod, but the road to them is full of shattered glass.\nThe MEDBAY is connected to the CORRIDOR (4).\n",
+		"Inside the closest cabinet.",
+		"Under the laboratory bed.",
+		4,
+		{medbayGlass, medbayAsh, jonesyJumpscare, alienHide},
+		{4,20,20,20,20}
+	},
+	//6 - Junction A-2
+	{
+		"JUNCTION A-2.\nThe ladder stands in the middle of the junction, but you have no business of going down there.\nCHEMFUEL must be on this floor, you seem to be sure.\nVents are jagged and ripped apart, but only darkness and dust follows your gaze.\nThe JUNCTION A-2 is connected to GALLEY (2), CORRIDOR (4),\nHYPERSLEEP VAULT(7) and to the LIVING AREA (8).\n",
+		"Inside the nearest vent.",
+		"Behind the ladder.",
+		4,
+		{tooHot, jonesyJumpscare, alienHide, foundWater},
+		{2,4,7,8,20}
+	},
+	//7 - Hypersleep vault
+	{
+		"HYPERSLEEP VAULT.\nThere are seven simple cots with glass lids,\ncreating a circle shape in the middle of this massive bedroom.\nSeven simple lockers, seven simple stools next to them.\nIt seems like all but one have been moved,\nbut it could be just jitter inside your mind.\nThe HYPERSLEEP VAULT is connected to the JUNCTION A-2 (6).\n",
+		"Inside the closest cabinet.",
+		"Inside one of the cots.",
+		3,
+		{tooHot, alienHide, jonesyJumpscare, nullptr},
+		{6,20,20,20,20}
+	},
+	//8 - Living Area
+	{
+		"LIVING AREA.\nThere is a fairly long l-shaped sofa in the corner of this room and a coffee table in front of it.\nThe cigarrette smell fills up the room and you almost trip on a can.\nThe lights are gone and you wouldn't notice a threat if it was hiding here.\nThe LIVING AREA is connected to the JUNCTION A-2 (6) and to WC (9).\n",
+		"Behind the sofa.",
+		"Under the table.",
+		4,
+		{tooHot, jonesyJumpscare, alienHide, foundWater},
+		{6,9,20,20,20}
+	},
+	//9 - WC
+	{
+		"WC.\nIt stinks in here. Why would you come here?\nDo you think the ALIEN will let you pee in peace?\nIt probably watches you from that stall over there.\nThe WC is connected to the LIVING AREA (8).\n",
+		"Left stall.",
+		"Right stall.",
+		3,
+		{tooHot, WCHiddenPassage, alienHide, nullptr},
+		{8,20,20,20,20}
+	},
+	//10 - ESCAPE PODS
+	{
+		"ESCAPE PODS.\nYou are extremely visible right now, it is unnaturally white around.\nNobody has ever used this room before.\nThree pods but only one could work.\nYour only way out.\nYou just need to find the fuel.\nBefore someone finds you...\nThe ESCAPE PODS are connected to the CORRIDOR (4).\n",
+		"Inside the suit closet.",
+		"Inside the broken pod.",
+		4, //event to notice that one of the pods has some fuel so you swap it, one time event
+		{tooHot, alienHide, foundWater, jonesyJumpscare},
+		{4,20,20,20,20}
+	}
+
+};
+
 /// @brief Prints a short message about changing the room and lets the user choose to which one they want to go
 //		   In case user selected room that is not connected with the currently occupied location, user will have to enter the number again
 // @param room Pointer to the room from the rooms table. 
@@ -35,7 +143,10 @@ void changeRoom(Room* room) {
 	} while (!utils::checkIfInArray(roomChosen, room->connections, MAX_ROOMS) || roomChosen < 0 || roomChosen >= MAX_ROOMS);
 
 	player.roomNumber = roomChosen;
-}
+	player.roomHidingLocations[0] = rooms[roomChosen].hidingLocationCorrect;
+	player.roomHidingLocations[1] = rooms[roomChosen].hidingLocationWrong;
+};
+
 
 /// @brief Loads the specified room. 
 ///		   1. Prints the general information string associated with the room.
@@ -83,110 +194,3 @@ void loadEvent(Room* room) {
 	}
 }
 
-/// @brief Table of rooms used in the game
-///		   Regarding the random events choosing.
-///		   Events are randomply chosen by randomly choosing an index from 0 to room.eventsNumber - 1
-///		   So if there are some nullptr events or some repeating events, that is beacuse we want to increase chances for some event to occur.
-///		   Not a perffect system and probably doesn't work.
-Room rooms[11] = {
-	//0 - Bridge
-	{
-		"BRIDGE.\nNow presumably empty, it was your work environment for the past XX years.\nIn the front there are two pilot seats and just behind them, another two.\nThe rest of the area is filled with cabinets, tall consoles and a bunch of everyday junk.\nThe BRIDGE is connected to MOTHER unit (1), GALLEY (2) and JUNCTION-1 (3).\n", // Room description
-		"Behind the tall cabinets next to you.",
-		"Near the main console, under the desk.",
-		1, // Number of events
-		{bridgeConsole, nullptr,nullptr,nullptr}, // Events
-		{1,2,3,20,20} // Connections with other rooms
-	},
-	//1 - Mother
-	{
-		"MOTHER.\nYou were never allowed in there, but now that Douglas and the rest are gone...\nThe room is surrounded with LED panels and small buttons positioned all over the walls and the ceiling.\nYou immediately see the main control panel, the one used to talk directly to MOTHER.\nAll is pure white and so you quickly notice a sizzling with acid hole in the back.\nThe MOTHER is connected only to the BRIDGE (0).\n",
-		"Inside spacious cabinet.",
-		"Under the desk.",
-		3,
-		{nothingHappens, nothingHappens, foundItem, nullptr},
-		{0, 20, 20, 20, 20}
-	},
-	//2 - Galley (ship kitchen)
-	{
-		"GALLEY.\nThe kitchen's a spacey room, it has a round table that used to be enough for 7 persons crew (and for Jones too).\nThe coffee's spilled, and so is his blood.\nIt seems like yesterday, the day when Kane died. It was yesterday.\nThe kitchen was always such a frantic mess, now more than ever.\nThe GALLEY is connected to the BRIDGE (0), JUNCTION A-1 (3) and to JUNCTION A-2 (6).\n",
-		"Inside one of the bigger drawers.",
-		"Under the main round table.",
-		3,
-		{foundItem, foundItem, foundItem, nullptr},
-		{0,3,6,20,20}
-	}, 
-	//3 - Junction A-1
-	{
-		"JUNCTION A-1.\nThere's a broken ladder right in the middle of the junction.\nYou mutter to yourself that probably it has always been broken, but you cannot be sure.\nBig metal crates almost block the passage to the GALLEY, but there's an ideal gap both for you and for the ALIEN.\nJust don't think about it too much.\nThe JUNCTION A-1 is connected to the BRIDGE (0), GALLEY (2) and to the CORRIDOR (4).\n",
-		"Behind a tower of crates.",
-		"In that gap.",
-		3,
-		{nothingHappens, nullptr, nullptr, nullptr},
-		{0,2,4,20,20}
-	},
-	//4 - Corridor
-	{
-		"CORRIDOR.\nThe entire corridor is filled with steam.\nThe pipes are moderately damaged and so are the vents up above.\nYou try your hardest to breathe.\nNormally, you would be annoyed at Brett and Parker, those engineers were lazy as they could be,\nbut now you only wanted to pass through.\nThe CORRIDOR is connected to JUNCTION A-1 (3), MEDLAB (5), JUNCTION A-2 (6)\nand finally to ESCAPE PODS (A).\n",
-		"",
-		"Inside a pipe.",
-		4,
-		{tooHot, nullptr, nullptr, nullptr},
-		{3,5,6,10,20}
-	},
-	//5 - Medlab
-	{
-		"MEDLAB.\nAll the laboratory equipment that Ash was using is still on the floor,\nhe himself is thankfully still a burned 'corpse' on the counter.\nYour tired mind sees a few opened ventilation crates above...\nAnd many shelves near the observation pod, but the road to them is full of shattered glass.\nThe MEDBAY is connected to the CORRIDOR (4).\n",
-		"",
-		"",
-		2,
-		{medbayGlass, medbayAsh, nullptr, nullptr},
-		{4,20,20,20,20}
-	},
-	//6 - Junction A-2
-	{
-		"JUNCTION A-2.\nThe ladder stands in the middle of the junction, but you have no business of going down there.\nCHEMFUEL must be on this floor, you seem to be sure.\nVents are jagged and ripped apart, but only darkness and dust follows your gaze.\nThe JUNCTION A-2 is connected to GALLEY (2), CORRIDOR (4),\nHYPERSLEEP VAULT(7) and to the LIVING AREA (8).\n",
-		"",
-		"",
-		4,
-		{tooHot, nullptr, nullptr, nullptr},
-		{2,4,7,8,20}
-	},
-	//7 - Hypersleep vault
-	{
-		"HYPERSLEEP VAULT.\nThere are seven simple cots with glass lids,\ncreating a circle shape in the middle of this massive bedroom.\nSeven simple lockers, seven simple stools next to them.\nIt seems like all but one have been moved,\nbut it could be just jitter inside your mind.\nThe HYPERSLEEP VAULT is connected to the JUNCTION A-2 (6).\n",
-		"Inside the closest cabinet.",
-		"Inside one of the cots.",
-		4,
-		{tooHot, nullptr, nullptr, nullptr},
-		{6,20,20,20,20}
-	},
-	//8 - Living Area
-	{
-		"LIVING AREA.\nThere is a fairly long l-shaped sofa in the corner of this room and a coffee table in front of it.\nThe cigarrette smell fills up the room and you almost trip on a can.\nThe lights are gone and you wouldn't notice a threat if it was hiding here.\nThe LIVING AREA is connected to the JUNCTION A-2 (6) and to WC (A).\n",
-		"",
-		"",
-		4,
-		{tooHot, nullptr, nullptr, nullptr},
-		{6,9,20,20,20}
-	},
-	//9 - WC
-	{
-		"WC.\nIt stinks in here. Why would you come here?\nDo you think the ALIEN will let you pee in peace?\nIt probably watches you from that stall over there.\nThe WC is connected to the LIVING AREA (8).\n",
-		"Left stall.",
-		"Right stall.",
-		4,
-		{tooHot, WCHiddenPassage, nullptr, nullptr},
-		{8,20,20,20,20}
-	},
-	//10 - ESCAPE PODS
-	{
-		"ESCAPE PODS.\nYou are extremely visible right now, it is unnaturally white around.\nNobody has ever used this room before.\nThree pods but only one could work.\nYour only way out.\nYou just need to find the fuel.\nBefore someone finds you...\nThe ESCAPE PODS are connected to the CORRIDOR (4).\n",
-		"",
-		"",
-		4, //event to notice that one of the pods has some fuel so you swap it, one time event
-		{tooHot, nullptr, nullptr, nullptr},
-		{4,20,20,20,20}
-	}
-
-};
