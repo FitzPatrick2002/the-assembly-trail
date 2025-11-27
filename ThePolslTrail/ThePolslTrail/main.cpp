@@ -33,7 +33,7 @@ bool gameOn = true;
 int main() {
 	//time(0); // Random numbers generation
 	srand(static_cast<unsigned int>(time(nullptr)));
-	openingScene();
+	openingMenu();
 	// Main loop is continued as long as the gameOn variable is set to true
 	while (gameOn) {
 
@@ -63,7 +63,7 @@ int main() {
 
 		// Losing condition
 		if (player.hp <= 0) { // We could also give player 0 hp at start and increase dmg taken if it rises above some value game over. -> we avoid negative numbers?
-			std::cout << "You died!\n";
+			gameoverScreen();
 			break;
 		}
 	}

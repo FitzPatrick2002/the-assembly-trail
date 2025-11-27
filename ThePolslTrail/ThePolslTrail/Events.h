@@ -83,12 +83,13 @@ void map()
 	std::cout << "############################..J.A-1...+.............######################\n";
 	std::cout << "############################.........#####################################\n";
 	std::cout << "##########################################################################\n";
+
 	std::cout << "Press anything go back and start the game immediately: ";
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[5]);
 }
 
-void openingScene()
+void openingMenu()
 {
 
 	std::cout << "._______________________________________________________.\n"
@@ -131,6 +132,11 @@ void openingScene()
 	else if (utils::charCompare(text, "exit")) {
 		exit(0); //bad idea can be cut out
 	}
+}
+
+void openingScene() {
+	std::cout << "Some intro story, how you ended up at bridge.";
+	std::cout << "What is your plan";
 }
 
 void medbayGlass() {
@@ -260,27 +266,64 @@ void alienHide() {
 	}
 }
 
-//those three events will be written later
-
 void galleyWater() {
-	std::cout << "You've found some water";
-	
+	std::cout << "There must be some water left. You think to yourself.\n";
+	std::cout << "You check the appropriate storage.\n";
+	std::cout << "Canned peaches, canned pineapples, even canned tomatoes.\n";
+	std::cout << "Dallas really liked exotic fruits.\n";
+	std::cout << "You switch to a neighbouring shelf and here it is.\n";
+	std::cout << "There lies 3 WATER, all yours now.\n";
+	changeWater(3);
 }
 
 void motherWater() {
-	//very interesting because Ash did not need water but could drink it, Ripley is weirded out at this thought
-	std::cout << "";
+	std::cout << "As you move through the shaft door, you notice something strange.\n";
+	std::cout << "It appears that one of the small shelves is slightly opened.\n";
+	std::cout << "Go towards it?\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y')
+	{
+		std::cout << "Unsure of your choice, you walk to the shelf.\n";
+		std::cout << "It is from Ash's desk.\n";
+		std::cout << "Once you are near, you see 1 WATER inside.\n";
+		std::cout << "How could this be? Ash did not need to drink any water.\n";
+		std::cout << "He was able to and he was playing his role around us,\n";
+		std::cout << "But only and Dallas were allowed to enter this space.\n";
+		std::cout << "Did he try to fool himself too? No, he was a smart 'man'.\n";
+		std::cout << "But this is not the time to be analysing this situation.\n";
+		std::cout << "Thank you Ash, for this free water.\n";
+		changeWater(1);
+	}
+	else if (c == 'n' || c == 'N')
+	{
+		std::cout << "This seems too dangerous... I better not risk my life over this.\n";
+		std::cout << "What was hidden in the drawer, you will never know.\n";
+		std::cout << "You turn your back to the room.\n";
+	}
+	else
+	{
+		std::cout << "You try to move forward, but you slip.\n";
+		std::cout << "WHAM! Your head bangs on the door, you whimper in pain.\n";
+		std::cout << "Holding your head in your palms,\n";
+		std::cout << "You slowly make your way towards the shelf.\n";
+		std::cout << "What is that... You are so confused, you cannot analyse the item properly.\n";
+		std::cout << "It must be some liquid... so it must be 1 WATER.\n";
+		std::cout << "But why is it here? Ash did not need to drink.\n";
+		std::cout << "This is so weird, I should get out of here. My head hurts...\n";
+		changeWater(1);
+		changeHP(-1);
+	}
 }
 
 void motherPanel() {
 	std::cout << "something about checking the panel and then wanting to either look at vents or at the escape pods status, add temperature for vibes";
 
 }
-/////
 
 /// @brief Typical event function.
 void podsFoundChemfuel() {
-	std::cout << "You look around and you decide to inspect one of the broken pods.\n"; //remember to add more events to the escape pods like thirst
+	std::cout << "You look around and you decide to inspect one of the broken pods.\n"; 
 	std::cout << "Hidden under the steering panels is a full canister of unused CHEMFUEL.\n";
 	std::cout << "The God, if They even exist, must be looking out for you...\n";
 	changeChemfuel(1);
@@ -351,8 +394,75 @@ void WCHiddenPassage() {
 }
 
 void alienFire() {
-	std::cout << "Type in quickly fire to fire at the ALIEN";
-	//first some text, then a y/n for fire? and then if fire then type in quickly FIRE to succeed
+	std::cout << "The sweat forms on your face, you feel the ALIEN coming this way.\n";
+	std::cout << "You have no time to hide now, it could be here any moment.\n";
+	std::cout << "Do you use the fire to scare it away?\n";
+	std::cout << "If yes, prepare to have a steady stance and a fast hand.\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y')
+	{
+		int choice = rand() % 2;
+		const char* word = choice == 1 ? "FIRE" : "FLAME";
+
+		std::cout << "Scare the ALIEN. Write '" << word << "' quick!\n";
+		time_t start = std::time(nullptr); //start the timer
+		int end = 10;
+		char text[8];
+		utils::getUserInputString(text, 8, utils::inputPrompts[1]);
+
+		if (utils::charCompare(text, word) && utils::fitTimeframe(start, end)) //managed to write correct input in a specified timeframe
+		{
+			std::cout << "As you expected, the ALIEN appears from round the corner.\n";
+			std::cout << "Each moment counts, as you press on the trigger.\n";
+			std::cout << "The fire burts out of the flamethrower!\n";
+			std::cout << "You try to hold your ground.\n";
+			std::cout << "The ALIEN is not scared of you, but it is scared of the flames...\n";
+			std::cout << "You have won this duel, the ALIEN retreats in fear.\n";
+			//no prize, survival is more than enough.
+		}
+		else
+		{
+			std::cout << "As expected, the ALIEN appears from round the corner.\n";
+			std::cout << "Each moment counts, as you try to find the trigger.\n";
+			std::cout << "The ALIEN feels your panic and quickly attacks you with its tail.\n";
+			std::cout << "Thankfully, you manage to fire in just the right time,\n";
+			std::cout << "The tail only scratches you and then gets engulfed in the flames.\n";
+			std::cout << "You try to hold your ground, but the pain makes you tremble.\n";
+			std::cout << "The ALIEN is wounded too and it fears the fire you control.\n";
+			std::cout << "You have won this duel, but just barely. The ALIEN retreats.\n";
+			changeHP(-1);
+		}
+	}
+	else if (c == 'n' || c == 'N')
+	{
+		std::cout << "This might have been a stupid decision.\n";
+		std::cout << "You think to yourself as you see the ALIEN appear.\n";
+		std::cout << "The boxes to your side catch your eye.\n";
+		std::cout << "Having no time for anything else, you throw the boxes at the ALIEN.\n";
+		std::cout << "They successfully block the way.\n";
+		std::cout << "The ALIEN, now angrier, attacks you with its tail! It pierces your shoulder.\n";
+		std::cout << "Being unable to get to you fully, the ALIEN retreats.\n";
+		std::cout << "It will get to you sooner than later after all.\n";
+		changeHP(-2);
+	}
+	else {
+		std::cout << "What is happening? You feel dizzy...\n";
+		std::cout << "Suddenly the ALIEN appears in all of its glory.\n";
+		std::cout << "You wake your brain up and grab the firethrower,\n";
+		std::cout << "But the ALIEN has already attacked you with its tail.\n";
+		std::cout << "The pain is a great motivator to survive. You press the trigger.\n";
+		std::cout << "With the blood on your legs, you try to stand your ground.\n";
+		if (player.water > 0) {
+			std::cout << "The pain is so terrible you drop on one knee.\n";
+			std::cout << "Something falls out of your pocket, it's 1 WATER.\n";
+			std::cout << "No matter, you stand up and raise the flames higher.\n";
+			changeWater(-1);
+		}
+		std::cout << "The fire licks the ALIEN's tail and as tries to escape.\n";
+		std::cout << "You have barely won this duel, you need to be more concious.\n";
+		changeHP(-2);
+	}
 }
 
 void bridgeConsole() {
@@ -451,6 +561,19 @@ void foundWater() {
 		std::cout << "Falling on your latter end did hurt a lot.\n";
 		changeHP(-1);
 	}
+}
+
+void gameoverScreen() {
+	std::cout << "All your injuries... They slow you down.\n";
+	std::cout << "You have endured a lot of damage, but you are human.\n";
+	std::cout << "As your blood marks the path you've taken...\n";
+	std::cout << "It has lead the ALIEN right to you...\n";
+	std::cout << ".______________________________________________________.\n";
+	std::cout << "|      ___   __   _  _  ____  __   _  _  ____  ____    |\n";
+	std::cout << "|     / __) / _\\ ( \\/ )(  __)/  \\ / )( \\(  __)(  _ \\   |\n";
+	std::cout << "|    ( (_ \\/    \\/ \\/ \\ ) _)(  O )\\ \\/ / ) _)  )   /   |\n";
+	std::cout << "|     \\___/\\_/\\_/\\_)(_/(____)\\__/  \\__/ (____)(__\\_)   |\n";
+	std::cout << ".______________________________________________________.\n";
 }
 
 /// @brief Array with events that are considered single time.
