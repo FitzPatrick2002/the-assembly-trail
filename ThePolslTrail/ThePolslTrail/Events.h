@@ -89,6 +89,13 @@ void map()
 	utils::getUserYNinput(c, utils::inputPrompts[5]);
 }
 
+void openingScene() {
+	std::cout << "Some intro story, how you ended up at bridge.\n";
+	std::cout << "What is your plan\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[1]);
+}
+
 void openingMenu()
 {
 
@@ -118,25 +125,18 @@ void openingMenu()
 	if (utils::charCompare(text, "help"))
 	{
 		help();
-		return;
 	}
 	else if(utils::charCompare(text, "start"))
 	{
-		return;
+		openingScene();
 	}
 	else if (utils::charCompare(text, "map"))
 	{
 		map();
-		return;
 	}
 	else if (utils::charCompare(text, "exit")) {
 		exit(0); //bad idea can be cut out
 	}
-}
-
-void openingScene() {
-	std::cout << "Some intro story, how you ended up at bridge.";
-	std::cout << "What is your plan";
 }
 
 void medbayGlass() {

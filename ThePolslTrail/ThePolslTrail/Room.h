@@ -38,8 +38,8 @@ Room rooms[11] = {
 		"MOTHER.\nYou were never allowed in there, but now that Douglas and the rest are gone...\nThe room is surrounded with LED panels and small buttons positioned all over the walls and the ceiling.\nYou immediately see the main control panel, the one used to talk directly to MOTHER.\nAll is pure white and so you quickly notice a sizzling with acid hole in the back.\nThe MOTHER is connected only to the BRIDGE (0).\n",
 		"Inside spacious cabinet.",
 		"Under the desk.",
-		2,
-		{nullptr, nullptr, foundWater, jonesyJumpscare},
+		4,
+		{alienFire, foundWater, jonesyJumpscare, motherPanel},
 		{0, 20, 20, 20, 20}
 	},
 	//2 - Galley (ship kitchen)
@@ -56,8 +56,8 @@ Room rooms[11] = {
 		"JUNCTION A-1.\nThere's a broken ladder right in the middle of the junction.\nYou mutter to yourself that probably it has always been broken, but you cannot be sure.\nBig metal crates almost block the passage to the GALLEY, but there's an ideal gap both for you and for the ALIEN.\nJust don't think about it too much.\nThe JUNCTION A-1 is connected to the BRIDGE (0), GALLEY (2) and to the CORRIDOR (4).\n",
 		"Behind a tower of crates.",
 		"In that gap.",
-		2,
-		{jonesyJumpscare, alienHide, nullptr, nullptr},
+		3,
+		{jonesyJumpscare, alienHide, alienFire, nullptr},
 		{0,2,4,20,20}
 	},
 	//4 - Corridor
@@ -65,8 +65,8 @@ Room rooms[11] = {
 		"CORRIDOR.\nThe entire corridor is filled with steam.\nThe pipes are moderately damaged and so are the vents up above.\nYou try your hardest to breathe.\nNormally, you would be annoyed at Brett and Parker, those engineers were lazy as they could be,\nbut now you only wanted to pass through.\nThe CORRIDOR is connected to JUNCTION A-1 (3), MEDLAB (5), JUNCTION A-2 (6)\nand finally to ESCAPE PODS (A).\n",
 		"Behind a broken wall.",
 		"Inside a pipe.",
-		3,
-		{tooHot, alienHide, jonesyJumpscare, nullptr},
+		4,
+		{tooHot, alienHide, jonesyJumpscare, alienFire},
 		{3,5,6,10,20}
 	},
 	//5 - Medlab
@@ -92,8 +92,8 @@ Room rooms[11] = {
 		"HYPERSLEEP VAULT.\nThere are seven simple cots with glass lids,\ncreating a circle shape in the middle of this massive bedroom.\nSeven simple lockers, seven simple stools next to them.\nIt seems like all but one have been moved,\nbut it could be just jitter inside your mind.\nThe HYPERSLEEP VAULT is connected to the JUNCTION A-2 (6).\n",
 		"Inside the closest cabinet.",
 		"Inside one of the cots.",
-		3,
-		{tooHot, alienHide, jonesyJumpscare, nullptr},
+		4,
+		{tooHot, alienHide, jonesyJumpscare, alienFire},
 		{6,20,20,20,20}
 	},
 	//8 - Living Area
@@ -110,8 +110,8 @@ Room rooms[11] = {
 		"WC.\nIt stinks in here. Why would you come here?\nDo you think the ALIEN will let you pee in peace?\nIt probably watches you from that stall over there.\nThe WC is connected to the LIVING AREA (8).\n",
 		"Left stall.",
 		"Right stall.",
-		3,
-		{tooHot, WCHiddenPassage, alienHide, nullptr},
+		4,
+		{tooHot, WCHiddenPassage, alienHide, alienFire},
 		{8,20,20,20,20}
 	},
 	//10 - ESCAPE PODS
