@@ -90,10 +90,18 @@ void map()
 }
 
 void openingScene() {
-	std::cout << "Some intro story, how you ended up at bridge.\n";
-	std::cout << "What is your plan\n";
+	std::cout << "# -------------------------- #\n";
+	std::cout << "This is commercial towing vehicle Nostromo out of the Solomons,\n";
+	std::cout << "Registration number 180924609.\n";
+	std::cout << "Executive officer Ripley, W564502460H\n";
+	std::cout << "In need of dire help.\n";
+	std::cout << "Unknown ALIEN organism is trying to hunt me down.\n";
+	std::cout << "Plan of launching Narcissus light shuttle as the last means of escape.\n";
+	std::cout << "Pod lacks chemical fuel, search underway.\n";
+	std::cout << "Day of the recording - 5th June 2122.\n";
+	std::cout << "# -------------------------- #\n";
 	char c;
-	utils::getUserYNinput(c, utils::inputPrompts[1]);
+	utils::getUserYNinput(c, "Enter anything to sign off:");
 }
 
 void openingMenu()
@@ -116,10 +124,10 @@ void openingMenu()
 	std::cout << "[exit]\n";
 
 
-	char text[8];
+	char text[10];
 
 	do {
-		utils::getUserInputString(text, 8, utils::inputPrompts[1]);
+		utils::getUserInputString(text, 10, utils::inputPrompts[1]);
 	} while (!utils::charCompare(text, "help") && !utils::charCompare(text, "start") && !utils::charCompare(text, "exit") && !utils::charCompare(text, "map"));
 	
 	if (utils::charCompare(text, "help"))
@@ -208,7 +216,7 @@ void jonesyJumpscare() {
 	std::cout << "The sound is coming from\n";
 	std::cout << player.roomHidingLocations[0];
 	std::cout << "\nYou walk closer...\n";
-	std::this_thread::sleep_for(std::chrono::seconds(5));
+	std::this_thread::sleep_for(std::chrono::seconds(2));
 	std::cout << "MEOW!!!\n";
 	std::cout << "It's Jonesy! He flees in fear before you can catch him.\n";
 	std::cout << "You hope you can see him again.\n";
@@ -357,9 +365,9 @@ void motherPanel() {
 			bool correct_pass = false;
 			for (int i = 0; i < 3; i++)
 			{
-				char password[5];
+				char password[10];
 				const char* input_text = "PASSWORD [4 DIGITS]: ";
-				utils::getUserInputString(password, 5, input_text);
+				utils::getUserInputString(password, 10, input_text);
 				if (utils::charCompare(password, "2122"))
 				{
 					std::cout << "Correct.\n";
@@ -637,6 +645,26 @@ void foundWater() {
 		std::cout << "Falling on your latter end did hurt a lot.\n";
 		changeHP(-1);
 	}
+}
+
+void winningScreen() {
+	std::cout << "As soon as you open the useless vault, you pour the CHEMFUEL into the reservoir.\n";
+	std::cout << "It is ready now.\n";
+	std::cout << "By forcing yourself to stop checking your back for just a few seconds, you barge into the pod.\n";
+	std::cout << "A small ginger creature slithers between your legs.It is Jonesy.\n";
+	std::cout << "You close the pad and prepare for takeoff.\n";
+	std::cout << "After a short while, which feels like your last moments, the spaceship starts to move away from you...\n";
+	std::cout << "You take your recorder and turn it on.\n";
+	std::cout << "This is Ripley,\n";
+	std::cout << "W564502460H, executive officer,\n";
+	std::cout << "last survivor of the commercial\n";
+	std::cout << "starship Nostromo signing off.\n";
+	std::cout << "._______________________________________________________________________________.\n";
+	std::cout << "|     _  _  __   _  _     __   ____  ____     __   __    __  _  _  ____         |\n";
+	std::cout << "|    ( \\/ )/  \\ / )( \\   / _\\ (  _ \\(  __)   / _\\ (  )  (  )/ )( \\(  __)        |\n";
+	std::cout << "|     )  /(  O )) \\/ (  /    \\ )   / ) _)   /    \\/ (_/\\ )( \\ \\/ / ) _)  _      |\n";
+	std::cout << "|    (__/  \\__/ \\____/  \\_/\\_/(__\\_)(____)  \\_/\\_/\\____/(__) \\__/ (____)(_)     |\n";
+	std::cout << "._______________________________________________________________________________.\n";
 }
 
 void gameoverScreen() {

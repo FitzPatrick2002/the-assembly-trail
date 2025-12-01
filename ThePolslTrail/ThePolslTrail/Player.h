@@ -15,12 +15,19 @@ struct Player {
 /// @brief Prints the current player status. Hp, room number, etc.
 void printPlayerStatus() {
 	char room;   utils::roomNumberHex(room, player.roomNumber);
-	std::cout << "Status: \n";
-	std::cout << "Room: " << room << "\n";
+
+	std::cout << "# -------------------------- #\n";
+	std::cout << "| Status:                    |\n";
+	std::cout << "| Room: " << room << "                    |\n";
 	//std::cout << "Room: " << (int)player.roomNumber << "\n";
-	std::cout << "HP: " << (int)player.hp << "\n";
-	std::cout << "Water: " << (int)player.water << "\n";
-	std::cout << "Chemfuel: " << (int)player.chemfuel << " / "<<CHEMFUEL_GOAL<<"\n";
+	std::cout << "| HP: " << (int)player.hp << "                      |\n";
+	std::cout << "| Water: " << (int)player.water;
+	if (player.water < 10) {
+		std::cout << " ";
+	}
+	std::cout<< "                  | \n";
+	std::cout << "| Chemfuel: " << (int)player.chemfuel << " / "<<CHEMFUEL_GOAL<<"            |\n";
+	std::cout << "# -------------------------- #\n";
 }
 
 /// @brief Cheanges players hp by given value and informs the user about it.

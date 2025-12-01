@@ -130,6 +130,7 @@ Room rooms[11] = {
 //		   In case user selected room that is not connected with the currently occupied location, user will have to enter the number again
 // @param room Pointer to the room from the rooms table. 
 void changeRoom(Room* room) {
+	std::cout << "# -------------------------------------- #\n";
 	int8_t roomChosen = 0;
 	char c;
 	do {
@@ -155,7 +156,8 @@ void changeRoom(Room* room) {
 /// @param room Pointer to currently occupied room from the rooms table.
 void loadRoom(Room* room) {
 	// Print info about the roomm and list rooms which can be accessed from it
-	std::cout << "\n"<< room->info << "\n";
+	std::cout << "YOU ARE AT:\n";
+	std::cout << room->info << "\n";
 	std::cout << "You can go to: | ";
 
 	// Iterate over the rooms and print their id's 
@@ -171,7 +173,7 @@ void loadRoom(Room* room) {
 		utils::roomNumberHex(c, r);
 		std::cout << c << " | ";
 	}
-	std::cout << "\n\n";
+	std::cout << "\n# -------------------------------------- #\n";
 }
 
 /// @brief "Randomly" *cough* chooses the event associated with the occupied room.
