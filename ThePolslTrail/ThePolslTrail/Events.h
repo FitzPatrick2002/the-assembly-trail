@@ -179,11 +179,31 @@ void medbayGlass() {
 }
 
 void medbayAsh() {
-	std::cout << "Loud Ash";
+	std::cout << "A strange feeling creeps into your mind, as if someone is watching you.\n";
+	std::cout << "You turn to see the 'corpse' of Ash staring directly at your skull.\n";
+	std::cout << "There's a scream, but it is not yours, it is Ash's\n";
+	std::cout << "Do you shut him up?\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y')
+	{
+		std::cout << "Unsure of your choice, you walk to the shelf.\n";
+		
+	}
+	else if (c == 'n' || c == 'N')
+	{
+		std::cout << "This seems too dangerous... I better not risk my life over this.\n";
+		
+	}
+	else
+	{
+		std::cout << "You try to move forward, but you slip.\n";
+		
+	}
 	//NOT SINGLE TIME EVENT HEHE
 }
 
-void jonesyJumpscare() {///multiple locations
+void jonesyJumpscare() {
 	std::cout << "As you walk inside, you hear shallow breathing...\n";
 	std::cout << "The sound is coming from\n";
 	std::cout << player.roomHidingLocations[0];
@@ -195,7 +215,7 @@ void jonesyJumpscare() {///multiple locations
 }
 
 void alienHide() {
-	std::cout << "You hear Alien footsteps! Where will you hide?\n";
+	std::cout << "You hear ALIEN footsteps! Where will you hide?\n";
 	const char* hidingLocations[2] = { player.roomHidingLocations[0], player.roomHidingLocations[1] }; // 0 - correct, 1 - incorrect
 	int x = rand() % 2;
 	for (int i = 0; i <= x; i++)
@@ -317,8 +337,64 @@ void motherWater() {
 }
 
 void motherPanel() {
-	std::cout << "something about checking the panel and then wanting to either look at vents or at the escape pods status, add temperature for vibes";
+	std::cout << "Weirdly enough, this room is colder than the rest, emptier than the rest.\n";
+	std::cout << "You have never been allowed here, the Mother was a distant entity to you.\n";
+	std::cout << "Whatever Ash and Dallas talked with Mother about here, does it matter now?\n";
+	std::cout << "You could check the logs on the panel...\n";
+	std::cout << "Do you give in the curiosity and temptation one last time?\n";
+	std::cout << "Do you check out the main Mother panel?\n";
+	char c;
+	utils::getUserYNinput(c, utils::inputPrompts[0]);
+	if (c == 'y' || c == 'Y')
+	{
+		std::cout << "You walk up to the panel and the screen automatically lights up.\n";
+		std::cout << "Hmm... the machine needs the password to let you in on its secrets.\n";
+		std::cout << "Do you try to enter?";
+		utils::getUserYNinput(c, utils::inputPrompts[0]);
+		if (c == 'y' || c == 'Y')
+		{
+			std::cout << "Hopefully the ALIEN will not find you hunched over an old screen.\n";
+			bool correct_pass = false;
+			for (int i = 0; i < 3; i++)
+			{
+				char password[5];
+				const char* input_text = "PASSWORD [4 DIGITS]: ";
+				utils::getUserInputString(password, 5, input_text);
+				if (utils::charCompare(password, "2122"))
+				{
+					std::cout << "Correct.\n";
+					//some text here, more lore
+					correct_pass = true;
+					break;
+				}if (utils::charCompare(password, "2120"))
+				{
+					std::cout << "You forgot that two years have gone by, but wrong.\n";
+				}
+				else {
+					std::cout << "Wrong.\n";
+				}
+			}
 
+		}
+		else if (c == 'n' || c == 'N')
+		{
+			std::cout << "Even though you have just found WATER, you want to keep it for special occasions.\n";
+
+		}
+		else {
+			std::cout << "The flashes of hot air have made you lose your mind even more.\n";
+
+		}
+	}
+	else if (c == 'n' || c == 'N')
+	{
+		std::cout << "This is dangerous, you think to yourself.\n";
+
+	}
+	else {
+		std::cout << "You try to examine the fallen crate for whatever reason.\n";
+
+	}
 }
 
 /// @brief Typical event function.

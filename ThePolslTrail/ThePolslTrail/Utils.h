@@ -18,10 +18,11 @@ namespace utils {
 	/// @param message Message displayed before waiting for user input.
 	void getUserInputString(char dest[], int8_t len, const char* message) {
 		// Print the message
+
 		std::cout << message;
+		std::cin.clear(); //flush
 
 		std::cin.getline(dest, len); // Read len number of bytes from the stream
-		
 		// Empty the buffer if there is something more
 		//while (getchar() != '\n'); //for my events, this sort of breaks everything
 	}
