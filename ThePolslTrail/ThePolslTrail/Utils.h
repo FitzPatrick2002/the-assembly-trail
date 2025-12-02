@@ -1,7 +1,5 @@
 #pragma once
 #include <iostream>
-#include <fstream>
-#include <string>
 
 /// @file Utils.h
 /// @brief File contains utility functions regarding user input / output and some constants used in the game.
@@ -103,19 +101,4 @@ namespace utils {
 			c = 48 + room_no;
 	}
 
-	void printMapFromFile(const std::string& filename) {
-		std::ifstream file(filename);
-
-		if (!file.is_open()) {
-			std::cout << "[ERROR] Could not open " << filename << "\n";
-			return;
-		}
-
-		std::string line;
-		while (std::getline(file, line)) {
-			std::cout << line << "\n";
-		}
-
-		file.close();
-	}
 }
