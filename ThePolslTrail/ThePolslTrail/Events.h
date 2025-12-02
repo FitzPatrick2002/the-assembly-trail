@@ -107,16 +107,16 @@ void openingScene() {
 void openingMenu()
 {
 
-	std::cout << "._______________________________________________________.\n"
-		"|     __ _   __   ____  ____  ____   __   _  _   __     |\n"
-		"|    (  ( \\ /  \\ / ___)(_  _)(  _ \\ /  \\ ( \\/ ) /  \\    |\n"
-		"|    /    /(  O )\\___ \\  )(   )   /(  O )/ \\/ \\(  O )   |\n"
-		"|    \\_)__) \\__/ (____/ (__) (__\\_) \\__/ \\_)(_/ \\__/    |\n"
-		"|          ____  ____   ___   __   ____  ____           |\n"
-		"|         (  __)/ ___) / __) / _\\ (  _ \\(  __)          |\n"
-		"|          ) _) \\___ \\( (__ /    \\ ) __/ ) _)           |\n"
-		"|         (____)(____/ \\___)\\_/\\_/(__)  (____)          |\n"
-		"._______________________________________________________.\n";
+	std::cout << "._______________________________________________________.\n";
+	std::cout << "|     __ _   __   ____  ____  ____   __   _  _   __     |\n";
+	std::cout << "|    (  ( \\ /  \\ / ___)(_  _)(  _ \\ /  \\ ( \\/ ) /  \\    |\n";
+	std::cout << "|    /    /(  O )\\___ \\  )(   )   /(  O )/ \\/ \\(  O )   |\n";
+	std::cout << "|    \\_)__) \\__/ (____/ (__) (__\\_) \\__/ \\_)(_/ \\__/    |\n";
+	std::cout << "|          ____  ____   ___   __   ____  ____           |\n";
+	std::cout << "|         (  __)/ ___) / __) / _\\ (  _ \\(  __)          |\n";
+	std::cout << "|          ) _) \\___ \\( (__ /    \\ ) __/ ) _)           |\n";
+	std::cout << "|         (____)(____/ \\___)\\_/\\_/(__)  (____)          |\n";
+	std::cout << "._______________________________________________________.\n";
 	std::cout << "MENU:\n";
 	std::cout << "[start]\n";
 	std::cout << "[help]\n";
@@ -149,7 +149,11 @@ void openingMenu()
 
 void medbayGlass() {
 
-	std::cout << "Since the MEDBAY is so well equipped,\nyou think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\nBut the glass on the floor...\nThe last thing you'd want is to slip and bleed here.\nDo you want to proceed? Prepare to be quick.\n";
+	std::cout << "Since the MEDBAY is so well equipped,\n";
+	std::cout << "you think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\n";
+	std::cout << "But the glass on the floor...\n";
+	std::cout << "The last thing you'd want is to slip and bleed here.\n";
+	std::cout << "Do you want to proceed ? Prepare to be quick.\n";
 	//reading the user's choice
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
@@ -164,20 +168,28 @@ void medbayGlass() {
 		utils::getUserInputString(text, 8,utils::inputPrompts[1]);
 		if (utils::charCompare(text,word) && utils::fitTimeframe(start,10)) //managed to write correct input in a specified timeframe
 		{
-			std::cout << "\nYou somehow managed to get across the room safely.\nTo the rhythm of your pouding chest you open each cabinet around you.\nYou find CHEMFUEL and WATER.\n";
+			std::cout << "\nYou somehow managed to get across the room safely.\n";
+			std::cout << "To the rhythm of your pouding chest you open each cabinet around you.\n";
+			std::cout << "You find CHEMFUEL and WATER.\n";
 			changeWater(1);
 			changeChemfuel(2);
 		}
 		else
 		{
-			std::cout << "Your walk starts out promising, but you fail to realise one crucial fact.\nThese broken vials had liquids in them.\nYou slip and the shards dig into your skin.\nYou manage to retreat relatively undamaged.\n";
+			std::cout << "Your walk starts out promising, but you fail to realise one crucial fact.\n";
+			std::cout << "These broken vials had liquids in them.\n";
+			std::cout << "You slip and the shards dig into your skin.\n";
+			std::cout << "You manage to retreat relatively undamaged.\n";
 			changeHP(-1);
 		}
 
 	}
 	else if (c == 'n' || c == 'N')
 	{
-		std::cout << "'This idea seems to risky to execute at this moment.'\nis the thought that flashes your mind.\nYou turn back and check the exit of the area...\nNo movements, good sign.\n";
+		std::cout << "'This idea seems to risky to execute at this moment.'\n";
+		std::cout << "Is the thought that flashes your mind.\n";
+		std::cout << "You turn back and check the exit of the area...\n";
+		std::cout << "No movements, good sign.\n";
 	}
 	else
 	{
@@ -371,16 +383,42 @@ void motherPanel() {
 				if (utils::charCompare(password, "2122"))
 				{
 					std::cout << "Correct.\n";
-					//some text here, more lore
 					correct_pass = true;
 					break;
 				}if (utils::charCompare(password, "2120"))
 				{
-					std::cout << "You forgot that two years have gone by, but wrong.\n";
+					std::cout << "Incorrect.\n";
+					std::cout << "You must have forgotten that two years have already gone by...\n";
 				}
 				else {
-					std::cout << "Wrong.\n";
+					std::cout << "Incorrect.\n";
 				}
+			}
+			if (correct_pass)
+			{
+				std::cout << "That makes sense... Ash did wake up every few months or so to check up on Mother.\n";
+				std::cout << "The passwords were updated regularly.\n";
+				std::cout << "But that is not important now.\n";
+				std::cout << "You check the logs and you freeze.\n";
+				std::cout << ".____________________________________________.\n";
+				for (int i = 5; i > 0; i--)
+				{
+					std::cout << "30:0" << i << " minutes left to self-destruct.\n";
+				}
+				std::cout << ".____________________________________________.\n";
+				std::cout << "Oh no no no no.\n";
+				std::cout << "You scroll up to see what and who set it off.\n";
+				std::cout << "\n";
+				//some text here, more lore
+				//Ash writing about how ALIEN is so perfect and it probably will survive out in the cosmos, so its better to blow up the ship to preserve it than to have a chance of anyone harming such perfect creature
+
+			}
+			else
+			{
+				std::cout << "You failed to provide the correct password.\n";
+				std::cout << "TERMINAL LOCKED.\n";
+				std::cout << "At least I tried. You think to yourself as you back out.\n";
+				std::cout << "I have spent too much time in here, I should leave soon.\n";
 			}
 
 		}
