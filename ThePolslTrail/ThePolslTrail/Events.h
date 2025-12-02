@@ -18,6 +18,7 @@ typedef void(*eventPointer)();
 
 bool isSingleTimeEvent(eventPointer);
 
+//Се було виконано панове! (T`is was done, panowe!)
 void help()
 {
 	std::cout << ".________________________________.\n";
@@ -57,6 +58,7 @@ void help()
 	utils::getUserYNinput(c, utils::inputPrompts[5]);
 }
 
+//Unfortunetely I haven`t found a map
 void map()
 {
 	std::cout << "Map\n";
@@ -88,6 +90,7 @@ void map()
 	utils::getUserYNinput(c, utils::inputPrompts[5]);
 }
 
+//Реалізовано! (Released!)
 void openingScene() {
 	std::cout << ".______________________________.\n";
 	std::cout << "|#########################.-.###|\n";
@@ -111,6 +114,7 @@ void openingScene() {
 	utils::getUserYNinput(c, "Enter anything to sign off:");
 }
 
+//Postponed it. On hold
 void openingMenu()
 {
 
@@ -153,7 +157,7 @@ void openingMenu()
 		exit(0); //bad idea can be cut out
 	}
 }
-//Зроблено!
+//Зроблено! (Done!)
 void medbayGlass() {
 
 	std::cout << "Since the MEDBAY is so well equipped,\nyou think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\nBut the glass on the floor...\nThe last thing you'd want is to slip and bleed here.\nDo you want to proceed? Prepare to be quick.\n";
@@ -204,7 +208,8 @@ void medbayGlass() {
 	}
 
 }
-//Ви попросили - ми зробили!
+//Ви просили - Ми зробили!
+//"You`ve asked - We`ve done!" - Vladlen Marayev
 void medbayAsh() {
 	std::cout << "A strange feeling creeps into your mind, as if someone is watching you.\n";
 	std::cout << "You turn to see the 'corpse' of Ash staring directly at your skull.\n";
@@ -230,7 +235,8 @@ void medbayAsh() {
 	//NOT SINGLE TIME EVENT HEHE
 }
 
-//Треба додати час
+//Се не було аж так страшно!
+//T`is wasn`t as scary!
 void jonesyJumpscare() {
 	std::cout << "As you walk inside, you hear shallow breathing...\n";
 	std::cout << "The sound is coming from\n";
