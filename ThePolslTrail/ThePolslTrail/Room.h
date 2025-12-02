@@ -3,6 +3,7 @@
 
 #include "Events.h"
 #include "Player.h"
+#include "Utils.h"
 
 /// @file Room.h
 /// @brief File defines the Room structure and specifies functions for loading / changing rooms and loading events.
@@ -155,7 +156,11 @@ void changeRoom(Room* room) {
 ///		   3. Prompts user for input.
 /// @param room Pointer to currently occupied room from the rooms table.
 void loadRoom(Room* room) {
+	// Print map from file
+	utils::printMapFromFile("ascii/ASCII_map.txt");
+
 	// Print info about the roomm and list rooms which can be accessed from it
+	//map();
 	std::cout << "YOU ARE AT:\n";
 	std::cout << room->info << "\n";
 	std::cout << "You can go to: | ";
