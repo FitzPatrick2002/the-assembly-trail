@@ -245,7 +245,10 @@ void jonesyJumpscare() {
 //Треба додати чортів тригер
 //І багато тексту
 void alienHide() {
-	std::cout << "You hear ALIEN footsteps! Where will you hide?\n";
+	std::cout << "You hear ALIEN footsteps! Look for hiding locations!\n";
+	char e;
+	utils::getUserYNinput(e, utils::inputPrompts[5]);
+	std::cout << "Where will you hide ? \n";
 	const char* hidingLocations[2] = { player.roomHidingLocations[0], player.roomHidingLocations[1] }; // 0 - correct, 1 - incorrect
 	int x = rand() % 2;
 	for (int i = 0; i <= x; i++)
@@ -421,10 +424,12 @@ void motherPanel() {
 				std::cout << ".____________________________________________.\n";
 				std::cout << "Oh no no no no.\n";
 				std::cout << "You scroll up to see what and who set it off.\n";
-				std::cout << "\n";
-				//some text here, more lore
-				//Ash writing about how ALIEN is so perfect and it probably will survive out in the cosmos, so its better to blow up the ship to preserve it than to have a chance of anyone harming such perfect creature
-
+				std::cout << "Special Order	937? What is this directive...?\n";
+				std::cout << "'[...] even at the expense of the crew, the perfect organism must be returned\n";
+				std::cout << "to the laboratories on Earth.'\n";
+				std::cout << "Those Weyland-Yutani bastards.\n";
+				std::cout << "Of course Ash would rather kill us all. Corporation's ideal puppet.\n";
+				std::cout << "I should leave now. The time is ticking after all.\n";
 			}
 			else
 			{
@@ -437,22 +442,54 @@ void motherPanel() {
 		}
 		else if (c == 'n' || c == 'N')
 		{
-			std::cout << "Even though you have just found WATER, you want to keep it for special occasions.\n";
+			std::cout << "You do not think you recall the password.\n";
+			std::cout << "Only Ash and Dallas were supposed to after all.\n";
+			std::cout << "Just 4 digits, wonder what could that have been. You mutter to yourself.\n";
+			std::cout << "However, there's no time for such thoughts and the chills on your body reminds you of this fact.\n.";
+			std::cout << "You should escape as soon as possible.\n";
 
 		}
 		else {
-			std::cout << "The flashes of hot air have made you lose your mind even more.\n";
-
+			std::cout << "You may not know the password, but you know the perfect remedy for disobedient technology.\n";
+			std::cout << "WHAM! You kick the computer underneath with all your might.\n";
+			std::cout << "Hoping the ALIEN will not hear your deranged solution, you stare at the screen as it refreshes.\n";
+			std::cout << "You did not expect this to actually work, but here it is...\n";
+			std::cout << "You check the logs and you freeze.\n";
+			std::cout << ".____________________________________________.\n";
+			for (int i = 5; i > 0; i--)
+			{
+				std::cout << "30:0" << i << " minutes left to self-destruct.\n";
+			}
+			std::cout << ".____________________________________________.\n";
+			std::cout << "Oh no no no no.\n";
+			std::cout << "You scroll up to see what and who set it off.\n";
+			std::cout << "Special Order	937? What is this directive...?\n";
+			std::cout << "'[...] even at the expense of the crew, the perfect organism must be returned\n";
+			std::cout << "to the laboratories on Earth.'\n";
+			std::cout << "Those Weyland-Yutani bastards.\n";
+			std::cout << "Of course Ash would rather kill us all. Corporation's ideal puppet.\n";
+			std::cout << "I should leave now. The time is ticking after all.\n";
 		}
 	}
 	else if (c == 'n' || c == 'N')
 	{
-		std::cout << "This is dangerous, you think to yourself.\n";
-
+		std::cout << "No way, you need to leave this ship as soon as possible.\n";
+		std::cout << "This is not the time to be sitting at the panel.\n";
+		std::cout << "You will never know the secrets that Ash and Dallas hid behind their backs.\n";
+		std::cout << "But they are dead and you are not, and let's keep it that way.\n";
+		std::cout << "You swiftly head to the exit hatch.\n";
 	}
 	else {
-		std::cout << "You try to examine the fallen crate for whatever reason.\n";
-
+		std::cout << "You think and think about this idea for far too long.\n";
+		std::cout << "There is a panel in the middle of the room, but where are the cables?\n";
+		std::cout << "They must be hidden somewhere...\n";
+		std::cout << "Maybe if you follow them, you will find some CHEMFUEL at the end?\n";
+		std::cout << "Since every idea is worth trying out, you get on your knees\n";
+		std::cout << "And try to pry out the floor tiles.\n";
+		std::cout << "You end up bruising and straining yourself to no satisfiable result.\n";
+		std::cout << "You must be really losing your mind.\n";
+		std::cout << "Best to get out of here.\n";
+		changeHP(-1);
 	}
 }
 
@@ -542,7 +579,7 @@ void alienFire() {
 		int choice = rand() % 2;
 		const char* word = choice == 1 ? "FIRE" : "FLAME";
 
-		std::cout << "Scare the ALIEN. Write '" << word << "' quick!\n";
+		std::cout << "Scare the ALIEN. Write '" << word << "' quickly!\n";
 		time_t start = std::time(nullptr); //start the timer
 		int end = 10;
 		char text[8];
