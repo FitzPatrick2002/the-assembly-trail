@@ -131,7 +131,7 @@ void openingMenu()
 		exit(0); //bad idea can be cut out
 	}
 }
-
+//Зроблено!
 void medbayGlass() {
 
 	std::cout << "Since the MEDBAY is so well equipped,\nyou think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\nBut the glass on the floor...\nThe last thing you'd want is to slip and bleed here.\nDo you want to proceed? Prepare to be quick.\n";
@@ -170,7 +170,7 @@ void medbayGlass() {
 	}
 
 }
-
+//Ви попросили - ми зробили!
 void medbayAsh() {
 	std::cout << "A strange feeling creeps into your mind, as if someone is watching you.\n";
 	std::cout << "You turn to see the 'corpse' of Ash staring directly at your skull.\n";
@@ -196,6 +196,7 @@ void medbayAsh() {
 	//NOT SINGLE TIME EVENT HEHE
 }
 
+//Треба додати час
 void jonesyJumpscare() {
 	std::cout << "As you walk inside, you hear shallow breathing...\n";
 	std::cout << "The sound is coming from\n";
@@ -207,6 +208,8 @@ void jonesyJumpscare() {
 	std::cout << "You hope you can see him again.\n";
 }
 
+//Треба додати чортів тригер
+//І багато тексту
 void alienHide() {
 	std::cout << "You hear ALIEN footsteps! Where will you hide?\n";
 	const char* hidingLocations[2] = { player.roomHidingLocations[0], player.roomHidingLocations[1] }; // 0 - correct, 1 - incorrect
@@ -279,6 +282,7 @@ void alienHide() {
 	}
 }
 
+//Більше тексту
 void galleyWater() {
 	std::cout << "There must be some water left. You think to yourself.\n";
 	std::cout << "You check the appropriate storage.\n";
@@ -289,6 +293,7 @@ void galleyWater() {
 	changeWater(3);
 }
 
+//Багато тексту треба додать
 void motherWater() {
 	std::cout << "As you move through the shaft door, you notice something strange.\n";
 	std::cout << "It appears that one of the small shelves is slightly opened.\n";
@@ -329,6 +334,7 @@ void motherWater() {
 	}
 }
 
+//Багато тексту треба додать
 void motherPanel() {
 	std::cout << "Weirdly enough, this room is colder than the rest, emptier than the rest.\n";
 	std::cout << "You have never been allowed here, the Mother was a distant entity to you.\n";
@@ -390,6 +396,7 @@ void motherPanel() {
 	}
 }
 
+//Текст
 /// @brief Typical event function.
 void podsFoundChemfuel() {
 	std::cout << "You look around and you decide to inspect one of the broken pods.\n"; 
@@ -397,7 +404,7 @@ void podsFoundChemfuel() {
 	std::cout << "The God, if They even exist, must be looking out for you...\n";
 	changeChemfuel(1);
 }
-
+//Багатенько тексту треба додать
 void WCHiddenPassage() {
 	std::cout << "You opened up the stall door and you saw a broken crate to the vents.\n";
 	std::cout << "It is leading up to something you cannot see.\n";
@@ -462,6 +469,7 @@ void WCHiddenPassage() {
 
 }
 
+//Треба переробить
 void alienFire() {
 	std::cout << "The sweat forms on your face, you feel the ALIEN coming this way.\n";
 	std::cout << "You have no time to hide now, it could be here any moment.\n";
@@ -533,7 +541,7 @@ void alienFire() {
 		changeHP(-2);
 	}
 }
-
+//Імплементовано та реалзовано!
 void bridgeConsole() {
 	std::cout << "As you look around the Bridge you notice a dim blinking light on one of the distant consoles.\nYou have never used it before, it was never your responsibility.\nCheck it out?\n";
 	char c;
@@ -562,7 +570,7 @@ void bridgeConsole() {
 	}
 
 }
-
+//Потрібно зробити
 void tooHot() {
 	std::cout << "As you enter the area, you start feeling increasingly dizzy.\n";
 	std::cout << "The fire that broke out one level below increased the temperature all around.\n";
@@ -582,7 +590,7 @@ void tooHot() {
 	}
 }
 
-
+//Потрібно зробити
 void foundChemfuel() {
 	std::cout << "You notice a fresh acid-made hole on the ground.\n";
 	std::cout << "Search it?\n";
@@ -607,6 +615,7 @@ void foundChemfuel() {
 
 }
 
+//Потрібно зробити
 void foundWater() {
 	std::cout << "There's an open vent, that was closed before...\n";
 	std::cout << "Search it?\n";
@@ -631,7 +640,7 @@ void foundWater() {
 		changeHP(-1);
 	}
 }
-
+//Потрібно зробити
 void winningScreen() {
 	std::cout << "As soon as you open the useless vault, you pour the CHEMFUEL into the reservoir.\n";
 	std::cout << "It is ready now.\n";
@@ -651,7 +660,7 @@ void winningScreen() {
 	std::cout << "|    (__/  \\__/ \\____/  \\_/\\_/(__\\_)(____)  \\_/\\_/\\____/(__) \\__/ (____)(_)     |\n";
 	std::cout << "._______________________________________________________________________________.\n";
 }
-
+//Потрібно зробити
 void gameoverScreen() {
 	std::cout << "All your injuries... They slow you down.\n";
 	std::cout << "You have endured a lot of damage, but you are human.\n";
