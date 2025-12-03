@@ -1,0 +1,510 @@
+BRIDGE. 
+Now presumably empty, it was your work environment for the past XX years.
+In the front there are two pilot seats and just behind them, another two. 
+The rest of the area is filled with cabinets, tall consoles and a bunch of everyday junk. 
+The BRIDGE is connected to MOTHER unit (1), GALLEY (2) and JUNCTION-1 (3).
+
+Behind the tall cabinets next to you. 
+Near the main console, under the desk.
+
+MOTHER. 
+You were never allowed in there, but now that Douglas and the rest are gone...
+The room is surrounded with LED panels and small buttons positioned all over the walls and the ceiling.
+You immediately see the main control panel, the one used to talk directly to MOTHER. 
+All is pure white and so you quickly notice a sizzling with acid hole in the back. 
+The MOTHER is connected only to the BRIDGE (0).
+
+Inside spacious cabinet.
+Under the desk.
+
+GALLEY. 
+The kitchen's a spacey room, it has a round table that used to be enough for 7 persons crew (and for Jones too).
+The coffee's spilled, and so is his blood. It seems like yesterday, the day when Kane died. 
+It was yesterday.
+The kitchen was always such a frantic mess, now more than ever. 
+The GALLEY is connected to the BRIDGE (0), JUNCTION A-1 (3) and to JUNCTION A-2 (6).
+
+Inside one of the bigger drawers.
+Under the main round table.
+
+JUNCTION A-1.
+There's a broken ladder right in the middle of the junction.
+You mutter to yourself that probably it has always been broken, but you cannot be sure.
+Big metal crates almost block the passage to the GALLEY, but there's an ideal gap both for you and for the ALIEN.
+Just don't think about it too much. The JUNCTION A-1 is connected to the BRIDGE (0), GALLEY (2) and to the CORRIDOR (4).
+
+Behind a tower of crates.
+In that gap.
+
+CORRIDOR. 
+The entire corridor is filled with steam.
+The pipes are moderately damaged and so are the vents up above. 
+You try your hardest to breathe. 
+Normally, you would be annoyed at Brett and Parker, those engineers were lazy as they could be, 
+but now you only wanted to pass through. 
+The CORRIDOR is connected to JUNCTION A-1 (3), MEDLAB (5), JUNCTION A-2 (6) and finally to ESCAPE PODS (A).
+
+Behind a broken wall.
+Inside a pipe. 
+
+MEDLAB.
+All the laboratory equipment that Ash was using is still on the floor,
+he himself is thankfully still a burned 'corpse' on the counter. 
+Your tired mind sees a few opened ventilation crates above... 
+And many shelves near the observation pod, but the road to them is full of shattered glass. 
+The MEDBAY is connected to the CORRIDOR (4). 
+
+Inside the closest cabinet.
+Under the laboratory bed.
+
+JUNCTION A-2.
+The ladder stands in the middle of the junction, but you have no business of going down there.
+CHEMFUEL must be on this floor, you seem to be sure.
+Vents are jagged and ripped apart, but only darkness and dust follows your gaze.
+The JUNCTION A-2 is connected to GALLEY (2), CORRIDOR (4), HYPERSLEEP VAULT(7) and to the LIVING AREA (8).
+
+Inside the nearest vent.
+Behind the ladder.
+
+HYPERSLEEP VAULT.
+There are seven simple cots with glass lids, creating a circle shape in the middle of this massive bedroom.
+Seven simple lockers, seven simple stools next to them.
+It seems like all but one have been moved, but it could be just jitter inside your mind.
+The HYPERSLEEP VAULT is connected to the JUNCTION A-2 (6).
+
+Inside the closest cabinet.
+Inside one of the cots. 
+
+LIVING AREA. 
+There is a fairly long l-shaped sofa in the corner of this room and a coffee table in front of it.
+The cigarrette smell fills up the room and you almost trip on a can.
+The lights are gone and you wouldn't notice a threat if it was hiding here.
+The LIVING AREA is connected to the JUNCTION A-2 (6) and to WC (9).
+
+Behind the sofa.
+Under the table.
+
+WC. 
+It stinks in here. 
+Why would you come here? 
+Do you think the ALIEN will let you pee in peace? 
+It probably watches you from that stall over there. 
+The WC is connected to the LIVING AREA (8).
+
+Left stall.
+Right stall.
+ 
+ESCAPE PODS. 
+You are extremely visible right now, it is unnaturally white around. 
+Nobody has ever used this room before.
+Three pods but only one could work. Your only way out.
+You just need to find the fuel. Before someone finds you...
+The ESCAPE PODS are connected to the CORRIDOR (4).
+
+Inside the suit closet.
+Inside the broken pod.
+
+Nostromo Escape is a game developed by:  
+Daniil Khortov, Magdalena Rapala, Milosz Liniewiecki and Ruth Zhou  
+As Asembler Programming Language project, made in 2025.   
+You play as Ellen Ripley, the last Nostromo survivor.  
+Still stuck on the ship, your goal is to collect 5 chemical fuels  
+And survive long enough to escape via an escape pod.  
+How to play?  
+This is a text-based game, everything you do, you do so by writing in the terminal.  
+There are time dependent decisions, you must pay attention.  
+Now, good luck and remember:    
+Press anything go back and start the game immediately:   	 
+This is commercial towing vehicle Nostromo out of the Solomons,  
+Registration number 180924609.  
+Executive officer Ripley, W564502460H  
+In need of dire help.  
+Unknown ALIEN organism is trying to hunt me down.  
+Plan of launching Narcissus light shuttle as the last means of escape.  
+Pod lacks chemical fuel, search underway.  
+Day of the recording - 5th June 2122.   
+Enter anything to sign off:
+MENU:  
+[start]  
+[help]  
+[map]  
+[exit]  
+Since the MEDBAY is so well equipped,  
+You think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.  
+But the glass on the floor...  
+The last thing you'd want is to slip and bleed here.  
+Do you want to proceed ? Prepare to be quick.   
+Deciding to move forward. Write ' word ' quick!    
+You somehow manage to get across the room safely.  
+To the rhythm of your pouding chest you open each cabinet around you.  
+You find CHEMFUEL and WATER.  
+Your walk starts out promising, but you fail to realise one crucial fact.  
+These broken vials had liquids in them.  
+You slip and the shards dig into your skin.  
+You manage to retreat relatively undamaged.   
+'This idea seems to risky to execute at this moment.'  
+is the thought that flashes your mind.  
+You turn back and check the exit of the area...  
+No movements, good sign.    
+'What if I slip? It will come, it will come to me' those thoughts are racing through your mind.  
+You nervously look around the room  
+And even though you saw that Lambert killed Ash, his 'corpse' still surprises you right now.  
+You should be going. Your mind is not stable.  
+Not enough for this.   
+A strange feeling creeps into your mind, as if someone is watching you.  
+You turn to see the 'corpse' of Ash staring directly at your skull.  
+There's a scream, but it is not yours, it is Ash's.  
+Do you shut him up? 
+You cannot risk being noticed by the ALIEN.  
+This is probably what Ash wants, he would do anything just to protect this creature.  
+The question remains, how to shut up this synth?  
+You need to be firm and quick, so you think about a few solutions:  
+1. Kick him in the mouth (or what remains of it).  
+2. Try to fry his circuits.   
+3. Smash his head with a chair.  
+What will you do?
+This is the fastest method you could think of.  
+You position yourself right in front of Ash laying on the counter.  
+Not thinking much about it, you lift up your leg and stomp on the synth's face.  
+The screaming does not stop, so you kick him  
+Again  
+And again,  
+Ash tries to desperately bite onto your boot.  
+Maybe the resonable solution would be to shake him off, but you press your boot harder in.  
+After a while his fake teeth start to break under the pressure.  
+You feel the resistance dying down suddenly.  
+When the screaming finally ends, you step back and stare at what is left.  
+It is a good thing, that you cannot see his eyes anymore.  
+Your boot is covered in white fuel and you turn your back to him  
+He was still your coworker. 
+At least until he tried to kill you.
+This will shut him up no matter how durable he could still be.  
+Since you are in a lab, you are able to find fitting equipment for the job.  
+You are glad it was not too hard to pry Ash's circuits open,  
+His so called skull, was already half smashed.  
+You take the wire and you attach the crocodile clips to his brain.  
+The electricity shoots out immediately and licks your skin as well.  
+The pain both you and Ash feel is so intense, you break free.  
+Trying to electrocute him, you fried yourself as well.  
+At least his screaming stops right in the moment,  
+But his eyes give up and spill over the counter.  
+Had he not tried to kill you, just a few hours before...  
+You do not want to think what would be in your head then.
+The chair will serve as an adequate barrier of protection against him...  
+That is what you think as you grab the closest laboratory chair.  
+You prepare for a short second and take a swing at Ash's poor skull.  
+His head falls on the floor upon impact and shatters into more pieces.  
+But most importantly, his screaming starts to stop.  
+His vocal cords begin to glitch out and give out.  
+White fuel spattered on your uniform and it tastes like oil...  
+You are glad you do not taste blood right now.
+Wait a second...  
+You know the perfect solution and it is right here with you.  
+Reaching into your backpack you grab a WATER bottle.  
+It seems like the screaming is worsening as you make your way over to Ash.  
+Without any hesitation you pour the water on his half-cracked skull.  
+Among the sizzling and the glitching, his vocal cords give out.  
+Some of his white fuel has leaked out on your pants and shoes...  
+You are thankful it is not his blood.
+Without thinking you run towards the corpse on the counter  
+And you throw a punch you never realised you were capable of.  
+Somehow Ash's teeth fall out afterwards.  
+But since the screaming does not stop, you take a swing and   
+Hit him again.  
+His white fuel sprinkles all over your uniform, but you are not done yet.  
+Punch after punch you see his vocal cords giving in and losing their power.  
+It is done.  
+You recoil and look at your bruised hand.  
+Did his hand bruise the same when he was alive?  
+No matter, this is a silly thought.
+While examining your stained clothing,  
+You notice some supplies on the ground.  
+Upon closer inspection and wiping off the fuel off of the items,  
+It turns out you have found 2 CHEMFUELS and 1 WATER hidden away.  
+Better to leave, Ash's screaming could have called over the ALIEN.
+Maybe it will be smarter to simply run away?  
+Ash's screaming could call the ALIEN over to him and him only.  
+This is the safest option, you tell yourself and turn around.
+You panic and start screaming right back at him.  
+It seems Ash has lost his core programming,  
+Because he does not react to you.  
+And yet, his stare is so frightening, you take a wrench and throw it at his side.  
+You miss horribly... Instead of Ash, you hit the open ventilation crate above him.  
+Since the metal was already loosely hanging, it breaks free.  
+It hits Ash right in the skull, piercing it right through.  
+You try to reach out to your face to gasp in shock,  
+But a lose shard pricks your hand pretty badly.  
+Thankfully, with the equipment available, you quickly patch yourself up.  
+You are losing your mind, you acted so inanely...  
+This commotion could have alerted the ALIEN, you should flee as soon as possible.
+As you walk inside, you hear shallow breathing...  
+The sound is coming from  
+You walk closer...  
+MEOW!!!  
+It's Jonesy! He flees in fear before you can catch him.  
+You hope you can see him again.
+You hear ALIEN footsteps! Look for hiding locations!
+Where will you hide ?
+Type in your answer quickly! Choose 1 or 2!
+Carefully, but swiftly, you slip away to the hiding spot.  
+Hoping that the ALIEN won't see you, you freeze and hold your breath.  
+The ALIEN in all of its glory searches for you.
+It looks around and for a moment you feel as if you were going to die.  
+But you will not. You will persist.  
+At least for now.  
+The ALIEN hears a distant rustle and marches towards the noise.  
+You wait a short while and leave your hiding spot, still alive.
+It looks around and for a moment you feel as if you are going to die.  
+You have a hunch that you have been noticed.  
+Before you can think, the ALIEN jumps towards you and slashes you with its tail.  
+As you fall to your knees, your predator is content.  
+The ALIEN dissapears as suddenly as it appeared.
+You must be delirious, at a time like this you cannot decide.  
+Full of horror, you try to hide in the plain sight.  
+The ALIEN sees you almost immediately.  
+You have a feeling that the ALIEN is dissapointed in you.  
+You are such an easy prey and it wants to play.  
+Before you can think, the ALIEN jumps towards you and slashes you with its tail.  
+As you fall to your knees, your predator is unsatisfied.  
+The ALIEN dissapears as suddenly as it appeared.
+You freezed for too long and now the ALIEN has seen you.  
+There is no escape.  
+Before you can think, the ALIEN jumps towards you and slashes you with its tail.  
+As you fall to your knees, your predator is content.  
+The ALIEN dissapears as suddenly as it appeared.
+You think to yourself that there must be some water left.  
+Kneeling down, you check the appropriate storage.  
+Canned peaches, canned pineapples, even canned tomatoes.  
+Dallas really liked exotic fruits.  
+You switch to a neighbouring shelf and here it is.  
+There lies 3 WATER, all yours now. 
+As you move through the shaft door, you notice something strange.  
+It appears that one of the small shelves is slightly opened.  
+Go towards it? 
+Unsure of your choice, you walk to the shelf.  
+It is from Ash's desk.  
+Once you are near, you see 1 WATER inside.  
+How could this be? Ash did not need to drink any water.  
+He was able to and he was playing his role around us,  
+But only and Dallas were allowed to enter this space.  
+Did he try to fool himself too? No, he was a smart 'man'.  
+But this is not the time to be analysing this situation.  
+Thank you Ash, for this free water.
+This seems too dangerous... I better not risk my life over this.  
+What was hidden in the drawer, you will never know.  
+You turn your back to the room.
+You try to move forward, but you slip.  
+WHAM! Your head bangs on the door, you whimper in pain.  
+Holding your head in your palms,  
+You slowly make your way towards the shelf.  
+What is that... You are so confused, you cannot analyse the item properly.  
+It must be some liquid... so it must be 1 WATER.  
+But why is it here? Ash did not need to drink.  
+This is so weird, I should get out of here. My head hurts...
+Weirdly enough, this room is colder than the rest, emptier than the rest.  
+You have never been allowed here, the Mother was a distant entity to you.  
+Whatever Ash and Dallas talked with Mother about here, does it matter now?  
+You could check the logs on the panel...  
+Do you give in the curiosity and temptation one last time?  
+Do you check out the main Mother panel?
+You walk up to the panel and the screen automatically lights up.  
+Hmm... the machine needs the password to let you in on its secrets.  
+Do you try to enter?
+Hopefully the ALIEN will not find you hunched over an old screen.
+PASSWORD [4 DIGITS]:
+Correct.   
+Incorrect.   
+You must have forgotten that two years have already gone by...   
+Incorrect.
+That makes sense... Ash did wake up every few months or so to check up on Mother.  
+The passwords were updated regularly.  
+But that is not important now.  
+You check the logs and you freeze.   30:0   i    minutes left to self-destruct.
+Oh no no no no.  
+You scroll up to see what and who set it off.  
+Special Order	937? What is this directive...?  
+'[...] even at the expense of the crew, the perfect organism must be returned  
+to the laboratories on Earth.'  
+Those Weyland-Yutani bastards.  
+Of course Ash would rather kill us all. Corporation's ideal puppet.  
+I should leave now. The time is ticking after all.
+You failed to provide the correct password.  
+TERMINAL LOCKED.  
+At least I tried. You think to yourself as you back out.  
+I have spent too much time in here, I should leave soon.
+You do not think you recall the password.  
+Only Ash and Dallas were supposed to after all.  
+Just 4 digits, wonder what could that have been. You mutter to yourself.  
+However, there's no time for such thoughts and the chills on your body reminds you of this fact. . 
+You should escape as soon as possible.
+You may not know the password, but you know the perfect remedy for disobedient technology.  
+WHAM! You kick the computer underneath with all your might.  
+Hoping the ALIEN will not hear your deranged solution, you stare at the screen as it refreshes.  
+You did not expect this to actually work, but here it is...  
+You check the logs and you freeze.
+No way, you need to leave this ship as soon as possible.  
+This is not the time to be sitting at the panel.  
+You will never know the secrets that Ash and Dallas hid behind their backs.  
+But they are dead and you are not, and let's keep it that way.  
+You swiftly head to the exit hatch.
+You think and think about this idea for far too long.  
+There is a panel in the middle of the room, but where are the cables?  
+They must be hidden somewhere...  
+Maybe if you follow them, you will find some CHEMFUEL at the end?  
+Since every idea is worth trying out, you get on your knees  
+And try to pry out the floor tiles.  
+You end up bruising and straining yourself to no satisfiable result.  
+You must be really losing your mind.  
+Best to get out of here.
+You look around and you decide to inspect one of the broken pods.   
+Hidden under the steering panels is a full canister of unused CHEMFUEL.  
+The God, if They even exist, must be looking out for you...
+You opened up the stall door and you saw a broken crate to the vents.  
+It is leading up to something you cannot see.  
+Do you dare to go through?
+Goosebumps appear on your skin, it must be shocked by your decision.  
+You crawl through the vents slowly.
+Your movements are making a lot of noise.  
+Hotter than before you emerge on the other side.  
+You have found yourself in a broken escape pod that was barred from the outside.  
+There must be some abandoned equipment you think to yourself.  
+Found hidden all around are 1 CHEMFUEL and 2 WATER.   
+Quickly, but steadily you go back to the WC stall.  
+You feel so hot, this journey has made you sweat.  
+Do you pour WATER on yourself to cool down?
+You're so lucky you have just found some WATER.  
+It helps you keep your head and thoughts straight and focused on the goal.
+Even though you have just found WATER, you want to keep it for special occasions.  
+But you feel so sick you collapse on the bathroom floor...  
+Thankfully it seems like the ALIEN is not nearby.  
+Maybe IT does not feel the need to pee.  
+You are safe for now, but you have slightly damaged yourself.
+The flashes of hot air have made you lose your mind even more.  
+As you try to open the bottle of WATER you trip and land on the bathroom floor.  
+The bottle spills all of its contents around and you're left with nothing.  
+Some of it has sprinkled on you, but you still have damaged yourself.
+This is dangerous, you think to yourself.  
+No matter what goods I could potentially find on the side,  
+It is not worth it.  
+You turn around.
+You try to examine the fallen crate for whatever reason.  
+You wonder what made it break? 
+You slide your hand against the side.  
+It just stabs you in the finger. Obviously.  
+You try to stop the bleeding. It could alert the ALIEN.  
+Thankfully, since you are in the WC, you find some toilet paper right next to you.  
+Ripley, Ripley, you are such an idiot, what were you thinking? You mutter to yourself.  
+You have just wasted time here and needlessly hurt yourself.  
+Resignated, you turn around.
+The sweat forms on your face, you feel the ALIEN coming this way.  
+You have no time to hide now, it could be here any moment.  
+Do you use the fire to scare it away?  
+If yes, prepare to have a steady stance and a fast hand.   
+FIRE : FLAME  
+Scare the ALIEN. Write '    ' quickly!   
+As you expected, the ALIEN appears from round the corner.  
+Each moment counts, as you press on the trigger.  
+The fire burts out of the flamethrower!  
+You try to hold your ground.  
+The ALIEN is not scared of you, but it is scared of the flames...  
+You have won this duel, the ALIEN retreats in fear.   
+As expected, the ALIEN appears from round the corner.  
+Each moment counts, as you try to find the trigger.  
+The ALIEN feels your panic and quickly attacks you with its tail.  
+Thankfully, you manage to fire in just the right time,  
+The tail only scratches you and then gets engulfed in the flames.  
+You try to hold your ground, but the pain makes you tremble.  
+The ALIEN is wounded too and it fears the fire you control.  
+You have won this duel, but just barely. 
+The ALIEN retreats.
+This might have been a stupid decision.  
+You think to yourself as you see the ALIEN appear.  
+The boxes to your side catch your eye.  
+Having no time for anything else, you throw the boxes at the ALIEN.  
+They successfully block the way.  
+The ALIEN, now angrier, attacks you with its tail! It pierces your shoulder.  
+Being unable to get to you fully, the ALIEN retreats.  
+It will get to you sooner than later after all.
+What is happening? You feel dizzy...  
+Suddenly the ALIEN appears in all of its glory.  
+You wake your brain up and grab the firethrower,  
+But the ALIEN has already attacked you with its tail.  
+The pain is a great motivator to survive. You press the trigger.  
+With the blood on your legs, you try to stand your ground.
+The pain is so terrible you drop on one knee.  
+Something falls out of your pocket, it's 1 WATER.  
+No matter, you stand up and raise the flames higher.
+The fire licks the ALIEN's tail and as tries to escape.  
+You have barely won this duel, you need to be more concious.
+As you look around the Bridge you notice a dim blinking light on one of the distant consoles.  
+You have never used it before, it was never your responsibility.  
+Check it out ?     
+Careful not to make any noise, you approach the console.  
+The blinking light appears to be an indicator...But of what?  
+It highlights the MEDLAB.  
+There's a button not covered by dust on the keyboard.  
+Do you press it? Think it over.
+You press the button and then a wave of dust covers you.  
+A cabinet under the console suddenly opens up just a bit.  
+Inside you find 2 litres of CHEMFUEL.  
+It must have been Dallas... But why?
+Too scared for your own good you leave this console be.  
+What did that button do?  
+Who must have recently pressed it?  
+Now you will never know.
+You were so confused you pressed all the buttons on the keyboard.  
+A wave of thick dust covers you and your fingers.  
+You jump in fright as all the cabinets around you burst open!  
+One of the cabinets hits you in the back of your head.  
+You kneel and hide your head in your hands.  
+As you come to your senses, you see 2 litres of CHEMFUEL in a cabinet across you.  
+You leave this suspicious light be as suspicious as it needs to be.
+You look around and see that there are lights on other consoles.  
+This one is blinking, but it is of none of your concerns.  
+You order yourself to snap out of it.  
+You have more pressing issues than this after all.
+As you enter the area, you start feeling increasingly dizzy.  
+The fire that broke out one level below increased the temperature all around.  
+Will you pour water on yourself to cool down?
+You can see more clearly now.     
+It is time to focus.
+You feel yourself slipping away.     
+To stay concious you try to punch yourself.     
+It will work for now, but you need to find more water.
+You notice a fresh acid-made hole on the ground.  
+Search it?
+Nothing can stop you now!  
+With a steady hand you reach out and...  
+Bingo! You have no idea why, but you have got 1 CHEMFUEL.
+You know better than to risk getting acid on your hands.  
+The hole sizzles evilly.
+As you stick your hand inside the hole, your weak body trembles.  
+OUCH! A speck of acid nuzzles your sleeve...  
+It has not damaged you greatly, but you feel a new wound forming right under.
+There's an open vent, that was closed before...  
+Search it?
+Nothing can stop you now!  
+You climb up and...  
+Bingo! Hidden, left by nobody knows who, there lies 1 WATER.
+Really? You really do not want to see inside the vents?  
+The vents that the ALIEN uses almost all the time?  
+You turn your back to the open vent  
+And you feel yourself getting more, and more vulnerable.
+You try to climb up the vents,  
+But you are too weak and your hands slip away from the ledge...  
+Falling on your latter end did hurt a lot.
+As soon as you open the useless vault, you pour the CHEMFUEL into the reservoir.  
+It is ready now.  
+By forcing yourself to stop checking your back for just a few seconds, you barge into the pod.  
+A small ginger creature slithers between your legs. It is Jonesy.  
+You close the pad and prepare for takeoff.  
+After a short while, which feels like your last moments, the spaceship starts to move away from you...  
+You take your recorder and turn it on.  
+This is Ripley,  
+W564502460H, executive officer,  
+last survivor of the commercial  
+starship Nostromo signing off.
+All your injuries... They slow you down.  
+You have endured a lot of damage, but you are human.  
+As your blood marks the path you've taken...  
+It has lead the ALIEN right to you...  
