@@ -156,9 +156,6 @@ void changeRoom(Room* room) {
 ///		   3. Prompts user for input.
 /// @param room Pointer to currently occupied room from the rooms table.
 void loadRoom(Room* room) {
-	// Print map from file
-	utils::printMapFromFile("ascii/ASCII_map.txt");
-
 	// Print info about the roomm and list rooms which can be accessed from it
 	//map();
 	std::cout << "YOU ARE AT:\n";

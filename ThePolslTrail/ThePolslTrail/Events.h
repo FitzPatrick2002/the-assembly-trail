@@ -160,7 +160,11 @@ void openingMenu()
 //Зроблено! (Done!)
 void medbayGlass() {
 
-	std::cout << "Since the MEDBAY is so well equipped,\nyou think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\nBut the glass on the floor...\nThe last thing you'd want is to slip and bleed here.\nDo you want to proceed? Prepare to be quick.\n";
+	std::cout << "Since the MEDBAY is so well equipped,\n";
+	std::cout << "You think about heading towards the observation pod, hoping to find some WATER or CHEMFUEL.\n";
+	std::cout << "But the glass on the floor...\n";
+	std::cout << "The last thing you'd want is to slip and bleed here.\n";
+	std::cout << "Do you want to proceed ? Prepare to be quick.\n";
 	//reading the user's choice
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
@@ -175,7 +179,7 @@ void medbayGlass() {
 		utils::getUserInputString(text, 8,utils::inputPrompts[1]);
 		if (utils::charCompare(text,word) && utils::fitTimeframe(start,10)) //managed to write correct input in a specified timeframe
 		{
-			std::cout << "\nYou somehow managed to get across the room safely.\n";
+			std::cout << "\nYou somehow manage to get across the room safely.\n";
 			std::cout << "To the rhythm of your pouding chest you open each cabinet around you.\n";
 			std::cout<< "You find CHEMFUEL and WATER.\n";
 			changeWater(1);
@@ -202,8 +206,8 @@ void medbayGlass() {
 	{
 		std::cout << "'What if I slip? It will come, it will come to me' those thoughts are racing through your mind.\n";
 		std::cout << "You nervously look around the room\n";
-		std::cout << "And even though you saw that Lambert killed Ash, his 'corpse' still surprised you right now.\n";
-		std::cout << "You should be going.Your mind is not stable.\n";
+		std::cout << "And even though you saw that Lambert killed Ash, his 'corpse' still surprises you right now.\n";
+		std::cout << "You should be going. Your mind is not stable.\n";
 		std::cout << "Not enough for this.\n";
 	}
 
@@ -213,26 +217,127 @@ void medbayGlass() {
 void medbayAsh() {
 	std::cout << "A strange feeling creeps into your mind, as if someone is watching you.\n";
 	std::cout << "You turn to see the 'corpse' of Ash staring directly at your skull.\n";
-	std::cout << "There's a scream, but it is not yours, it is Ash's\n";
+	std::cout << "There's a scream, but it is not yours, it is Ash's.\n";
 	std::cout << "Do you shut him up?\n";
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
 	if (c == 'y' || c == 'Y')
 	{
-		std::cout << "Unsure of your choice, you walk to the shelf.\n";
-		
+		std::cout << "You cannot risk being noticed by the ALIEN.\n";
+		std::cout << "This is probably what Ash wants, he would do anything just to protect this creature.\n";
+		std::cout << "The question remains, how to shut up this synth?\n";
+		std::cout << "You need to be firm and quick, so you think about a few solutions:\n";
+		std::cout << "1. Kick him in the mouth (or what remains of it).\n";
+		std::cout << "2. Try to fry his circuits.\n"; //you will fry yourself too, there's water on the floor
+		std::cout << "3. Smash his head with a chair.\n";
+		std::cout << "What will you do?\n";
+		char c;
+		utils::getUserYNinput(c, utils::inputPrompts[3]);
+		if (c == '1')
+		{
+			std::cout << "This is the fastest method you could think of.\n";
+			std::cout << "You position yourself right in front of Ash laying on the counter.\n";
+			std::cout << "Not thinking much about it, you lift up your leg and stomp on the synth's face.\n";
+			std::cout << "The screaming does not stop, so you kick him\n";
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+			std::cout << "Again\n";
+			std::this_thread::sleep_for(std::chrono::seconds(1));
+			std::cout << "And again,\n";
+			std::cout << "Ash tries to desperately bite onto your boot.\n";
+			std::cout << "Maybe the resonable solution would be to shake him off, but you press your boot harder in.\n";
+			std::cout << "After a while his fake teeth start to break under the pressure.\n";
+			std::cout << "You feel the resistance dying down suddenly.\n";
+			std::cout << "When the screaming finally ends, you step back and stare at what is left.\n";
+			std::cout << "It is a good thing, that you cannot see his eyes anymore.\n";
+			std::cout << "Your boot is covered in white fuel and you turn your back to him\n";
+			std::cout << "He was still your coworker. At least until he tried to kill you.\n";
+		}
+		else if (c == '2')
+		{
+			std::cout << "This will shut him up no matter how durable he could still be.\n";
+			std::cout << "Since you are in a lab, you are able to find fitting equipment for the job.\n";
+			std::cout << "You are glad it was not too hard to pry Ash's circuits open,\n";
+			std::cout << "His so called skull, was already half smashed.\n";
+			std::cout << "You take the wire and you attach the crocodile clips to his brain.\n";
+			std::cout << "The electricity shoots out immediately and licks your skin as well.\n";
+			std::cout << "The pain both you and Ash feel is so intense, you break free.\n";
+			std::cout << "Trying to electrocute him, you fried yourself as well.\n";
+			std::cout << "At least his screaming stops right in the moment,\n";
+			std::cout << "But his eyes give up and spill over the counter.\n";
+			std::cout << "Had he not tried to kill you, just a few hours before...\n";
+			std::cout << "You do not want to think what would be in your head then.\n";
+			changeHP(-1);
+		}
+		else if (c == '3')
+		{
+			std::cout << "The chair will serve as an adequate barrier of protection against him...\n";
+			std::cout << "That is what you think as you grab the closest laboratory chair.\n";
+			std::cout << "You prepare for a short second and take a swing at Ash's poor skull.\n";
+			std::cout << "His head falls on the floor upon impact and shatters into more pieces.\n";
+			std::cout << "But most importantly, his screaming starts to stop.\n";
+			std::cout << "His vocal cords begin to glitch out and give out.\n";
+			std::cout << "White fuel spattered on your uniform and it tastes like oil...\n";
+			std::cout << "You are glad you do not taste blood right now.\n";
+		}
+		else {
+			if (player.water > 0)
+			{
+				std::cout << "Wait a second...\n";
+				std::cout << "You know the perfect solution and it is right here with you.\n";
+				std::cout << "Reaching into your backpack you grab a WATER bottle.\n";
+				std::cout << "It seems like the screaming is worsening as you make your way over to Ash.\n";
+				std::cout << "Without any hesitation you pour the water on his half-cracked skull.\n";
+				std::cout << "Among the sizzling and the glitching, his vocal cords give out.\n";
+				std::cout << "Some of his white fuel has leaked out on your pants and shoes...\n";
+				std::cout << "You are thankful it is not his blood.\n";
+				changeWater(-1);
+			}
+			else
+			{
+				std::cout << "Without thinking you run towards the corpse on the counter\n";
+				std::cout << "And you throw a punch you never realised you were capable of.\n";
+				std::cout << "Somehow Ash's teeth fall out afterwards.\n";
+				std::cout << "But since the screaming does not stop, you take a swing and\n";
+				std::this_thread::sleep_for(std::chrono::seconds(1));
+				std::cout << "Hit him again.\n";
+				std::cout << "His white fuel sprinkles all over your uniform, but you are not done yet.\n";
+				std::cout << "Punch after punch you see his vocal cords giving in and losing their power.\n";
+				std::cout << "It is done.\n";
+				std::cout << "You recoil and look at your bruised hand.\n";
+				std::cout << "Did his hand bruise the same when he was alive?\n";
+				std::cout << "No matter, this is a silly thought.\n";
+			}
+		}
+		std::cout << "While examining your stained clothing,\n";
+		std::cout << "You notice some supplies on the ground.\n";
+		std::cout << "Upon closer inspection and wiping off the fuel off of the items,\n";
+		std::cout << "It turns out you have found 2 CHEMFUELS and 1 WATER hidden away.\n";
+		std::cout << "Better to leave, Ash's screaming could have called over the ALIEN.\n";
+		changeChemfuel(2);
+		changeWater(1);
 	}
 	else if (c == 'n' || c == 'N')
 	{
-		std::cout << "This seems too dangerous... I better not risk my life over this.\n";
-		
+		std::cout << "Maybe it will be smarter to simply run away?\n";
+		std::cout << "Ash's screaming could call the ALIEN over to him and him only.\n";
+		std::cout << "This is the safest option, you tell yourself and turn around.\n";
 	}
 	else
 	{
-		std::cout << "You try to move forward, but you slip.\n";
-		
+		std::cout << "You panic and start screaming right back at him.\n";
+		std::cout << "It seems Ash has lost his core programming,\n";
+		std::cout << "Because he does not react to you.\n";
+		std::cout << "And yet, his stare is so frightening, you take a wrench and throw it at his side.\n";
+		std::cout << "You miss horribly... Instead of Ash, you hit the open ventilation crate above him.\n";
+		std::cout << "Since the metal was already loosely hanging, it breaks free.\n";
+		std::cout << "It hits Ash right in the skull, piercing it right through.\n";
+		std::cout << "You try to reach out to your face to gasp in shock,\n";
+		std::cout << "But a lose shard pricks your hand pretty badly.\n";
+		std::cout << "Thankfully, with the equipment available, you quickly patch yourself up.\n";
+		std::cout << "You are losing your mind, you acted so inanely...\n";
+		std::cout << "This commotion could have alerted the ALIEN, you should flee as soon as possible.\n";
+		changeHP(-2);
 	}
-	//NOT SINGLE TIME EVENT HEHE
 }
 
 //Се не було аж так страшно!
@@ -251,7 +356,10 @@ void jonesyJumpscare() {
 //Треба додати чортів тригер
 //І багато тексту
 void alienHide() {
-	std::cout << "You hear ALIEN footsteps! Where will you hide?\n";
+	std::cout << "You hear ALIEN footsteps! Look for hiding locations!\n";
+	char e;
+	utils::getUserYNinput(e, utils::inputPrompts[5]);
+	std::cout << "Where will you hide ? \n";
 	const char* hidingLocations[2] = { player.roomHidingLocations[0], player.roomHidingLocations[1] }; // 0 - correct, 1 - incorrect
 	int x = rand() % 2;
 	for (int i = 0; i <= x; i++)
@@ -324,8 +432,8 @@ void alienHide() {
 
 //Більше тексту
 void galleyWater() {
-	std::cout << "There must be some water left. You think to yourself.\n";
-	std::cout << "You check the appropriate storage.\n";
+	std::cout << "You think to yourself that there must be some water left.\n";
+	std::cout << "Kneeling down, you check the appropriate storage.\n";
 	std::cout << "Canned peaches, canned pineapples, even canned tomatoes.\n";
 	std::cout << "Dallas really liked exotic fruits.\n";
 	std::cout << "You switch to a neighbouring shelf and here it is.\n";
@@ -427,10 +535,12 @@ void motherPanel() {
 				std::cout << ".____________________________________________.\n";
 				std::cout << "Oh no no no no.\n";
 				std::cout << "You scroll up to see what and who set it off.\n";
-				std::cout << "\n";
-				//some text here, more lore
-				//Ash writing about how ALIEN is so perfect and it probably will survive out in the cosmos, so its better to blow up the ship to preserve it than to have a chance of anyone harming such perfect creature
-
+				std::cout << "Special Order	937? What is this directive...?\n";
+				std::cout << "'[...] even at the expense of the crew, the perfect organism must be returned\n";
+				std::cout << "to the laboratories on Earth.'\n";
+				std::cout << "Those Weyland-Yutani bastards.\n";
+				std::cout << "Of course Ash would rather kill us all. Corporation's ideal puppet.\n";
+				std::cout << "I should leave now. The time is ticking after all.\n";
 			}
 			else
 			{
@@ -443,22 +553,54 @@ void motherPanel() {
 		}
 		else if (c == 'n' || c == 'N')
 		{
-			std::cout << "Even though you have just found WATER, you want to keep it for special occasions.\n";
+			std::cout << "You do not think you recall the password.\n";
+			std::cout << "Only Ash and Dallas were supposed to after all.\n";
+			std::cout << "Just 4 digits, wonder what could that have been. You mutter to yourself.\n";
+			std::cout << "However, there's no time for such thoughts and the chills on your body reminds you of this fact.\n.";
+			std::cout << "You should escape as soon as possible.\n";
 
 		}
 		else {
-			std::cout << "The flashes of hot air have made you lose your mind even more.\n";
-
+			std::cout << "You may not know the password, but you know the perfect remedy for disobedient technology.\n";
+			std::cout << "WHAM! You kick the computer underneath with all your might.\n";
+			std::cout << "Hoping the ALIEN will not hear your deranged solution, you stare at the screen as it refreshes.\n";
+			std::cout << "You did not expect this to actually work, but here it is...\n";
+			std::cout << "You check the logs and you freeze.\n";
+			std::cout << ".____________________________________________.\n";
+			for (int i = 5; i > 0; i--)
+			{
+				std::cout << "30:0" << i << " minutes left to self-destruct.\n";
+			}
+			std::cout << ".____________________________________________.\n";
+			std::cout << "Oh no no no no.\n";
+			std::cout << "You scroll up to see what and who set it off.\n";
+			std::cout << "Special Order	937? What is this directive...?\n";
+			std::cout << "'[...] even at the expense of the crew, the perfect organism must be returned\n";
+			std::cout << "to the laboratories on Earth.'\n";
+			std::cout << "Those Weyland-Yutani bastards.\n";
+			std::cout << "Of course Ash would rather kill us all. Corporation's ideal puppet.\n";
+			std::cout << "I should leave now. The time is ticking after all.\n";
 		}
 	}
 	else if (c == 'n' || c == 'N')
 	{
-		std::cout << "This is dangerous, you think to yourself.\n";
-
+		std::cout << "No way, you need to leave this ship as soon as possible.\n";
+		std::cout << "This is not the time to be sitting at the panel.\n";
+		std::cout << "You will never know the secrets that Ash and Dallas hid behind their backs.\n";
+		std::cout << "But they are dead and you are not, and let's keep it that way.\n";
+		std::cout << "You swiftly head to the exit hatch.\n";
 	}
 	else {
-		std::cout << "You try to examine the fallen crate for whatever reason.\n";
-
+		std::cout << "You think and think about this idea for far too long.\n";
+		std::cout << "There is a panel in the middle of the room, but where are the cables?\n";
+		std::cout << "They must be hidden somewhere...\n";
+		std::cout << "Maybe if you follow them, you will find some CHEMFUEL at the end?\n";
+		std::cout << "Since every idea is worth trying out, you get on your knees\n";
+		std::cout << "And try to pry out the floor tiles.\n";
+		std::cout << "You end up bruising and straining yourself to no satisfiable result.\n";
+		std::cout << "You must be really losing your mind.\n";
+		std::cout << "Best to get out of here.\n";
+		changeHP(-1);
 	}
 }
 
@@ -548,7 +690,7 @@ void alienFire() {
 		int choice = rand() % 2;
 		const char* word = choice == 1 ? "FIRE" : "FLAME";
 
-		std::cout << "Scare the ALIEN. Write '" << word << "' quick!\n";
+		std::cout << "Scare the ALIEN. Write '" << word << "' quickly!\n";
 		time_t start = std::time(nullptr); //start the timer
 		int end = 10;
 		char text[8];
@@ -609,21 +751,38 @@ void alienFire() {
 }
 //Імплементовано та реалзовано!
 void bridgeConsole() {
-	std::cout << "As you look around the Bridge you notice a dim blinking light on one of the distant consoles.\nYou have never used it before, it was never your responsibility.\nCheck it out?\n";
+	std::cout << "As you look around the Bridge you notice a dim blinking light on one of the distant consoles.\n";
+	std::cout << "You have never used it before, it was never your responsibility.\n";
+	std::cout << "Check it out ? \n";
 	char c;
 	utils::getUserYNinput(c, utils::inputPrompts[0]);
 	if (c == 'y' || c == 'Y') {
-		std::cout << "Careful not to make any noise, you approach the console.\nThe blinking light appears to be an indicator...But of what?\nIt highlights the MEDLAB.\nThere's a button not covered by dust on the keyboard.\nDo you press it? Think it over.\n";
+		std::cout << "Careful not to make any noise, you approach the console.\n";
+		std::cout << "The blinking light appears to be an indicator...But of what?\n";
+		std::cout << "It highlights the MEDLAB.\n";
+		std::cout << "There's a button not covered by dust on the keyboard.\n";
+		std::cout << "Do you press it? Think it over.\n";
 		utils::getUserYNinput(c, utils::inputPrompts[0]);
 		if (c == 'y' || c == 'Y') {
-			std::cout << "You press the button and then a wave of dust covers you.\nA cabinet under the console suddenly opens up just a bit.\nInside you find 2 litres of CHEMFUEL.\nIt must have been Dallas... Did he want to leave?\n";
+			std::cout << "You press the button and then a wave of dust covers you.\n";
+			std::cout << "A cabinet under the console suddenly opens up just a bit.\n";
+			std::cout << "Inside you find 2 litres of CHEMFUEL.\n";
+			std::cout << "It must have been Dallas... But why? \n";
 			changeChemfuel(2);
 		}
 		else if (c == 'n' || c == 'N') {
-			std::cout << "Too scared for your own good you leave this console be.\nWhat did that button do?\nWho must have recently pressed it?\nNow you will never know.\n";
+			std::cout << "Too scared for your own good you leave this console be.\n";
+			std::cout << "What did that button do?\n";
+			std::cout << "Who must have recently pressed it?\n";
+			std::cout << "Now you will never know.\n";
 		}
 		else {
-			std::cout << "You were so confused you pressed all the buttons on the keyboard.\nA wave of thick dust covers you and your fingers.\nYou jump in fright as all the cabinets around you burst open!\nOne of the cabinets hits you in the back of your head.\nYou kneel and hide your head in your hands.\nAs you come to your senses, you see 2 litres of CHEMFUEL in a cabinet across you.\n";
+			std::cout << "You were so confused you pressed all the buttons on the keyboard.\n";
+			std::cout << "A wave of thick dust covers you and your fingers.\n";
+			std::cout << "You jump in fright as all the cabinets around you burst open!\n";
+			std::cout << "One of the cabinets hits you in the back of your head.\n";
+			std::cout << "You kneel and hide your head in your hands.\n";
+			std::cout << "As you come to your senses, you see 2 litres of CHEMFUEL in a cabinet across you.\n";
 			changeChemfuel(2);
 			changeHP(-1);
 		}
@@ -632,7 +791,10 @@ void bridgeConsole() {
 		std::cout << "You leave this suspicious light be as suspicious as it needs to be.\n";
 	}
 	else {
-		std::cout << "You look around and see that there are lights on other consoles.\nThis one is blinking, but it is of none of your concerns.\nYou order yourself to snap out of it.\nYou have more pressing issues than this after all.\n";
+		std::cout << "You look around and see that there are lights on other consoles.\n";
+		std::cout << "This one is blinking, but it is of none of your concerns.\n";
+		std::cout << "You order yourself to snap out of it.\n";
+		std::cout << "You have more pressing issues than this after all.\n";
 	}
 
 }
