@@ -58,7 +58,8 @@ void help()
 	utils::getUserYNinput(c, utils::inputPrompts[5]);
 }
 
-//Unfortunetely I haven`t found a map
+//Виконано, Гетьмане!
+//Its done, Hetman!
 void map()
 {
 	std::cout << "Map\n";
@@ -114,7 +115,9 @@ void openingScene() {
 	utils::getUserYNinput(c, "Enter anything to sign off:");
 }
 
-//Postponed it. On hold
+//Also try karaoke feature with menu (Its a secret feature. I worked hard on it)
+//Я зделаль!
+//I heve mede thes!
 void openingMenu()
 {
 
@@ -212,8 +215,7 @@ void medbayGlass() {
 	}
 
 }
-//Ви просили - Ми зробили!
-//"You`ve asked - We`ve done!" - Vladlen Marayev
+
 void medbayAsh() {
 	std::cout << "A strange feeling creeps into your mind, as if someone is watching you.\n";
 	std::cout << "You turn to see the 'corpse' of Ash staring directly at your skull.\n";
