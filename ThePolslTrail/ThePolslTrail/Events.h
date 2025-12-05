@@ -361,7 +361,7 @@ void alienHide() {
 	std::cout << "You hear ALIEN footsteps! Look for hiding locations!\n";
 	char e;
 	utils::getUserYNinput(e, utils::inputPrompts[5]);
-	std::cout << "Where will you hide ? \n";
+	std::cout << "Where will you hide? \n";
 	const char* hidingLocations[2] = { player.roomHidingLocations[0], player.roomHidingLocations[1] }; // 0 - correct, 1 - incorrect
 	int x = rand() % 2;
 	for (int i = 0; i <= x; i++)
