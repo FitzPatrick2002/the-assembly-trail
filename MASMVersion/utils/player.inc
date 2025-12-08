@@ -3,7 +3,7 @@
 ; After using the testPlyer in main.asm in VS
 ; We get info that the source of this module is unknown
 
-Player STRUCT
+Player STRUCT 
 	roomNumber SDWORD ?
 	roomHidingLocations PBYTE 2 dup(?) ; Pointers to const char*
 	
