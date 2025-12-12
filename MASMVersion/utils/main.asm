@@ -7,6 +7,8 @@ include masm32rt.inc
 include player.inc
 include utils.inc
 include rooms.inc
+include mainLoop.inc
+include events.inc
 
 ExitProcess PROTO, dwExitCode: DWORD
 
@@ -28,6 +30,38 @@ dummy5 BYTE "Asdf is", 13, 10, 0
 main PROC
 	LOCAL currentRoomStr[4] : BYTE
 	;LOCAL someBuffer[4] : PTR BYTE
+	LOCAL timeStamp : DWORD
+
+	; Testing the mainLoop
+
+	INVOKE mainLoop
+
+	;alienFire PROTO
+	;nothingHappens PROTO
+	;motherWater PROTO
+	;podsFoundChemfuel PROTO
+	;WCHiddenPassage PROTO
+	;bridgeConsole PROTO
+	;playerAttacked PROTO
+
+	; Testing the isSIngleTimeEvent
+	; singleTimeEventsTab DWORD OFFSET foundWater, OFFSET foundChemfuel, OFFSET bridgeConsole, OFFSET WCHiddenPassage, OFFSET medbayAsh, OFFSET motherPanel, OFFSET motherWater, OFFSET galleyWater, OFFSET podsFoundChemfuel
+	;mov eax, LENGTHOF singleTimeEventsTab
+	;INVOKE isSingleTimeEventProc, OFFSET foundWater
+
+	; # --------------------------------------- # ;
+
+	; Test the time stamp
+
+	; Store the ticks count
+	INVOKE GetTickCount
+	mov timeStamp, eax
+
+	; Dummy input so that some time passes
+	INVOKE StdIn, addr currentRoomStr, 4
+
+	; Check the condition
+	INVOKE fitTimeframe, timeStamp, 5000
 
 	; Test the charCompare
 	xor eax, eax

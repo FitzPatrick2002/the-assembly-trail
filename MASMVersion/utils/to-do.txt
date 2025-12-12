@@ -1,0 +1,57 @@
+A quick todo for myself
+
+0. Documentation
+ - player.inc (ok)
+ - player.asm (ok)
+ - utils.inc  (ok)
+ - utils.asm  (ok)
+ - rooms.inc  (ok)
+ - room.asm   (ok)
+
+1. utils.h 
+ - getUserInputString (ok, partially)
+ - fitTimeFrame   (ok)
+ - charCompare	  (ok)
+ - getUserYNinput (ok)
+ - checkIfInArray (ok)
+ - roomNumberHex  (ok)
+
+ 2. main.cpp
+ 
+ - (ok) main loop (in progress)
+ - (ok) conditions in main loop (ok)
+
+ 2.5 rooms.asm
+
+ - (ok) isSingleTimeEvent -> implement (ok)
+ - (ok) Use isSingleTimeEventProc in rooms.asm (ok)
+ - Check if single time events are becoming null: 	mov [esi].Room.eventsList[edi * 4], 0
+
+ 3. Fixes
+ 
+ * rooms.asm
+  # loadEvent()
+	(ok) - nrand -> not really random it seems to me? See how danil did this (ok)
+
+* Somewhere
+ # (ok) Fix addressing so that [] is used instead of adding edx / other to offset
+ # (ok) When listing the rooms to which player can go, list them using hexadecimal, not octal (ok)
+
+ # events (Danill) -> no YN output before prompting player for input
+ # events (Danill) -> player struct is not affected by events as they are not using it but the placeholders
+
+ # events (Danill) -> Description of hiding spots is not correctly changed for each room
+
+ # (ok) Sometimes when going back to room '0' from room '3', a double #------#, #-----# appears. (ok - just leave it)
+	-> Caused by default behaviour. If there is no event, loadRoom prints #-----# at the end of execution
+	   and after loadRoom if there is no event changeRoom is executed, which prints #-----# at the beginning
+
+ # (ok) When input '0' when changing rooms, its not allowed even if 0th room is on list of connections, player is stuck (ok)
+
+ # (ok) Somewhere there is USING eax, for proc which returns through eax
+ # (ok) Fix randomness (ok)
+
+ 4. Termination
+
+ - Remove / comment out test functions? 
+   Store them in some separate file outside the main code?

@@ -1,33 +1,34 @@
 include masm32rt.inc
 include utils.inc
 
+; TO DO: 
+; - fitTimeframe(time_t start, int seconds) (ok)
+; - https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-gettickcount
+
 ; # -------------------------- DATA -------------------------- # ;
 
 .data 
 
-MAX_ROOMS_STR BYTE "11", 0		; Maximal number of rooms on the map. (Its actually the total number of rooms on the map).
-MAX_CONNECTIONS_STR BYTE "5", 0 ; Maximal number of connections a room can have to other rooms.
-MAX_EVENTS_STR BYTE "4", 0		; Maximal number of events that can happen in a room.
-CHEMFUEL_GOAL_STR BYTE "5", 0   ; How much chemfuel must be collected by the player to win the game.
+	; Game constants as null terminated strings
+	MAX_ROOMS_STR BYTE "11", 0		; Maximal number of rooms on the map. (Its actually the total number of rooms on the map).
+	MAX_CONNECTIONS_STR BYTE "5", 0 ; Maximal number of connections a room can have to other rooms.
+	MAX_EVENTS_STR BYTE "4", 0		; Maximal number of events that can happen in a room.
+	CHEMFUEL_GOAL_STR BYTE "5", 0   ; How much chemfuel must be collected by the player to win the game.
 
-inputPrompts1 BYTE "[Y/N]: ", 13, 10, 0
-inputPrompts2 BYTE "Input: ", 13, 10, 0
-inputPrompts3 BYTE "You: ", 13, 10, 0
-inputPrompts4 BYTE "Number: ", 13, 10, 0
-inputPrompts5 BYTE "Room: ", 13, 10, 0
-inputPrompts6 BYTE "Any: ", 13, 10, 0
+	; Input prompts that can be used in getUserYNinput procedure
+	inputPrompts1 BYTE "[Y/N]: ", 0
+	inputPrompts2 BYTE "Input: ", 0
+	inputPrompts3 BYTE "You: ", 0
+	inputPrompts4 BYTE "Number: ", 0
+	inputPrompts5 BYTE "Room: ", 0
+	inputPrompts6 BYTE "Any: ", 0
 
 ; # -------------------------- CODE -------------------------- # ;
 
 .code 
 
-; # -------------------------- checkIfInArray -------------------------- # ;
+; # -------------------------- checkIfInArray Procedure -------------------------- # ;
 
-; @brief Compares elements of array of DWORDs.
-; @param value : DWORD Value which will be compared with array elements.
-; @param arr : PTR DWORD Pointer to the beginning of the array.
-; @param allLEngth : DWORD Length of the array.
-; @returns eax = 1 - value found in the array, eax = 0 - if not.
 checkIfInArray PROC PROC USES esi ecx, value : DWORD, arr : PTR DWORD, arrLength : DWORD
 	xor ecx, ecx
 	mov esi, arr 
@@ -53,23 +54,8 @@ Present:
 	ret
 checkIfInArray ENDP
 
+; # -------------------------- roomNumberHex Procedure -------------------------- # ;
 
-
-;flushInputBuffer PROC
-;	LOCAL trash
-;	Invoke StdIn
-	
-
-;	ret
-;flushInputBuffer ENDP
-
-
-; # -------------------------- roomNumberHex -------------------------- # ;
-
-; @brief Converts a DWORD value into an ASCII character representing a hex number in range 0-F.
-;		 In case provided value is < 0 or > 15, character # will be placed in the destination buffer.
-; @param destBuf : PTR BYTE Pointer to location where result character will be stored.
-; @param value : DWORD Value that will be converted to hex, should be in range 0-15.
 roomNumberHex PROC USES esi eax, destBuffer : PTR BYTE, value : DWORD
 	mov eax, value	
 	mov esi, destBuffer
@@ -103,13 +89,8 @@ ValTooHigh:
 	ret
 roomNumberHex ENDP
 
-; # -------------------------- getUserYNinput -------------------------- # ;
+; # -------------------------- getUserYNinput Procedure -------------------------- # ;
 
-; @brief Prompts user for input. 
-;		 Takes only the first letter of the input.
-; @param destBuf Destination buffer, the first letter of user input will be put at the neginning of it.
-; @param message Pointer to string which will be printed before user is prompted for input.
-; @returns None.
 getUserYNinput PROC USES esi eax, destBuf : PTR BYTE, message : PTR BYTE
 	LOCAL readBytes[32] : BYTE
 	
@@ -125,12 +106,8 @@ getUserYNinput PROC USES esi eax, destBuf : PTR BYTE, message : PTR BYTE
 	ret
 getUserYNinput ENDP
 
-; # -------------------------- charCompare -------------------------- # ;
+; # -------------------------- charCompare Procedure -------------------------- # ;
 
-; @brief Compares two strings if they are equal.
-; @param str1 Pointer to the first string.
-; @param str2 Pointer to the second string.
-; @returns eax = 1 if strings are equal, eax = 0 if strings are different.
 charCompare PROC USES ebx esi edi, str1 : PTR BYTE, str2 : PTR BYTE
 
 	; Load pointers to strings into esi and edi
@@ -170,16 +147,11 @@ NotEqual:
 	ret
 charCompare ENDP
 
-; # -------------------------- getUserInputString -------------------------- # ;
+; # -------------------------- getUserInputString Procedure -------------------------- # ;
 
 ; TO DO: 
 ; 1. Remove the terminal 13, 10 and substitute it with 0
 
-; @brief Reads input of specified length from the console into the destination and prints a specified message.
-; @param destBuffer Pointer to buffer where the console input will be saved.
-; @param bufferLength Specifies how many bytes will be read from the stdin.
-; @param message A message that will be printed before user is prompted for input.
-; @returns None
 getUserInputString PROC USES eax, destBuffer : PTR BYTE, bufferLength : DWORD, message : PTR BYTE
 
 	; Flush the console in case there is some stuff dangling in there
@@ -188,33 +160,34 @@ getUserInputString PROC USES eax, destBuffer : PTR BYTE, bufferLength : DWORD, m
 
 	; Print the message and read the console input
 	print message
-	INVOKE StdIn destBuffer, bufferLength
+	INVOKE StdIn, destBuffer, bufferLength
 
 	; Remove the 13, 10 from the end of the string 
 	; 
 
 	ret
 getUserInputString ENDP
-; -------- Flawed, dont use --------- ;
-;charCompareWeird PROC srcBuffer : PTR BYTE, destBuffer : PTR BYTE
 
-; -------- Flawed, dont use --------- ;
+; # -------------------------- fitTimeframe Procedure -------------------------- # ;
 
-;	cld						; Direction flag forward
-;	lea edi, srcBuffer		; esi is pointing at the source buffer
-;
-;	mov ecx, -1				; repe will decrese ecx so we start with maximal count
-;	xor eax, eax			; Sought after character is 0
-;	repe scasb destBuffer	; Count how many characters are in the string (unitl 0 is encountered)
-;	not ecx					; Obtain the count count = max - ecx
-;
-;	lea esi, srcBuffer		
-;	lea edi, destBuffer
-;	repe cmpsb				; Repeat comparison for the length of one of the strings or as long as they are equal
-;	je @F
-;
-;	mov eax, 0
-;	ret
-;charCompareWeird ENDP
+fitTimeframe PROC timeStamp : DWORD, milisecThreshold : DWORD
+	;LOCAL currentTime : DOWRD ; Stores current tick time
+
+	INVOKE GetTickCount ; Read current time
+	sub eax, timeStamp
+
+	; If (currentTime - timeStamp < milisecThreshold)
+	cmp eax, milisecThreshold
+	jg @F
+
+	; Return 1 (true) thorugh eax
+	mov eax, 1
+	ret
+
+@@:
+	; Return 0 (false) through eax
+	mov eax, 0
+	ret
+fitTimeframe ENDP
 
 END

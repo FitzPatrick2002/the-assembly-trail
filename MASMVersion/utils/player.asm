@@ -8,7 +8,7 @@ include utils.inc
 	roomHidingLocation0 BYTE "Behind the tall cabinets next to you.", 13, 10, 0
 	roomHidingLocation1 BYTE "Near the main console, under the desk.", 13, 10, 0
 
-	; printPlayerStatus
+	; printPlayerStatus procedure strings
 	separationBar BYTE "# -------------------------- #", 13, 10, 0
 	printPlayerStatus1 BYTE  "| Status:                    |", 13, 10, 0
 	printPlayerStatus2 BYTE  "| Room: ", 0
@@ -22,53 +22,36 @@ include utils.inc
 	printPlayerStatus71 BYTE " / ", 0
 	printPlayerStatus72 BYTE "            |", 13, 10, 0
 
-	; changeHP
+	; changeHP procedure strings
 	changeHP1 BYTE "Your hp is changed by ", 0
 	changeHP12 BYTE "!", 13, 10, 0
 
-	; changeWater
+	; changeWater procedure strings
 	changeWater1 BYTE "Your water storage is changed by ", 0
 	changeWater12 BYTE "!", 13, 10, 0
 
-	; changeChemfuel
+	; changeChemfuel procedure strings
 	changeChemfuel1 BYTE "Your chemfuel storage is changed by ", 0
 	changeChemfuel12 BYTE "!", 13, 10, 0
 
 	; Player definition
-	player Player {0, \
-				   <offset roomHidingLocation0, offset roomHidingLocation1>, \
-			       5, 10, 0}
+	player Player {0, \													       ; room number
+				   <offset roomHidingLocation0, offset roomHidingLocation1>, \ ; room hiding location strings
+			       5, 10, 0}												   ; hp, water, chemfuel
 
 
 ; # ------------- CODE ------------- # ;
+
 .code
 
+; # ------------------- printPlayerStatus PROC ------------------- # ;
+
 printPlayerStatus PROC
-	;LOCAL room : BYTE
-
-	; Player parameters converted to DWORDS
-	;LOCAL dwRoomNumber : SDWORD
-	;LOCAL dwHP : SDWORD
-	;LOCAL dwWater : SDWORD
-	;LOCAL dwChemfuel : SDWORD
-
 	; Player status converted to strings
 	LOCAL playerRoom[12] : BYTE
 	LOCAL playerHp[12] : BYTE
 	LOCAL playerWater[12] : BYTE
 	LOCAL playerChemfuel[12] : BYTE
-
-	; roomNumberHex(room, player.room)
-	
-	; Convert 8b to 32b values
-	;movsx eax, player.roomNumber
-	;mov dwRoomNumber, eax
-	;movsx eax, player.hp
-	;mov dwHP, eax
-	;movsx eax, player.water
-	;mov dwWater, eax
-	;movsx eax, player.chemfuel
-	;mov dwChemfuel, eax
 
 	; Status print
 	print addr separationBar
@@ -76,13 +59,14 @@ printPlayerStatus PROC
 
 	; Room print
 	print addr printPlayerStatus2
-	INVOKE dwtoa, player.roomNumber, addr playerRoom
+	INVOKE roomNumberHex, addr playerRoom, player.roomNumber ; Convert the room idx to hexadecimal
+	; INVOKE dwtoa, player.roomNumber, addr playerRoom
 	print addr playerRoom
 	print addr printPlayerStatus21
 
 	; HP print
 	print addr printPlayerStatus3
-	INVOKE dwtoa, player.hp, addr playerHp
+	INVOKE dwtoa, player.hp, addr playerHp 
 	print addr playerHp
 	print addr printPlayerStatus31
 
@@ -103,9 +87,9 @@ printPlayerStatus PROC
 	; Chemfuel print
 	print addr printPlayerStatus7
 	INVOKE dwtoa, player.chemfuel, addr playerChemfuel
-	print addr playerChemfuel
-	print addr printPlayerStatus71
-	print addr CHEMFUEL_GOAL_STR
+	print addr playerChemfuel      ; Print chemfuel level
+	print addr printPlayerStatus71 
+	print addr CHEMFUEL_GOAL_STR   ; Show how mych chemfuel needs to be collected. (current value / CHEMFUEL_GOAL_STR)
 	print addr printPlayerStatus72
 
 	print addr separationBar
@@ -113,21 +97,20 @@ printPlayerStatus PROC
 	ret
 printPlayerStatus ENDP
 
-changeHP PROC change : SDWORD
-	LOCAL changeSTR[12] : BYTE
-	;LOCAL dwChange : SDWORD
-	
-	; Convert the 8 bit signed value to 32 bit signed value
-	print addr changeHP1
-	;movsx eax, change
-	;mov dwChange, eax
+; # ------------------- changeHP PROC ------------------- # ;
 
-	; Print the signed change
+changeHP PROC USES eax, change : SDWORD
+	LOCAL changeSTR[12] : BYTE
+	
+	; Print info
+	print addr changeHP1
+
+	; Print the signed change of hp
 	INVOKE dwtoa, change, addr changeSTR
 	print addr changeSTR
 	print addr changeHP12
 
-	; Modify the players HP 
+	; Modify the players HP by adding the change to current level of hp
 	xor eax, eax
 	mov eax, player.hp
 	add eax, change
@@ -136,21 +119,20 @@ changeHP PROC change : SDWORD
 	ret 
 changeHP ENDP
 
-changeWater PROC change : SDWORD
+; # ------------------- changeWater PROC ------------------- # ;
+
+changeWater PROC USES eax, change : SDWORD
 	LOCAL waterSTR[12] : BYTE
-	;LOCAL dwChange : SDWORD
 
 	; Convert the 8 bit signed value to 32 bit signed value
 	print addr changeWater1
-	;movsx eax, change
-	;mov dwChange, eax
 
 	; Print the signed change
 	INVOKE dwtoa, change, addr waterSTR
 	print addr waterSTR
 	print addr changeWater12
 
-	; Modify the players water
+	; Modify the players water by adding the change to players water level
 	xor eax, eax
 	mov eax, player.water
 	add eax, change
@@ -159,21 +141,19 @@ changeWater PROC change : SDWORD
 	ret
 changeWater ENDP
 
-changeChemfuel PROC change : SDWORD
+; # ------------------- changeChemfuel PROC ------------------- # ;
+
+changeChemfuel PROC USES eax, change : SDWORD
 	LOCAL strChemfuel[12] : BYTE
-	;LOCAL dwChange : SDWORD
 
-	; Convert the 8 bit signed value to 32 bit signed value
 	print addr changeChemfuel1
-	;movsx eax, change
-	;mov dwChange, eax
 
-	; Print the signed change
+	; Print the signed change of chemfuel
 	INVOKE dwtoa, change, addr strChemfuel
 	print addr strChemfuel
 	print addr changeChemfuel12
 
-	; Modify the players chemfuel
+	; Modify the players chemfuel by adding the change to current chemfuel level
 	xor eax, eax
 	mov eax, player.chemfuel
 	add eax, change
@@ -181,6 +161,8 @@ changeChemfuel PROC change : SDWORD
 
 	ret
 changeChemfuel ENDP
+
+; # ------------------- changeChemfuel PROC ------------------- # ;
 
 ; Tests whether player functions and struct are working fine
 testPlayer PROC

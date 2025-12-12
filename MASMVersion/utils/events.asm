@@ -1,6 +1,8 @@
 include \masm32\include\masm32rt.inc
+include utils.inc
 
 .data
+
 msgAsh db "A strange feeling creeps into your mind, as if someone is watching you.", 13, 10, 0
 msgAsh2 db "You turn to see the 'corpse' of Ash staring directly at your skull.", 13, 10, 0
 msgAsh3 db "There's a scream, but it is not yours, it is Ash's.", 13, 10, 0
@@ -586,8 +588,21 @@ location1 BYTE "Behind the tall cabinets next to you.", 13, 10, 0
 location2 BYTE "Near the main console, under the desk.", 13, 10, 0
 format db "%d ",  0
 
+; List of single time events
+singleTimeEventsTab DWORD OFFSET foundWater, OFFSET foundChemfuel, OFFSET bridgeConsole, OFFSET WCHiddenPassage, OFFSET medbayAsh, OFFSET motherPanel, OFFSET motherWater, OFFSET galleyWater, OFFSET podsFoundChemfuel
 
 .code
+
+; @brief Checks if event is in the array of single time events: singleTimeEventsTab.
+;        If so returns 1 (true) through eax, and 0 (false) otherwise
+; @param eventPtr Pointer to procedure.
+; @return eax = 1 if the eventPtr value is in the array singleTimeEventsTab.
+;         eax = 0 if not.
+isSingleTimeEventProc PROC eventPtr : DWORD
+    INVOKE checkIfInArray, eventPtr, addr singleTimeEventsTab, LENGTHOF singleTimeEventsTab
+    ret
+isSingleTimeEventProc ENDP
+
 ;Event medbayAsh
 medbayAsh proc
     print addr msgAsh
