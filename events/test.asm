@@ -527,6 +527,34 @@ msgKaraoke19 db "Wydno nohy...", 13, 10, 0
 msgKaraoke20 db "Wydno spynu! ", 13, 10, 0
 
 
+msgKaraokeKonwalij db "Ne topczit konwalij", 13, 10, 0
+
+msgKaraokeKonwalij1 db "Ne topczit, ne topczyt konwalij...", 13, 10, 0
+msgKaraokeKonwalij2 db "Ne... Ne topczyt konwaliy...", 13, 10, 0
+
+msgKaraokeKonwalij3 db "Wse w malenkyh dzwonykah pahuczych - ", 13, 10, 0
+msgKaraokeKonwalij4 db "Ploszcza, wulyca, prowulky, trotuary...", 13, 10, 0
+msgKaraokeKonwalij5 db "To wesna u nastupi mohuczim", 13, 10, 0
+msgKaraokeKonwalij6 db "Skynula desantom jih iz hmary", 13, 10, 0
+
+
+msgKaraokeKonwalij7 db "Wse zminylos, wse zdalos bez boju:", 13, 10, 0
+msgKaraokeKonwalij8 db "I maszyny, i prosto piszohody.", 13, 10, 0
+msgKaraokeKonwalij9 db "Wid wesny nihto ne zhdaw rozboju", 13, 10, 0
+msgKaraokeKonwalij10 db "Wid konwalij ot takoji szkody...", 13, 10, 0
+
+msgKaraokeKonwalij11 db "Ale ce bulo lysze hwylynu", 13, 10, 0
+msgKaraokeKonwalij12 db "I widrazu wse na misce stalo:", 13, 10, 0
+msgKaraokeKonwalij13 db "Nastup konwalewyj lynuw i widlynuw", 13, 10, 0
+msgKaraokeKonwalij14 db "Zhal, szczo wse tak korotko trywalo...", 13, 10, 0
+
+msgKaraokeKonwalij15 db "Ne topczit, ne topczit konwalij...", 13, 10, 0
+msgKaraokeKonwalij16 db "Ne topczit konwalij...", 13, 10, 0
+
+
+
+
+
 msgWinningScreen db "As soon as you open the useless vault, you pour the CHEMFUEL into the reservoir.", 13, 10, 0
 msgWinningScreen2 db "It is ready now. ", 13, 10, 0
 msgWinningScreen3 db "By forcing yourself to stop checking your back for just a few seconds, you barge into the pod.", 13, 10, 0
@@ -574,10 +602,9 @@ cmdFlame db "FLAME", 0
 hp dd 5 
 passwordCounter dd 0
 terminalSeconds dd 5
-water db 10
-chemfuel db 0
+water dd 10
+chemfuel dd 0
 roomNumber db 0
-isSingleTimeEvent db 1, 1, 1, 1,  1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 buffer db 100 dup(0)
 userInput db 100 dup(0)
 roomHidingLocations DWORD offset location1, offset location2
@@ -675,9 +702,9 @@ choice22:
     print addr msgAsh37
     print addr msgAsh38
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax 
+    mov [hp], eax  
     jmp Continue
 
 choice23:
@@ -692,8 +719,8 @@ choice23:
     jmp Continue
     
 choice2None:
-    mov al, water          
-    cmp al, 0              
+    mov eax, [water]         
+    cmp eax, 0              
     jle waterEmptyAsh 
     jmp waterNotEmptyAsh
     
@@ -708,9 +735,9 @@ waterNotEmptyAsh:
     print addr msgAsh53
     print addr msgAsh54
     
-    mov al, water
-    sub al, 1
-    mov water, al 
+    mov eax, [water]
+    sub eax, 1
+    mov [water], eax 
 
     jmp Continue
 
@@ -736,13 +763,13 @@ Continue:
     print addr msgAsh69
     print addr msgAsh70
     
-    mov al, water
-    add al, 1
-    mov water, al 
+    mov eax, [water]
+    add eax, 1
+    mov [water], eax 
     
-    mov al, chemfuel
-    add al, 2
-    mov chemfuel, al
+    mov eax, [chemfuel]
+    add eax, 2
+    mov [chemfuel], eax
     ret
     
 choice1N:
@@ -766,9 +793,9 @@ choice1None:
     print addr msgAsh84
     print addr msgAsh85
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax 
+    mov [hp], eax   
     ret
 
 
@@ -948,9 +975,9 @@ choceBad:
     print addr msgAlienHide17
     print addr msgAlienHide18
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax 
+    mov [hp], eax  
     ret
 
 
@@ -964,9 +991,9 @@ choice2:
     print addr msgAlienHide17
     print addr msgAlienHide18 
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax 
+    mov [hp], eax  
     ret
 choice3:
     print addr msgAlienHide19
@@ -975,9 +1002,9 @@ choice3:
     print addr msgAlienHide17
     print addr msgAlienHide18 
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax 
+    mov [hp], eax  
     ret
 alienHide endp
 
@@ -991,9 +1018,9 @@ galleyWater proc
     print addr msgGalleyWater5
     print addr msgGalleyWater6
     
-    mov al, water
-    add al, 3
-    mov water, al 
+    mov eax, [water]
+    add eax, 3
+    mov [water], eax 
     ret
 galleyWater endp
 
@@ -1392,9 +1419,9 @@ doFailure:
     print addr msgAlienFire19
     print addr msgAlienFire20
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret  
 
 choice1N:
@@ -1406,9 +1433,9 @@ choice1N:
     print addr msgAlienFire26  
     print addr msgAlienFire27
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax  
+    mov [hp], eax   
     ret 
 
 choice1None:
@@ -1421,12 +1448,12 @@ choice1None:
     print addr msgAlienFire34
 
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax  
+    mov [hp], eax  
 
-    mov al, water          
-    cmp al, 0              
+    mov eax, [water]          
+    cmp eax, 0              
     jle waterEmptyAsh 
     jmp waterNotEmptyAsh
 
@@ -1435,9 +1462,9 @@ waterNotEmptyAsh:
     print addr msgAlienFire36
     print addr msgAlienFire37  
 
-    mov al, water
-    sub al, 1
-    mov water, al 
+    mov eax, [water]
+    sub eax, 1
+    mov [water], eax 
     
     jmp waterEmptyAsh
 
@@ -1446,9 +1473,9 @@ waterEmptyAsh:
     print addr msgAlienFire38  
     print addr msgAlienFire39
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax 
+    mov [hp], eax  
     ret
 
 alienFire endp
@@ -1457,9 +1484,11 @@ alienFire endp
 nothingHappens proc
     print addr msgNothingHappens1
     print addr msgNothingHappens2
-    mov eax, hp
+    
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
+    
 ;    print str$(hp)   
 ;    print chr$(13,10)
     ret
@@ -1468,39 +1497,30 @@ nothingHappens endp
 
 ;Event motherWater
 motherWater proc
-mov esi, offset isSingleTimeEvent
-mov al, [esi+5]
-cmp al, 1
-je isAllowed
-ret
+print addr msgMotherWater
+print addr msgMotherWater2
+print addr msgMotherWater3
 
 
-isAllowed:
-    ;mov byte ptr [esi+5], 0  
-    print addr msgMotherWater
-    print addr msgMotherWater2
-    print addr msgMotherWater3
-
-
-    mov edx, offset buffer
-    mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+mov edx, offset buffer
+mov ecx, sizeof buffer
+invoke StdIn, edx, ecx
     
-    mov esi, offset buffer
-    movzx eax, byte ptr [esi]   
+mov esi, offset buffer
+movzx eax, byte ptr [esi]   
         
-    mov buffer, al  
-    cmp al, 'y'
-    je choice1Y
-    cmp al, 'Y'
-    je choice1Y 
-    cmp al, 'n'
-    je choice1N
-    cmp al, 'N'
-    je choice1N
-    jmp choice1None
+mov buffer, al  
+cmp al, 'y'
+je choice1Y
+cmp al, 'Y'
+je choice1Y 
+cmp al, 'n'
+je choice1N
+cmp al, 'N'
+je choice1N
+jmp choice1None
     
-    ret
+ret
 
 choice1Y:
     print addr msgMotherWater4
@@ -1513,9 +1533,9 @@ choice1Y:
     print addr msgMotherWater11
     print addr msgMotherWater12
 
-    mov al, water
-    add al, 1
-    mov water, al 
+    mov eax, [water]
+    add eax, 1
+    mov [water], eax 
     ret
 
 choice1N:
@@ -1534,36 +1554,28 @@ choice1None:
     print addr msgMotherWater22
     print addr msgMotherWater23
     
-    mov al, water
-    add al, 1
-    mov water, al 
+    mov eax, [water]
+    add eax, 1
+    mov [water], eax 
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret
 
 motherWater endp
 
 ;Event podsFoundChemfuel
 podsFoundChemfuel proc
-mov esi, offset isSingleTimeEvent
-mov al, [esi+7]
-cmp al, 1
-je isAllowed
-ret
 
-isAllowed:
-    ;mov byte ptr [esi+5], 0  
-    print addr msgPodsFoundChemfuel
-    print addr msgPodsFoundChemfuel2
-    print addr msgPodsFoundChemfuel3
+print addr msgPodsFoundChemfuel
+print addr msgPodsFoundChemfuel2
+print addr msgPodsFoundChemfuel3
     
-    mov al, chemfuel
-    add al, 1
-    mov chemfuel, al
+mov eax, [chemfuel]
+add eax, 1
+mov [chemfuel], eax
 
-    ret
 
 podsFoundChemfuel endp
 
@@ -1598,9 +1610,9 @@ choice1Y:
     print addr msgTooHot4
     print addr msgTooHot5
 
-    mov al, water
-    sub al, 2
-    mov water, al  
+    mov eax, [water]
+    sub eax, 2
+    mov [water], eax  
     ret
     
 choice1None:
@@ -1608,9 +1620,9 @@ choice1None:
     print addr msgTooHot7
     print addr msgTooHot8
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret
 tooHot endp
 
@@ -1644,9 +1656,9 @@ choice1Y:
     print addr msgFoundChemFuel4
     print addr msgFoundChemFuel5
     
-    mov al, chemfuel
-    add al, 1
-    mov chemfuel, al 
+    mov eax, [chemfuel]
+    add eax, 1
+    mov [chemfuel], eax
     
     ret
 
@@ -1662,9 +1674,9 @@ choice1None:
     print addr msgFoundChemFuel9
     print addr msgFoundChemFuel10
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret
 foundChemfuel endp
 
@@ -1699,9 +1711,9 @@ choice1Y:
     print addr msgFoundWater4
     print addr msgFoundWater5
     
-    mov al, water
-    add al, 1
-    mov water, al 
+    mov eax, [water]
+    add eax, 1
+    mov [water], eax 
     
     ret
 
@@ -1718,9 +1730,9 @@ choice1None:
     print addr msgFoundWater11
     print addr msgFoundWater12
 
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret
 foundWater endp
 
@@ -1728,36 +1740,29 @@ foundWater endp
 
 ;Event WCHiddenPassage
 WCHiddenPassage proc
-mov esi, offset isSingleTimeEvent
-mov al, [esi+8]
-cmp al, 1
-je isAllowed
-ret
 
-isAllowed:
-    ;mov byte ptr [esi+5], 0  
-    print addr msgWCHiddenPassage
-    print addr msgWCHiddenPassage2
-    print addr msgWCHiddenPassage3
+print addr msgWCHiddenPassage
+print addr msgWCHiddenPassage2
+print addr msgWCHiddenPassage3
 
 
-    mov edx, offset buffer
-    mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+mov edx, offset buffer
+mov ecx, sizeof buffer
+invoke StdIn, edx, ecx
     
-    mov esi, offset buffer
-    movzx eax, byte ptr [esi]   
+mov esi, offset buffer
+movzx eax, byte ptr [esi]   
         
-    mov buffer, al  
-    cmp al, 'y'
-    je choice1Y
-    cmp al, 'Y'
-    je choice1Y 
-    cmp al, 'n'
-    je choice1N
-    cmp al, 'N'
-    je choice1N
-    jmp choice1None
+mov buffer, al  
+cmp al, 'y'
+je choice1Y
+cmp al, 'Y'
+je choice1Y 
+cmp al, 'n'
+je choice1N
+cmp al, 'N'
+je choice1N
+jmp choice1None
     
     ret
 choice1Y:
@@ -1769,13 +1774,13 @@ choice1Y:
     print addr msgWCHiddenPassage9
     invoke crt__getch
 
-    mov al, chemfuel
-    add al, 1
-    mov chemfuel, al
+    mov eax, [chemfuel]
+    add eax, 1
+    mov [chemfuel], eax
 
-    mov al, water
-    add al, 1
-    mov water, al
+    mov eax, [water]
+    add eax, 1
+    mov [water], eax
     
     print addr msgWCHiddenPassage10
     print addr msgWCHiddenPassage11
@@ -1804,9 +1809,9 @@ choice2Y:
     print addr msgWCHiddenPassage13
     print addr msgWCHiddenPassage14
     
-    mov al, water
-    sub al, 1
-    mov water, al  
+    mov eax, [water]
+    sub eax, 1
+    mov [water], eax  
     ret
 choice2N:
     print addr msgWCHiddenPassage15
@@ -1815,9 +1820,9 @@ choice2N:
     print addr msgWCHiddenPassage18
     print addr msgWCHiddenPassage19
     
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax 
+    mov [hp], eax 
     ret   
 choice2None:
     print addr msgWCHiddenPassage20
@@ -1825,13 +1830,13 @@ choice2None:
     print addr msgWCHiddenPassage22
     print addr msgWCHiddenPassage23
     
-    mov al, water
-    sub al, 1
-    mov water, al  
-    
-    mov eax, hp
+    mov eax, [water]
     sub eax, 1
-    mov hp, eax 
+    mov [water], eax  
+    
+    mov eax, [hp]
+    sub eax, 1
+    mov [hp], eax 
     
     ret 
     
@@ -1851,9 +1856,9 @@ choice1None:
     print addr msgWCHiddenPassage33
     print addr msgWCHiddenPassage34
     print addr msgWCHiddenPassage35
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax 
+    mov [hp], eax 
     
     ret
 WCHiddenPassage endp
@@ -1861,35 +1866,28 @@ WCHiddenPassage endp
 
 ;Event bridgeConsole
 bridgeConsole proc
-mov esi, offset isSingleTimeEvent
-mov al, [esi+10]
-cmp al, 1
-je isAllowed
-ret
 
-isAllowed:
-    ;mov byte ptr [esi+10], 0  
-    print addr msgBridgeConsole1
-    print addr msgBridgeConsole2
-    print addr msgBridgeConsole3
+print addr msgBridgeConsole1
+print addr msgBridgeConsole2
+print addr msgBridgeConsole3
     
-    mov edx, offset buffer
-    mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+mov edx, offset buffer
+mov ecx, sizeof buffer
+invoke StdIn, edx, ecx
     
-    mov esi, offset buffer
-    movzx eax, byte ptr [esi]   
+mov esi, offset buffer
+movzx eax, byte ptr [esi]   
         
-    mov buffer, al  
-    cmp al, 'y'
-    je choice1Y
-    cmp al, 'Y'
-    je choice1Y 
-    cmp al, 'n'
-    je choice1N
-    cmp al, 'N'
-    je choice1N
-    jmp choice1None
+mov buffer, al  
+cmp al, 'y'
+je choice1Y
+cmp al, 'Y'
+je choice1Y 
+cmp al, 'n'
+je choice1N
+cmp al, 'N'
+je choice1N
+jmp choice1None
 
 choice1Y:
     print addr msgBridgeConsole4
@@ -1934,9 +1932,11 @@ choice2Y:
     print addr msgBridgeConsole14
     print addr msgBridgeConsole15
     print addr msgBridgeConsole16
-    mov al, chemfuel
-    add al, 2
-    mov chemfuel, al
+    
+    mov eax, [chemfuel]
+    add eax, 2
+    mov [chemfuel], eax
+    
     ret
     
 choice2N:
@@ -1952,14 +1952,15 @@ choice2None:
     print addr msgBridgeConsole23
     print addr msgBridgeConsole24
     print addr msgBridgeConsole25
-    print addr msgBridgeConsole26  
-    mov al, chemfuel
-    add al, 2
-    mov chemfuel, al  
+    print addr msgBridgeConsole26 
+     
+    mov eax, [chemfuel]
+    add eax, 2
+    mov [chemfuel], eax
     
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret 
 
 bridgeConsole endp
@@ -1993,9 +1994,9 @@ choice1N:
     
 choice1None:
     print addr msgPlayerAttacked4
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 2
-    mov hp, eax  
+    mov [hp], eax  
     ret  
 
 playerAttacked endp
@@ -2023,16 +2024,16 @@ thirst proc
 
 choice1Y:
     print addr msgThirst3
-    mov al, water
-    sub al, 1
-    mov water, al 
+    mov eax, [water]
+    sub eax, 1
+    mov [water], eax 
     ret
     
 choice1None:
     print addr msgThirst4
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret  
 
 thirst endp
@@ -2071,9 +2072,9 @@ choice1N:
     ret   
 choice1None:
     print addr msgStrangePassage4
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret  
 
 strangePassage endp
@@ -2100,9 +2101,10 @@ foundItem proc
     jg checkY 
     
     print addr msgFoundItem3
-    mov al, chemfuel
-    add al, 1
-    mov chemfuel, al 
+    
+    mov eax, [chemfuel]
+    add eax, 2
+    mov [chemfuel], eax
     ret
 checkY:
     cmp al, 'y'
@@ -2121,37 +2123,31 @@ foundItem endp
 
 ;Event blankEvent
 blankEvent proc
-    mov esi, offset isSingleTimeEvent
-    mov al, [esi+16]
-    cmp al, 1
-    je isAllowed
-    ret
 
-isAllowed:
-    mov byte ptr [esi+10], 0  
-    print addr msgBlankEvent1
-    print addr msgBlankEvent2
+mov byte ptr [esi+10], 0  
+print addr msgBlankEvent1
+print addr msgBlankEvent2
     
-    mov edx, offset buffer
-    mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+mov edx, offset buffer
+mov ecx, sizeof buffer
+invoke StdIn, edx, ecx
     
-    mov esi, offset buffer
-    movzx eax, byte ptr [esi] 
+mov esi, offset buffer
+movzx eax, byte ptr [esi] 
 
   
-    mov buffer, al 
-    cmp al, 'y'
-    je choice1Y
-    cmp al, 'Y'
-    je choice1Y  
-    jmp choice1None
+mov buffer, al 
+cmp al, 'y'
+je choice1Y
+cmp al, 'Y'
+je choice1Y  
+jmp choice1None
 
 choice1Y:
     print addr msgBlankEvent3
-    mov al, chemfuel
-    add al, 2
-    mov chemfuel, al 
+    mov eax, [chemfuel]
+    add eax, 2
+    mov [chemfuel], eax
     ret
       
 choice1None:
@@ -2161,35 +2157,29 @@ blankEvent endp
 
 ;Event medbayGlass
 medbayGlass proc
-    mov esi, offset isSingleTimeEvent
-    mov al, [esi]
-    cmp al, 1
-    je isAllowed
-    ret
+
+print addr msgMedbayGlass1
+print addr msgMedbayGlass2
+print addr msgMedbayGlass3
+print addr msgMedbayGlass4
+print addr msgMedbayGlass5
     
-isAllowed:
-    print addr msgMedbayGlass1
-    print addr msgMedbayGlass2
-    print addr msgMedbayGlass3
-    print addr msgMedbayGlass4
-    print addr msgMedbayGlass5
+mov edx, offset buffer
+mov ecx, sizeof buffer
+invoke StdIn, edx, ecx
     
-    mov edx, offset buffer
-    mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
-    
-    mov esi, offset buffer
-    movzx eax, byte ptr [esi] 
+mov esi, offset buffer
+movzx eax, byte ptr [esi] 
   
-    cmp al, 'y'
-    je choice1Y
-    cmp al, 'Y'
-    je choice1Y  
-    cmp al, 'n'
-    je choice1N
-    cmp al, 'N'
-    je choice1N    
-    jmp choice1None
+cmp al, 'y'
+je choice1Y
+cmp al, 'Y'
+je choice1Y  
+cmp al, 'n'
+je choice1N
+cmp al, 'N'
+je choice1N    
+jmp choice1None
     
 choice1Y:
     invoke GetTickCount
@@ -2197,7 +2187,7 @@ choice1Y:
     invoke nrandom, 2
     cmp eax, 0
     je showMsg1
-    jmp showMsg2  ;                   jmp         cmp eax, 1
+    jmp showMsg2  
    
 showMsg1:
     print addr msgMedbayGlass6
@@ -2263,17 +2253,14 @@ doSuccess:
     print addr msgMedbayGlass9
     print addr msgMedbayGlass10
     
-    mov al, chemfuel
-    add al, 2
-    mov chemfuel, al 
+    mov eax, [chemfuel]
+    add eax, 2
+    mov [chemfuel], eax
     
-    mov al, water
-    add al, 1
-    mov water, al 
+    mov eax, [water]
+    add eax, 1
+    mov [water], eax 
     
-
-    mov esi, offset isSingleTimeEvent
-    mov byte ptr [esi], 0 
     ret
     
 doFailure:  
@@ -2282,9 +2269,9 @@ doFailure:
     print addr msgMedbayGlass13
     print addr msgMedbayGlass14
     
-    mov eax, hp
+    mov eax, [hp]
     sub eax, 1
-    mov hp, eax  
+    mov [hp], eax  
     ret
   
 choice1N:
@@ -2405,6 +2392,93 @@ openingScene endp
 karaokeProc proc
     print addr msgKaraoke 
     print addr msgKaraoke1 
+
+    invoke GetTickCount
+    invoke nseed, eax
+    invoke nrandom, 2
+    cmp eax, 0
+    je konwaliji
+    jmp komaryk  
+
+konwaliji:
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij
+    
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000  
+    print addr msgKaraokeKonwalij2
+    invoke Sleep, 2000   
+
+    print addr msgKaraokeKonwalij3
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij4
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij5
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij6
+    invoke Sleep, 3000 
+
+      
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000  
+    print addr msgKaraokeKonwalij2
+    invoke Sleep, 2000   
+
+    print addr msgKaraokeKonwalij7
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij8
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij9
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij10
+    invoke Sleep, 3000 
+
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000  
+    print addr msgKaraokeKonwalij2
+    invoke Sleep, 2000   
+
+    print addr msgKaraokeKonwalij11
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij12
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij13
+    invoke Sleep, 3000   
+    print addr msgKaraokeKonwalij14
+    invoke Sleep, 3000 
+    
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000
+    print addr msgKaraokeKonwalij1
+    invoke Sleep, 2000  
+    print addr msgKaraokeKonwalij2
+    invoke Sleep, 2000  
+      
+    print addr msgKaraokeKonwalij15
+    invoke Sleep, 2000   
+    print addr msgKaraokeKonwalij15
+    invoke Sleep, 2000   
+    print addr msgKaraokeKonwalij16
+    invoke Sleep, 2000 
+
+    ret
+
+komaryk:
     invoke Sleep, 2000
     print addr msgKaraoke2
     invoke Sleep, 2000
@@ -2466,6 +2540,7 @@ karaokeProc proc
     invoke Sleep, 4000 
     print addr msgKaraoke20
     invoke Sleep, 4000  
+    ret
 karaokeProc endp
 
 ;Event openingMenu
@@ -2519,7 +2594,7 @@ openingMenu proc
     jne exitRoute
     
 
-    jmp karaoke
+    jmp openingMenu
 startRoute:
     call openingScene
     ret
@@ -2538,9 +2613,6 @@ exitRoute:
     invoke ExitProcess, 0
     ret
 
-karaoke:
-    call karaokeProc   
-    ret
 
 openingMenu endp
 
@@ -2607,7 +2679,7 @@ start:
     ;call jonesyJumpscare
     ;call alienHide
     ;call galleyWater
-    ;call motherPanel
+    call motherPanel
     ;call alienFire
     ;call nothingHappens
     ;call motherWater
