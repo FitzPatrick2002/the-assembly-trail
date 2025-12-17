@@ -526,7 +526,7 @@ choice1Y:
     invoke nrandom, 2
     cmp eax, 0
     je showMsg1
-    jmp showMsg2  ; Краще використати jmp замість cmp eax, 1
+    jmp showMsg2  ; пѕЉо‚џоќЂ зІЁгѓ»о‚§о…­з‘Јгѓ»jmp й€ћгѓ»о…­гѓ»cmp eax, 1
    
 showMsg1:
     print addr msgMedbayGlass6

@@ -4,7 +4,7 @@ include \masm32\include\masm32rt.inc
 msgAsh db "Loud ass Ash!", 13, 10, 0
 msgJonesyJumpscare db "As you walk inside, you hear shallow breathing...", 13, 10, 0
 msgJonesyJumpscare2 db "The sound is coming from", 13, 10, 0
-msgJonesyJumpscare3 db "PLACEHOLDER!!! А поки зацініть: https://www.youtube.com/watch?v=rVKW1vkmnPo&list=RDrVKW1vkmnPo&start_radio=1", 13, 10, 0
+msgJonesyJumpscare3 db "PLACEHOLDER!!! пѕЂ гѓ»гѓ» й€ћо“љж•о€і: https://www.youtube.com/watch?v=rVKW1vkmnPo&list=RDrVKW1vkmnPo&start_radio=1", 13, 10, 0
 msgJonesyJumpscare4 db "You walk closer...", 13, 10, 0
 msgJonesyJumpscare5 db "MEOW!!!", 13, 10, 0
 msgJonesyJumpscare6 db "It's Jonesy! He flees in fear before you can catch him.", 13, 10, 0
@@ -759,7 +759,7 @@ choice1Y:
     invoke nrandom, 2
     cmp eax, 0
     je showMsg1
-    jmp showMsg2  ; Краще використати jmp замість cmp eax, 1
+    jmp showMsg2  ; пѕЉо‚џоќЂ зІЁгѓ»о‚§о…­з‘Јгѓ»jmp й€ћгѓ»о…­гѓ»cmp eax, 1
    
 showMsg1:
     print addr msgMedbayGlass6
