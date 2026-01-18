@@ -1,0 +1,46 @@
+
+Left(Main) Monitor: 
+- Maybe text a bit smaller
+- Scrollbar must be removed or hidden (its a rule of good tone since it destroys the atmosphere of UI)
+- Text closer to retro (like follout1&2)?
+
+*To textBoxs in particular:
+- it should be a bit smaller then frame 
+- background of textBox must be the same or close enough to monitor
+*Alternatively
+- take bg with holes that I just made
+- place TextBox under the bg
+
+Right(Map) Monitor:
+- background of textBox must be the same or close enough to monitor
+- it should be a bit smaller then frame.(or apply the same alternative trick)
+- text must be the same by style as in Left Monitor
+- content of it must be a map, that can be found as ASCII_map.txt in our root
+
+Button Panel (on the right):
+- buttons must be placed according to schema (that means one under another without or with micro indent)
+
+
+
+Green and Red Button:
+- do not modify the scale and size of buttons. They are ready for deployment
+- remove their background. (I know that hitbox is needed. However it can be invisible)
+- by default buttons are at phase OFF
+- if a choice appear, they must be ON until the choice taken(just explanation why there is 2 types of each button)
+
+Green and Red Button Hover:
+- Background change must be removed
+- in OFF mode must not respond to user
+- in ON mode you can add "changing Y by -1 (or very small parameter) and than return back" (effect that you touched the button by finger)
+
+Green and Red Button Click:
+- in OFF mode must not respond to user
+- Background change must be removed
+- in ON mode, Y must be modified by -10px, for example. Like you clicked on it (holed bg can be useful)
+
+
+CORE_STATUS button (blue one):
+- must be deployed on position
+- other aspects are the same as in previous buttons
+- unlike other buttons, always responds on hover and click at any mode
+- On click changes mode to ON. If you click again, it must return to OFF. (This button is responsible for displaying benchmark test of our app)
