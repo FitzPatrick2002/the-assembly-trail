@@ -104,5 +104,18 @@
   <ItemGroup>
     <Resource Include="Button-Red-On.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Button-Blue-On.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="panel-bg-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ASCII_map.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Button-Red-Off.png" />
+    <Resource Include="Button-Green-Off.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36603.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThePolslTrail", "ThePolslTrail\ThePolslTrail.vcxproj", "{1B5F681D-AB81-4AEE-B8A2-53225866D18A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThePolslTrailGUI", "NostroGameGUI\ThePolslTrailGUI.csproj", "{AE7C3560-22D6-4AD7-8B2D-755A30F40675}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NostroGameGUI", "NostroGameGUI\NostroGameGUI.csproj", "{AE7C3560-22D6-4AD7-8B2D-755A30F40675}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

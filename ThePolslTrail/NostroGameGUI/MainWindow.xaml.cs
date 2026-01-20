@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace NostroGameGUI
 {
@@ -20,11 +21,12 @@ namespace NostroGameGUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        private GameController game;
+        private readonly GameController game;
 
         public MainWindow()
         {
             InitializeComponent();
+            LoadAsciiMap();
             game = new GameController();
             StoryTextBox.Text = game.Start();
         }
@@ -37,6 +39,27 @@ namespace NostroGameGUI
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
             StoryTextBox.Text += "\n\n" + game.HandleNo();
+        }
+        private void LoadAsciiMap()
+        {
+            try
+            {
+                // Path relative to the executable
+                string path = "ASCII_map.txt";
+                if (File.Exists(path))
+                {
+                    string mapContent = File.ReadAllText(path);
+                    InputTextBox.Text = mapContent;
+                }
+                else
+                {
+                    InputTextBox.Text = "ASCII map not found!";
+                }
+            }
+            catch (Exception ex)
+            {
+                InputTextBox.Text = $"Error loading map:\n{ex.Message}";
+            }
         }
     }
 }
