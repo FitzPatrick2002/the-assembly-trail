@@ -101,4 +101,60 @@ namespace utils {
 			c = 48 + room_no;
 	}
 
+	/// @brief Return the bitwised XOR'ed seed with the bitwise shifted seed.
+	/// @param seed Random seed for the dice rolling.
+	/// @return the scrambled seed for further complications in random dice rolling.
+	uint32_t scrambleSeed(int seed)
+	{
+		seed ^= seed << 3;
+		seed ^= seed >> 7;
+		seed ^= seed << 5;
+
+		return seed;
+	}
+
+	/// @brief Returns a random number between 1 and 6 from two random seeds.
+	///			Simulates the dice roll.
+	/// @param seed Random seed.
+	/// @param seed_two Second random seed.
+	int rollDice(int seed, int seed_two)
+	{
+		// Sides of a dice and each side's neighbours.
+		static const int diceSides[6][4] = {
+			{2,4,3,1}, //1
+			{2,0,3,5}, //2
+			{4,0,1,5}, //3
+			{1,0,4,5}, //4
+			{3,0,2,5}, //5
+			{1,3,4,2}  //6
+		};
+
+		int sideIndex = seed % 6;
+		uint32_t complicator = seed ^ seed_two;
+		while (seed)
+		{
+			complicator = scrambleSeed(complicator);
+			int randomDir = (complicator + seed) & 3;
+			sideIndex = diceSides[sideIndex][randomDir];
+			
+			seed >>= 1;
+			complicator >>= 1;
+
+			complicator += (uint32_t)seed;
+		}
+
+		return sideIndex + 1;
+	}
+
+	/// @brief Returns the random number from range 1 to 6.
+	///			Randomizes two numbers and uses them as seeds for the function rollDice.
+	/// @returns A number between 1 and 6.
+	int rollDiceWrapper()
+	{
+		int randomSeed = rand() % 2026 + (INT_MAX - 2026);
+		int randomSeedTwo = rand() % 2026 + (INT_MAX - 2026);
+
+		return -rollDice(randomSeed, randomSeedTwo);
+	}
+
 }

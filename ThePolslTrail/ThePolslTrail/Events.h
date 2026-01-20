@@ -194,7 +194,7 @@ void medbayGlass() {
 			std::cout << "These broken vials had liquids in them.\n";
 			std::cout << "You slip and the shards dig into your skin.\n";
 			std::cout << "You manage to retreat relatively undamaged.\n";
-			changeHP(-1);
+			changeHP(utils::rollDiceWrapper());
 		}
 
 	}
@@ -268,7 +268,7 @@ void medbayAsh() {
 			std::cout << "But his eyes give up and spill over the counter.\n";
 			std::cout << "Had he not tried to kill you, just a few hours before...\n";
 			std::cout << "You do not want to think what would be in your head then.\n";
-			changeHP(-1);
+			changeHP(utils::rollDiceWrapper());
 		}
 		else if (c == '3')
 		{
@@ -338,7 +338,7 @@ void medbayAsh() {
 		std::cout << "Thankfully, with the equipment available, you quickly patch yourself up.\n";
 		std::cout << "You are losing your mind, you acted so inanely...\n";
 		std::cout << "This commotion could have alerted the ALIEN, you should flee as soon as possible.\n";
-		changeHP(-2);
+		changeHP(utils::rollDiceWrapper());
 	}
 }
 
@@ -408,7 +408,7 @@ void alienHide() {
 			std::cout << "Before you can think, the ALIEN jumps towards you and slashes you with its tail.\n";
 			std::cout << "As you fall to your knees, your predator is content.\n";
 			std::cout << "The ALIEN dissapears as suddenly as it appeared.\n";
-			changeHP(-2);
+			changeHP(utils::rollDiceWrapper());
 		}
 	}
 	else if(c != '1' && c !='2' && utils::fitTimeframe(start,end)){ //fit withing time limit but failed to write the spot correctly
@@ -420,7 +420,7 @@ void alienHide() {
 		std::cout << "Before you can think, the ALIEN jumps towards you and slashes you with its tail.\n";
 		std::cout << "As you fall to your knees, your predator is unsatisfied.\n";
 		std::cout << "The ALIEN dissapears as suddenly as it appeared.\n";
-		changeHP(-2);
+		changeHP(utils::rollDiceWrapper());
 	}
 	else { //ran out of time
 		std::cout << "You freezed for too long and now the ALIEN has seen you.\n";
@@ -428,7 +428,7 @@ void alienHide() {
 		std::cout << "Before you can think, the ALIEN jumps towards you and slashes you with its tail.\n";
 		std::cout << "As you fall to your knees, your predator is content.\n";
 		std::cout << "The ALIEN dissapears as suddenly as it appeared.\n";
-		changeHP(-2);
+		changeHP(utils::rollDiceWrapper());
 	}
 }
 
@@ -480,7 +480,7 @@ void motherWater() {
 		std::cout << "But why is it here? Ash did not need to drink.\n";
 		std::cout << "This is so weird, I should get out of here. My head hurts...\n";
 		changeWater(1);
-		changeHP(-1);
+		changeHP(utils::rollDiceWrapper());
 	}
 }
 
@@ -602,7 +602,7 @@ void motherPanel() {
 		std::cout << "You end up bruising and straining yourself to no satisfiable result.\n";
 		std::cout << "You must be really losing your mind.\n";
 		std::cout << "Best to get out of here.\n";
-		changeHP(-1);
+		changeHP(utils::rollDiceWrapper());
 	}
 }
 
@@ -648,14 +648,14 @@ void WCHiddenPassage() {
 			std::cout << "Thankfully it seems like the ALIEN is not nearby.\n";
 			std::cout << "Maybe IT does not feel the need to pee.\n";
 			std::cout << "You are safe for now, but you have slightly damaged yourself.\n";
-			changeHP(-1);
+			changeHP(utils::rollDiceWrapper());
 		}
 		else {
 			std::cout << "The flashes of hot air have made you lose your mind even more.\n";
 			std::cout << "As you try to open the bottle of WATER you trip and land on the bathroom floor.\n";
 			std::cout << "The bottle spills all of its contents around and you're left with nothing.\n";
 			std::cout << "Some of it has sprinkled on you, but you still have damaged yourself.\n";
-			changeHP(-1); changeWater(-1);
+			changeHP(utils::rollDiceWrapper()); changeWater(-1);
 		}
 	}
 	else if (c == 'n' || c == 'N')
@@ -674,7 +674,7 @@ void WCHiddenPassage() {
 		std::cout << "Ripley, Ripley, you are such an idiot, what were you thinking? You mutter to yourself.\n";
 		std::cout << "You have just wasted time here and needlessly hurt yourself.\n";
 		std::cout << "Resignated, you turn around.\n";
-		changeHP(-1);
+		changeHP(utils::rollDiceWrapper());
 	}
 
 }
@@ -718,7 +718,7 @@ void alienFire() {
 			std::cout << "You try to hold your ground, but the pain makes you tremble.\n";
 			std::cout << "The ALIEN is wounded too and it fears the fire you control.\n";
 			std::cout << "You have won this duel, but just barely. The ALIEN retreats.\n";
-			changeHP(-1);
+			changeHP(utils::rollDiceWrapper());
 		}
 	}
 	else if (c == 'n' || c == 'N')
@@ -731,7 +731,7 @@ void alienFire() {
 		std::cout << "The ALIEN, now angrier, attacks you with its tail! It pierces your shoulder.\n";
 		std::cout << "Being unable to get to you fully, the ALIEN retreats.\n";
 		std::cout << "It will get to you sooner than later after all.\n";
-		changeHP(-2);
+		changeHP(utils::rollDiceWrapper());
 	}
 	else {
 		std::cout << "What is happening? You feel dizzy...\n";
@@ -748,7 +748,7 @@ void alienFire() {
 		}
 		std::cout << "The fire licks the ALIEN's tail and as tries to escape.\n";
 		std::cout << "You have barely won this duel, you need to be more concious.\n";
-		changeHP(-2);
+		changeHP(utils::rollDiceWrapper());
 	}
 }
 //ｲ・・・炅魵瑙・ 琿鉋籵濵!
@@ -786,7 +786,7 @@ void bridgeConsole() {
 			std::cout << "You kneel and hide your head in your hands.\n";
 			std::cout << "As you come to your senses, you see 2 litres of CHEMFUEL in a cabinet across you.\n";
 			changeChemfuel(2);
-			changeHP(-1);
+			changeHP(utils::rollDiceWrapper());
 		}
 	}
 	else if (c == 'n' || c == 'N') {
@@ -816,7 +816,7 @@ void tooHot() {
 		std::cout << "You feel yourself slipping away." << "\n";
 		std::cout << "To stay concious you try to punch yourself." << "\n";
 		std::cout << "It will work for now, but you need to find more water." << "\n";
-		changeHP(-1);
+		changeHP(utils::rollDiceWrapper());
 	}
 }
 
@@ -840,7 +840,7 @@ void foundChemfuel() {
 		std::cout << "As you stick your hand inside the hole, your weak body trembles.\n";
 		std::cout << "OUCH! A speck of acid nuzzles your sleeve...\n";
 		std::cout << "It has not damaged you greatly, but you feel a new wound forming right under.\n";
-		changeHP(-1);
+		changeHP(utils::rollDiceWrapper());
 	}
 
 }
@@ -867,7 +867,7 @@ void foundWater() {
 		std::cout << "You try to climb up the vents,\n";
 		std::cout << "But you are too weak and your hands slip away from the ledge...\n";
 		std::cout << "Falling on your latter end did hurt a lot.\n";
-		changeHP(-1);
+		changeHP(utils::rollDiceWrapper());
 	}
 }
 //ﾏⅳ硼・銜髜頸・
