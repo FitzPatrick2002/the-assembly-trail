@@ -61,19 +61,19 @@
 
         <!-- YES Button -->
         <Button x:Name="YesButton"
-                Width="130"
-                Height="31"
+                Width="110"
+                Height="33"
                 Background="Transparent"
                 Foreground="Black"
                 FontWeight="Bold"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Margin="559,0,0,170"
+                Margin="563,0,0,170"
                 Click="YesButton_Click"
-                Panel.ZIndex="1"/>
+                Panel.ZIndex="0"/>
         <!-- NO Button -->
         <Button x:Name="NoButton"
-                Width="131"
+                Width="114"
                 Height="27"
                 Background="Transparent"
                 Foreground="White"
@@ -82,8 +82,9 @@
                 VerticalAlignment="Bottom"
                 Margin="559,0,0,138"
                 Click="NoButton_Click"
-                Panel.ZIndex="1"/>
-        <Image Margin="112,339,569,64" Source="/Button-Blue-On.png" Stretch="Fill"/>
-        <Image Margin="598,269,100,117" Source="/Button-Red-Off.png" Stretch="Fill"/>
+                Panel.ZIndex="0"/>
+        <Image Margin="115,339,566,64" Source="/Button-Blue-On.png" Stretch="Fill"/>
+        <Image Margin="563,247,123,124" Source="/Button-Red-Off.png" Stretch="Fill"/>
+        <Image Margin="559,218,127,159" Source="/Button-Green-On.png" Stretch="Fill"/>
     </Grid>
 </Window>

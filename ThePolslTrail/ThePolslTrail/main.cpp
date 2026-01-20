@@ -39,9 +39,13 @@ int main() {
 
 		system("cls");
 		printPlayerStatus();
+		/*for (int i = 0; i < 10; i++) {
+			std::cout << utils::rollDiceWrapper() << std::endl;
+		}*/
 		loadRoom(&rooms[player.roomNumber]);
 		loadEvent(&rooms[player.roomNumber]);
 		changeRoom(&rooms[player.roomNumber]);
+		
 
 		// Winning condition, must have enough fuel and be in the escape pods area
 		if (player.chemfuel >= CHEMFUEL_GOAL && player.roomNumber == 10) {
