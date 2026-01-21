@@ -156,9 +156,13 @@
     <MASM Include="AsmLibrary.asm">
       <FileType>Document</FileType>
     </MASM>
-    <MASM Include="globalBuffer.asm" />
+    <MASM Include="bridgeProcedures.asm" />
+    <MASM Include="player.asm" />
+    <MASM Include="utils.asm" />
     <None Include="AsmLibrary.def" />
-    <None Include="globalBuffer.inc" />
+    <None Include="bridgeProcedures.inc" />
+    <None Include="player.inc" />
+    <None Include="utils.inc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

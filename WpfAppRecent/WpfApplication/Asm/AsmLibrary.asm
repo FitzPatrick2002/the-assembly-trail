@@ -3,44 +3,35 @@
 .stack 4096
 option casemap : none
 
-include globalBuffer.inc
+include bridgeProcedures.inc
+include player.inc
 
 .const
-	STD_OUTPUT_HANDLE EQU -11
-	;GetStdHandle PROTO, nStdHandle: DWORD
-	;WriteConsoleA PROTO, dwExitCode: DWORD
-
 
 .data
-	myMessage BYTE 'I like femboys', 13, 10, 0
+	myMessage BYTE 'Test input:', 13, 10, 0
 
 .code
 
-; @brief Invokes the registered C# procedure which prints a given string to the C# UI.
-; @param stringLocation Pointer to the beginning o the string.
-; @param strLen Length of the string. (only for compatibility reasons).
-printText PROC USES eax stringLocation : DWORD, strLen : DWORD
-
-	mov eax, stringLocation
-	push eax
-	mov eax, uiLogCallback
-	call eax
-
-	ret
-printText ENDP
+; ------------------- TEST CODE ------------------- ;
 
 ; @brief Main loop of the program
 StartGameLoop PROC 
+	LOCAL someData[10] : BYTE
 
 StartLoop: 
 
 	; Print the input to the textbox
-	INVOKE printText, OFFSET myMessage, 17
+	INVOKE printText, OFFSET myMessage
 
 	; Wait for user input
-	call waitCallback
+	;call waitCallback
 
-	INVOKE printText, OFFSET inputBuffer, 32
+	INVOKE userInput, ADDR someData, 5
+
+	INVOKE printText, ADDR someData
+
+	INVOKE printPlayerStatus
 
 	;call printText
 	

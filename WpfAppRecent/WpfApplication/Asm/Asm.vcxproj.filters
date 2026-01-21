@@ -18,7 +18,13 @@
     <None Include="AsmLibrary.def">
       <Filter>Pliki źródłowe</Filter>
     </None>
-    <None Include="globalBuffer.inc">
+    <None Include="bridgeProcedures.inc">
+      <Filter>Pliki nagłówkowe</Filter>
+    </None>
+    <None Include="player.inc">
+      <Filter>Pliki nagłówkowe</Filter>
+    </None>
+    <None Include="utils.inc">
       <Filter>Pliki nagłówkowe</Filter>
     </None>
   </ItemGroup>
@@ -26,7 +32,13 @@
     <MASM Include="AsmLibrary.asm">
       <Filter>Pliki źródłowe</Filter>
     </MASM>
-    <MASM Include="globalBuffer.asm">
+    <MASM Include="bridgeProcedures.asm">
+      <Filter>Pliki źródłowe</Filter>
+    </MASM>
+    <MASM Include="player.asm">
+      <Filter>Pliki źródłowe</Filter>
+    </MASM>
+    <MASM Include="utils.asm">
       <Filter>Pliki źródłowe</Filter>
     </MASM>
   </ItemGroup>
