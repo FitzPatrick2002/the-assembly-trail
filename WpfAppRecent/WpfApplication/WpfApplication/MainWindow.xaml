@@ -1,0 +1,160 @@
+<Window x:Class="WpfApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <!--
+        xmlns:local="clr-namespace:NostroGameGUI"
+        -->
+
+    <Grid>
+        <!-- Story Output -->
+        <TextBox x:Name="StoryTextBox"
+         Margin="182,107,316,134"
+         Background="Black"
+         Foreground="Lime"
+         FontFamily="OCR A Extended"
+         FontSize="12"
+         TextWrapping="Wrap"
+         IsReadOnly="True"
+         BorderThickness="0"
+         Padding="2"
+         Panel.ZIndex="1"
+         FocusVisualStyle="{x:Null}"
+         CaretBrush="Lime"
+         TextOptions.TextFormattingMode="Display"
+         TextOptions.TextRenderingMode="Aliased"
+         RenderTransformOrigin="0.5,0.5" TextChanged="DummyFunction">
+            <TextBox.RenderTransform>
+                <!-- subtle tilt for retro CRT look -->
+                <RotateTransform Angle="1.75"/>
+            </TextBox.RenderTransform>
+        </TextBox>
+
+
+        <Image Source="pack://application:,,,/Image/panel-bg.png" Stretch="Fill" Margin="0,-10,-10,0"/>
+
+        <TextBox x:Name="InputTextBox"
+         Width="149"
+         Height="92"
+         Background="Black"
+         Foreground="Lime"
+         HorizontalAlignment="Right"
+         VerticalAlignment="Bottom"
+         Margin="0,0,117,242"
+         FontSize="20.0"
+         FontFamily="OCR A Extended"
+         TextWrapping="Wrap"
+         BorderThickness="0"
+         Padding="2"
+         IsReadOnly="False"
+         Panel.ZIndex="1"
+         FocusVisualStyle="{x:Null}"
+         RenderTransformOrigin="0.5,0.5"
+         CaretBrush="Lime"
+         TextOptions.TextFormattingMode="Display"
+         TextOptions.TextRenderingMode="Aliased">
+            <TextBox.RenderTransform>
+                <RotateTransform Angle="-2"/>
+            </TextBox.RenderTransform>
+        </TextBox>
+
+
+        <!-- YES Button -->
+        <Button x:Name="YesButton"
+                Width="110"
+                Height="33"
+                Background="Transparent"
+                Foreground="Black"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="563,0,0,170"
+                Click="Confirm_Button_Click"
+                Panel.ZIndex="0"/>
+        <!-- NO Button -->
+        <Button x:Name="NoButton"
+                Width="114"
+                Height="27"
+                Background="Transparent"
+                Foreground="White"
+                FontWeight="Bold"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="559,0,0,138"
+                Click="DummyFunction"
+                Panel.ZIndex="0"/>
+        <Image Margin="115,339,566,64" Source="pack://application:,,,/Image/Button-Blue-On.png" Stretch="Fill"/>
+        <Image Margin="563,247,123,124" Source="pack://application:,,,/Image/Button-Red-Off.png" Stretch="Fill"/>
+        <Image Margin="559,218,127,159" Source="pack://application:,,,/Image/Button-Green-On.png" Stretch="Fill"/>
+    </Grid>
+</Window>
+    
+    <!-- Below is the original xaml for the WpfApp aka Assembly Seal -->
+    <!--
+    <Window x:Class="WpfApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="400" Width="705"
+        Background="#FFD1DC">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <StackPanel Margin="10" Orientation="Vertical" Width="500">
+
+                <StackPanel Margin="10" HorizontalAlignment="Left" Orientation="Horizontal"  VerticalAlignment="Top">
+                    <Label>A:</Label>
+                    <TextBox Width="80" Name="txtA" Margin="10,0"/>
+                    <Label>+ B:</Label>
+                    <TextBox Width="80" Name="txtB" Margin="10,0"/>
+                    <Label>=</Label>
+                    <Button Content="Sum" Click="Button_Click"/>
+                    <TextBox Width="160" Name="Result" Margin="10,0"/>
+                </StackPanel>
+                <Label>Weighted sum:</Label>
+                <StackPanel Margin="10" HorizontalAlignment="Left" Orientation="Horizontal"  VerticalAlignment="Top">
+
+                    <Label>Double A:</Label>
+                    <TextBox Width="80" Name="DoubleA" Margin="10,0"/>
+                    <Label>Weight A:</Label>
+                    <TextBox Width="80" Name="IntA" Margin="10,0"/>
+                </StackPanel>
+
+                <StackPanel Margin="10" HorizontalAlignment="Left" Orientation="Horizontal"  VerticalAlignment="Top">
+                    <Label>Double B:</Label>
+                    <TextBox Width="80" Name="DoubleB" Margin="10,0"/>
+                    <Label>Weight B:</Label>
+                    <TextBox Width="80" Name="IntB" Margin="10,0"/>
+                </StackPanel>
+
+                <StackPanel Margin="10" HorizontalAlignment="Left" Orientation="Horizontal"  VerticalAlignment="Top">
+                    <Label>Double C:</Label>
+                    <TextBox Width="80" Name="DoubleC" Margin="10,0"/>
+                    <Label>Weight C:</Label>
+                    <TextBox Width="80" Name="IntC" Margin="10,0"/>
+                </StackPanel>
+
+                <StackPanel Margin="10" HorizontalAlignment="Left" Orientation="Horizontal"  VerticalAlignment="Top">
+                    <Label>Double D:</Label>
+                    <TextBox Width="80" Name="DoubleD" Margin="10,0"/>
+                    <Label>Weight D:</Label>
+                    <TextBox Width="80" Name="IntD" Margin="10,0"/>
+                </StackPanel>
+
+                <StackPanel Margin="10" HorizontalAlignment="Left" Orientation="Horizontal"  VerticalAlignment="Top">
+                    <Label>=</Label>
+                    <Button Content="Weighted Average" Click="Weighted_Average"/>
+                    <TextBox Width="160" Name="ResultWeight" Margin="10,0" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Margin="-20,30" Orientation="Vertical" Width="200">
+                <Image Source="pack://application:,,,/Image/seal.png" Width="100" Height="200" RenderTransformOrigin="0,0"/>
+                <Label Margin="0" RenderTransformOrigin="0,0" Height="30" Content="Happy Seal of Asembler" Width="140"/>
+            </StackPanel>
+
+        </StackPanel>
+    </Grid>
+</Window>
+    -->
