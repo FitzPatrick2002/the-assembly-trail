@@ -193,7 +193,7 @@ namespace WpfApplication
          * For now it accepts the callback which updates the gui and the callback which stops the execution of the main loop.
          */
         [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
-        private static extern void StartGameLoop();
+        private static extern void main();
 
         /**
          * Creates the callbacks for the main loop and invokes them.
@@ -219,7 +219,7 @@ namespace WpfApplication
                 registerCallbacks(logDelegate, waitDelegate);
 
                 // Run the main loop indefinitely
-                StartGameLoop();
+                main();
             });
         }
 

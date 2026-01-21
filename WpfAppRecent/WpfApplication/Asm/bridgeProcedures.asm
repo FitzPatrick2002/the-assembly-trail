@@ -29,7 +29,7 @@ printText ENDP
 ;		 If '0' is encountered before the given num of bytes is read, procedure terminates.
 ; @param dest Destination where the string is to be copied
 ; @param Max length of copied string, should be > 0 && < 32
-userInput PROC dest : DWORD, strLen : DWORD
+userInputC PROC dest : DWORD, strLen : DWORD
 
 	; Wait for user input
 	call waitCallback
@@ -63,7 +63,7 @@ CopyStr:
 Exit: 
 
 	ret
-userInput ENDP
+userInputC ENDP
 
 ; @brief Stores callbacks in global variables.
 ; @param printCallback Will be used in #printText procedureto (it prints the inputBuffer string to the C# TextBox).

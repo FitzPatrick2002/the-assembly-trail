@@ -3,9 +3,9 @@ include utils.inc
 ; @breif Room structure stores information about a single room.
 ;		 It holds info about the room, list of events and connections to other rooms.
 Room STRUCT 
-	info PBYTE ?							 ; Pointer to room info string
-	hidingLocationCorrect PBYTE ?			 ; Pointer to correct hiding location
-	hidingLocationWrong PBYTE ?				 ; Pointer to the wrong hiding location string
+	info PBYTE ?							 ; Pointer to room info string CHANGED -> pbyte -> dword
+	hidingLocationCorrect DWORD ?			 ; Pointer to correct hiding location
+	hidingLocationWrong DWORD ?				 ; Pointer to the wrong hiding location string CHANGED -> pbyte -> dword
 	eventsNumber DWORD ?					 ; Number of events stored in the room
 	eventsList DWORD MAX_EVENTS dup(?)		 ; Array of function pointers to events associated with this specific room
 	connections DWORD MAX_CONNECTIONS dup(?) ; Array of rooms idxs to which the room is connected to

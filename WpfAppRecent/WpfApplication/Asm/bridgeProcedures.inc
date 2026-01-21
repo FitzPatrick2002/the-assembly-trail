@@ -4,7 +4,7 @@ registerCallbacks PROTO printCallback : DWORD, waitFuncCallback : DWORD
 
 ; Use this in masm instead of print and StdIn macros
 printText PROTO stringLocation : DWORD
-userInput PROTO dest : DWORD, strLen : DWORD
+userInputC PROTO dest : DWORD, strLen : DWORD
 
 
 ; Function pointer to procedure which copies the string from masm side and displays it on the C# side.

@@ -1,6 +1,7 @@
 include \masm32\include\masm32rt.inc
 include utils.inc
 include player.inc
+include bridgeProcedures.inc
 
 .data
 
@@ -606,15 +607,15 @@ isSingleTimeEventProc ENDP
 
 ;Event medbayAsh
 medbayAsh proc
-    print addr msgAsh
-    print addr msgAsh2
-    print addr msgAsh3
-    print addr msgAsh4
+    INVOKE printText, addr msgAsh
+    INVOKE printText, addr msgAsh2
+    INVOKE printText, addr msgAsh3
+    INVOKE printText, addr msgAsh4
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -631,19 +632,19 @@ medbayAsh proc
     jmp choice1None
     
 choice1Y:
-    print addr msgAsh5
-    print addr msgAsh6
-    print addr msgAsh7
-    print addr msgAsh8
-    print addr msgAsh9
-    print addr msgAsh10
-    print addr msgAsh11
-    print addr msgAsh12
+    INVOKE printText, addr msgAsh5
+    INVOKE printText, addr msgAsh6
+    INVOKE printText, addr msgAsh7
+    INVOKE printText, addr msgAsh8
+    INVOKE printText, addr msgAsh9
+    INVOKE printText, addr msgAsh10
+    INVOKE printText, addr msgAsh11
+    INVOKE printText, addr msgAsh12
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -659,37 +660,37 @@ choice1Y:
     ret
     
 choice21:
-    print addr msgAsh13
-    print addr msgAsh14
-    print addr msgAsh15
-    print addr msgAsh16
+    INVOKE printText, addr msgAsh13
+    INVOKE printText, addr msgAsh14
+    INVOKE printText, addr msgAsh15
+    INVOKE printText, addr msgAsh16
     invoke Sleep, 1000
-    print addr msgAsh17
+    INVOKE printText, addr msgAsh17
     invoke Sleep, 1000
-    print addr msgAsh18
-    print addr msgAsh19
-    print addr msgAsh20
-    print addr msgAsh21
-    print addr msgAsh22
-    print addr msgAsh23
-    print addr msgAsh24
-    print addr msgAsh25
-    print addr msgAsh26
+    INVOKE printText, addr msgAsh18
+    INVOKE printText, addr msgAsh19
+    INVOKE printText, addr msgAsh20
+    INVOKE printText, addr msgAsh21
+    INVOKE printText, addr msgAsh22
+    INVOKE printText, addr msgAsh23
+    INVOKE printText, addr msgAsh24
+    INVOKE printText, addr msgAsh25
+    INVOKE printText, addr msgAsh26
     jmp Continue
     
 choice22:
-    print addr msgAsh27
-    print addr msgAsh28
-    print addr msgAsh29
-    print addr msgAsh30
-    print addr msgAsh31
-    print addr msgAsh32
-    print addr msgAsh33
-    print addr msgAsh34
-    print addr msgAsh35
-    print addr msgAsh36
-    print addr msgAsh37
-    print addr msgAsh38
+    INVOKE printText, addr msgAsh27
+    INVOKE printText, addr msgAsh28
+    INVOKE printText, addr msgAsh29
+    INVOKE printText, addr msgAsh30
+    INVOKE printText, addr msgAsh31
+    INVOKE printText, addr msgAsh32
+    INVOKE printText, addr msgAsh33
+    INVOKE printText, addr msgAsh34
+    INVOKE printText, addr msgAsh35
+    INVOKE printText, addr msgAsh36
+    INVOKE printText, addr msgAsh37
+    INVOKE printText, addr msgAsh38
 
     mov eax, [player.hp]
     sub eax, 1
@@ -697,14 +698,14 @@ choice22:
     jmp Continue
 
 choice23:
-    print addr msgAsh39
-    print addr msgAsh40
-    print addr msgAsh41
-    print addr msgAsh42
-    print addr msgAsh43
-    print addr msgAsh44
-    print addr msgAsh45
-    print addr msgAsh46
+    INVOKE printText, addr msgAsh39
+    INVOKE printText, addr msgAsh40
+    INVOKE printText, addr msgAsh41
+    INVOKE printText, addr msgAsh42
+    INVOKE printText, addr msgAsh43
+    INVOKE printText, addr msgAsh44
+    INVOKE printText, addr msgAsh45
+    INVOKE printText, addr msgAsh46
     jmp Continue
     
 choice2None:
@@ -715,14 +716,14 @@ choice2None:
     
     
 waterNotEmptyAsh:
-    print addr msgAsh47
-    print addr msgAsh48
-    print addr msgAsh49
-    print addr msgAsh50
-    print addr msgAsh51
-    print addr msgAsh52
-    print addr msgAsh53
-    print addr msgAsh54
+    INVOKE printText, addr msgAsh47
+    INVOKE printText, addr msgAsh48
+    INVOKE printText, addr msgAsh49
+    INVOKE printText, addr msgAsh50
+    INVOKE printText, addr msgAsh51
+    INVOKE printText, addr msgAsh52
+    INVOKE printText, addr msgAsh53
+    INVOKE printText, addr msgAsh54
     
     mov eax, [player.water]
     sub eax, 1
@@ -731,26 +732,26 @@ waterNotEmptyAsh:
     jmp Continue
 
 waterEmptyAsh:
-    print addr msgAsh55
-    print addr msgAsh56
-    print addr msgAsh57
-    print addr msgAsh58
+    INVOKE printText, addr msgAsh55
+    INVOKE printText, addr msgAsh56
+    INVOKE printText, addr msgAsh57
+    INVOKE printText, addr msgAsh58
     invoke Sleep, 1000
-    print addr msgAsh59
-    print addr msgAsh60
-    print addr msgAsh61
-    print addr msgAsh62
-    print addr msgAsh63
-    print addr msgAsh64
-    print addr msgAsh65
+    INVOKE printText, addr msgAsh59
+    INVOKE printText, addr msgAsh60
+    INVOKE printText, addr msgAsh61
+    INVOKE printText, addr msgAsh62
+    INVOKE printText, addr msgAsh63
+    INVOKE printText, addr msgAsh64
+    INVOKE printText, addr msgAsh65
     jmp Continue
 
 Continue:
-    print addr msgAsh66
-    print addr msgAsh67
-    print addr msgAsh68
-    print addr msgAsh69
-    print addr msgAsh70
+    INVOKE printText, addr msgAsh66
+    INVOKE printText, addr msgAsh67
+    INVOKE printText, addr msgAsh68
+    INVOKE printText, addr msgAsh69
+    INVOKE printText, addr msgAsh70
     
     INVOKE changeWater, 1
    ; mov eax, [player.water]
@@ -764,25 +765,25 @@ Continue:
     ret
     
 choice1N:
-    print addr msgAsh71
-    print addr msgAsh72
-    print addr msgAsh73
+    INVOKE printText, addr msgAsh71
+    INVOKE printText, addr msgAsh72
+    INVOKE printText, addr msgAsh73
     ret
     
     
 choice1None:
-    print addr msgAsh74
-    print addr msgAsh75
-    print addr msgAsh76
-    print addr msgAsh77
-    print addr msgAsh78
-    print addr msgAsh79
-    print addr msgAsh80
-    print addr msgAsh81
-    print addr msgAsh82
-    print addr msgAsh83
-    print addr msgAsh84
-    print addr msgAsh85
+    INVOKE printText, addr msgAsh74
+    INVOKE printText, addr msgAsh75
+    INVOKE printText, addr msgAsh76
+    INVOKE printText, addr msgAsh77
+    INVOKE printText, addr msgAsh78
+    INVOKE printText, addr msgAsh79
+    INVOKE printText, addr msgAsh80
+    INVOKE printText, addr msgAsh81
+    INVOKE printText, addr msgAsh82
+    INVOKE printText, addr msgAsh83
+    INVOKE printText, addr msgAsh84
+    INVOKE printText, addr msgAsh85
 
     mov eax, [player.hp]
     sub eax, 2
@@ -794,20 +795,20 @@ medbayAsh endp
 
 ;Event jonesyJumpscare
 jonesyJumpscare proc
-    print addr msgJonesyJumpscare
-    print addr msgJonesyJumpscare2
+    INVOKE printText, addr msgJonesyJumpscare
+    INVOKE printText, addr msgJonesyJumpscare2
     invoke StdOut, roomHidingLocations[0]
-    print addr msgJonesyJumpscare4
+    INVOKE printText, addr msgJonesyJumpscare4
     invoke Sleep, 2000
-    print addr msgJonesyJumpscare5
-    print addr msgJonesyJumpscare6
-    print addr msgJonesyJumpscare7
+    INVOKE printText, addr msgJonesyJumpscare5
+    INVOKE printText, addr msgJonesyJumpscare6
+    INVOKE printText, addr msgJonesyJumpscare7
     ret
 jonesyJumpscare endp
 
 ;Event alienHide
 alienHide proc
-    print addr msgAlienHide
+    INVOKE printText, addr msgAlienHide
     invoke crt__getch
 
 
@@ -830,12 +831,12 @@ alienHide proc
     add esi, eax
     mov esi, [esi]
     
-    print addr msgAlienHide2
-    print addr msgAlienHide3
+    INVOKE printText, addr msgAlienHide2
+    INVOKE printText, addr msgAlienHide3
     invoke StdOut, bufferHidingLocations[0]
-    print addr msgAlienHide4
+    INVOKE printText, addr msgAlienHide4
     invoke StdOut, bufferHidingLocations[4]
-    print addr msgAlienHide5
+    INVOKE printText, addr msgAlienHide5
     
     mov edi, offset buffer
     mov ecx, 100
@@ -848,7 +849,7 @@ alienHide proc
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -872,12 +873,12 @@ noSwap:
     add esi, eax
     mov esi, [esi]
     
-    print addr msgAlienHide2
-    print addr msgAlienHide3
+    INVOKE printText, addr msgAlienHide2
+    INVOKE printText, addr msgAlienHide3
     invoke StdOut, bufferHidingLocations[0]
-    print addr msgAlienHide4
+    INVOKE printText, addr msgAlienHide4
     invoke StdOut, bufferHidingLocations[4]
-    print addr msgAlienHide5
+    INVOKE printText, addr msgAlienHide5
     
     mov edi, offset buffer
     mov ecx, 100
@@ -890,7 +891,7 @@ noSwap:
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -908,19 +909,19 @@ noSwap:
 
 
 choice11:
-    print addr msgAlienHide6
-    print addr msgAlienHide7
-    print addr msgAlienHide8
+    INVOKE printText, addr msgAlienHide6
+    INVOKE printText, addr msgAlienHide7
+    INVOKE printText, addr msgAlienHide8
 
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
 
     mov eax, roomHidingLocations[0]
@@ -930,19 +931,19 @@ choice11:
     jmp choceBad
     
 choice12:
-    print addr msgAlienHide6
-    print addr msgAlienHide7
-    print addr msgAlienHide8
+    INVOKE printText, addr msgAlienHide6
+    INVOKE printText, addr msgAlienHide7
+    INVOKE printText, addr msgAlienHide8
 
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
-    print addr msgWait
+    INVOKE printText, addr msgWait
     invoke Sleep, 1000
 
     mov eax, roomHidingLocations[0]
@@ -952,19 +953,19 @@ choice12:
     jmp choceBad
 
 choceGood:
-    print addr msgAlienHide9
-    print addr msgAlienHide10
-    print addr msgAlienHide11
-    print addr msgAlienHide12
-    print addr msgAlienHide13
+    INVOKE printText, addr msgAlienHide9
+    INVOKE printText, addr msgAlienHide10
+    INVOKE printText, addr msgAlienHide11
+    INVOKE printText, addr msgAlienHide12
+    INVOKE printText, addr msgAlienHide13
     ret
     
 choceBad:
-    print addr msgAlienHide14
-    print addr msgAlienHide15
-    print addr msgAlienHide16
-    print addr msgAlienHide17
-    print addr msgAlienHide18
+    INVOKE printText, addr msgAlienHide14
+    INVOKE printText, addr msgAlienHide15
+    INVOKE printText, addr msgAlienHide16
+    INVOKE printText, addr msgAlienHide17
+    INVOKE printText, addr msgAlienHide18
 
     mov eax, [player.hp]
     sub eax, 2
@@ -973,25 +974,25 @@ choceBad:
 
 
 choice2:
-    print addr msgAlienHide21
-    print addr msgAlienHide22
-    print addr msgAlienHide23
-    print addr msgAlienHide24
-    print addr msgAlienHide25
-    print addr msgAlienHide16
-    print addr msgAlienHide17
-    print addr msgAlienHide18 
+    INVOKE printText, addr msgAlienHide21
+    INVOKE printText, addr msgAlienHide22
+    INVOKE printText, addr msgAlienHide23
+    INVOKE printText, addr msgAlienHide24
+    INVOKE printText, addr msgAlienHide25
+    INVOKE printText, addr msgAlienHide16
+    INVOKE printText, addr msgAlienHide17
+    INVOKE printText, addr msgAlienHide18 
 
     mov eax, [player.hp]
     sub eax, 2
     mov [player.hp], eax  
     ret
 choice3:
-    print addr msgAlienHide19
-    print addr msgAlienHide20
-    print addr msgAlienHide16
-    print addr msgAlienHide17
-    print addr msgAlienHide18 
+    INVOKE printText, addr msgAlienHide19
+    INVOKE printText, addr msgAlienHide20
+    INVOKE printText, addr msgAlienHide16
+    INVOKE printText, addr msgAlienHide17
+    INVOKE printText, addr msgAlienHide18 
 
     mov eax, [player.hp]
     sub eax, 2
@@ -1002,12 +1003,12 @@ alienHide endp
 
 ;Event galleyWater
 galleyWater proc
-    print addr msgGalleyWater
-    print addr msgGalleyWater2
-    print addr msgGalleyWater3
-    print addr msgGalleyWater4
-    print addr msgGalleyWater5
-    print addr msgGalleyWater6
+    INVOKE printText, addr msgGalleyWater
+    INVOKE printText, addr msgGalleyWater2
+    INVOKE printText, addr msgGalleyWater3
+    INVOKE printText, addr msgGalleyWater4
+    INVOKE printText, addr msgGalleyWater5
+    INVOKE printText, addr msgGalleyWater6
     
     mov eax, [player.water]
     add eax, 3
@@ -1017,16 +1018,16 @@ galleyWater endp
 
 ;Event motherPanel
 motherPanel proc
-    print addr msgMotherPanel
-    print addr msgMotherPanel2
-    print addr msgMotherPanel3
-    print addr msgMotherPanel4
-    print addr msgMotherPanel5
-    print addr msgMotherPanel6
+    INVOKE printText, addr msgMotherPanel
+    INVOKE printText, addr msgMotherPanel2
+    INVOKE printText, addr msgMotherPanel3
+    INVOKE printText, addr msgMotherPanel4
+    INVOKE printText, addr msgMotherPanel5
+    INVOKE printText, addr msgMotherPanel6
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1045,14 +1046,14 @@ motherPanel proc
     ret
 
 choice1Y:
-    print addr msgMotherPanel7
-    print addr msgMotherPanel8
-    print addr msgMotherPanel9
+    INVOKE printText, addr msgMotherPanel7
+    INVOKE printText, addr msgMotherPanel8
+    INVOKE printText, addr msgMotherPanel9
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1070,12 +1071,12 @@ choice1Y:
 
 
 choice2Y:
-    print addr msgMotherPanel10
+    INVOKE printText, addr msgMotherPanel10
     jmp terminalLoop
 
 terminalLoop:
 
-    print addr msgMotherPanel11
+    INVOKE printText, addr msgMotherPanel11
     
     mov edi, offset buffer
     mov ecx, 100
@@ -1084,7 +1085,7 @@ terminalLoop:
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     invoke StripLF, addr buffer
     
@@ -1108,8 +1109,8 @@ terminalLoop:
     jmp incorrect
     
 Route2120:
-    print addr msgMotherPanel13
-    print addr msgMotherPanel14
+    INVOKE printText, addr msgMotherPanel13
+    INVOKE printText, addr msgMotherPanel14
     
     mov eax, passwordCounter
     add eax, 1
@@ -1118,7 +1119,7 @@ Route2120:
     jmp terminalLoop
 
 incorrect:
-    print addr msgMotherPanel13
+    INVOKE printText, addr msgMotherPanel13
     mov eax, passwordCounter
     add eax, 1
     mov passwordCounter, eax 
@@ -1131,190 +1132,190 @@ Route1234:
 
 
 terminalBlocked:
-    print addr msgMotherPanel31
-    print addr msgMotherPanel32
-    print addr msgMotherPanel33
-    print addr msgMotherPanel34
+    INVOKE printText, addr msgMotherPanel31
+    INVOKE printText, addr msgMotherPanel32
+    INVOKE printText, addr msgMotherPanel33
+    INVOKE printText, addr msgMotherPanel34
     ret
 
 
 
 Route2122:
-    print addr msgMotherPanel12
+    INVOKE printText, addr msgMotherPanel12
     invoke crt__getch
-    print addr msgMotherPanel15
-    print addr msgMotherPanel16
-    print addr msgMotherPanel17
-    print addr msgMotherPanel18
+    INVOKE printText, addr msgMotherPanel15
+    INVOKE printText, addr msgMotherPanel16
+    INVOKE printText, addr msgMotherPanel17
+    INVOKE printText, addr msgMotherPanel18
     
-    print addr msgMotherPanel19
+    INVOKE printText, addr msgMotherPanel19
     
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel22
+    INVOKE printText, addr msgMotherPanel22
 
 
-    print addr msgMotherPanel23
-    print addr msgMotherPanel24
-    print addr msgMotherPanel25
-    print addr msgMotherPanel26
-    print addr msgMotherPanel27
-    print addr msgMotherPanel28
-    print addr msgMotherPanel29
-    print addr msgMotherPanel30
+    INVOKE printText, addr msgMotherPanel23
+    INVOKE printText, addr msgMotherPanel24
+    INVOKE printText, addr msgMotherPanel25
+    INVOKE printText, addr msgMotherPanel26
+    INVOKE printText, addr msgMotherPanel27
+    INVOKE printText, addr msgMotherPanel28
+    INVOKE printText, addr msgMotherPanel29
+    INVOKE printText, addr msgMotherPanel30
     
     ret
 choice2N:
-    print addr msgMotherPanel35
-    print addr msgMotherPanel36
-    print addr msgMotherPanel37
-    print addr msgMotherPanel38
-    print addr msgMotherPanel39
+    INVOKE printText, addr msgMotherPanel35
+    INVOKE printText, addr msgMotherPanel36
+    INVOKE printText, addr msgMotherPanel37
+    INVOKE printText, addr msgMotherPanel38
+    INVOKE printText, addr msgMotherPanel39
     ret
 
 choice2None:
-    print addr msgMotherPanel40
-    print addr msgMotherPanel41
-    print addr msgMotherPanel42
-    print addr msgMotherPanel43
+    INVOKE printText, addr msgMotherPanel40
+    INVOKE printText, addr msgMotherPanel41
+    INVOKE printText, addr msgMotherPanel42
+    INVOKE printText, addr msgMotherPanel43
 
-    print addr msgMotherPanel18
+    INVOKE printText, addr msgMotherPanel18
     
-    print addr msgMotherPanel19
+    INVOKE printText, addr msgMotherPanel19
     
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel20
+    INVOKE printText, addr msgMotherPanel20
     invoke crt_printf, addr format, terminalSeconds
-    print addr msgMotherPanel21
+    INVOKE printText, addr msgMotherPanel21
     
     mov eax, terminalSeconds
     sub eax, 1
     mov terminalSeconds, eax  
     invoke Sleep, 1000
 
-    print addr msgMotherPanel22
+    INVOKE printText, addr msgMotherPanel22
 
 
-    print addr msgMotherPanel23
-    print addr msgMotherPanel24
-    print addr msgMotherPanel25
-    print addr msgMotherPanel26
-    print addr msgMotherPanel27
-    print addr msgMotherPanel28
-    print addr msgMotherPanel29
-    print addr msgMotherPanel30
+    INVOKE printText, addr msgMotherPanel23
+    INVOKE printText, addr msgMotherPanel24
+    INVOKE printText, addr msgMotherPanel25
+    INVOKE printText, addr msgMotherPanel26
+    INVOKE printText, addr msgMotherPanel27
+    INVOKE printText, addr msgMotherPanel28
+    INVOKE printText, addr msgMotherPanel29
+    INVOKE printText, addr msgMotherPanel30
     ret
     
 choice1N:
-    print addr msgMotherPanel44
-    print addr msgMotherPanel45
-    print addr msgMotherPanel46
-    print addr msgMotherPanel47
-    print addr msgMotherPanel48
+    INVOKE printText, addr msgMotherPanel44
+    INVOKE printText, addr msgMotherPanel45
+    INVOKE printText, addr msgMotherPanel46
+    INVOKE printText, addr msgMotherPanel47
+    INVOKE printText, addr msgMotherPanel48
     ret
     
 choice1None:
-    print addr msgMotherPanel49
-    print addr msgMotherPanel50
-    print addr msgMotherPanel51
-    print addr msgMotherPanel52
-    print addr msgMotherPanel53
-    print addr msgMotherPanel54
-    print addr msgMotherPanel55
-    print addr msgMotherPanel56
-    print addr msgMotherPanel57
+    INVOKE printText, addr msgMotherPanel49
+    INVOKE printText, addr msgMotherPanel50
+    INVOKE printText, addr msgMotherPanel51
+    INVOKE printText, addr msgMotherPanel52
+    INVOKE printText, addr msgMotherPanel53
+    INVOKE printText, addr msgMotherPanel54
+    INVOKE printText, addr msgMotherPanel55
+    INVOKE printText, addr msgMotherPanel56
+    INVOKE printText, addr msgMotherPanel57
     ret
 motherPanel endp
 
 ;Event alienFire
 alienFire proc
-    print addr msgAlienFire
-    print addr msgAlienFire2
-    print addr msgAlienFire3
-    print addr msgAlienFire4
+    INVOKE printText, addr msgAlienFire
+    INVOKE printText, addr msgAlienFire2
+    INVOKE printText, addr msgAlienFire3
+    INVOKE printText, addr msgAlienFire4
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1341,7 +1342,7 @@ choice1Y:
 
 
 showMsg1:
-    print addr msgAlienFire5
+    INVOKE printText, addr msgAlienFire5
     mov edi, offset buffer
     mov ecx, 100
     xor al, al
@@ -1353,7 +1354,7 @@ showMsg1:
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     
     invoke GetTickCount
@@ -1366,7 +1367,7 @@ showMsg1:
     jmp doSuccess
     
 showMsg2:
-    print addr msgAlienFire6
+    INVOKE printText, addr msgAlienFire6
     mov edi, offset buffer
     mov ecx, 100
     xor al, al
@@ -1378,7 +1379,7 @@ showMsg2:
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     
     invoke GetTickCount
@@ -1392,23 +1393,23 @@ showMsg2:
     
 
 doSuccess:
-    print addr msgAlienFire7
-    print addr msgAlienFire8
-    print addr msgAlienFire9
-    print addr msgAlienFire10
-    print addr msgAlienFire11
-    print addr msgAlienFire12  
+    INVOKE printText, addr msgAlienFire7
+    INVOKE printText, addr msgAlienFire8
+    INVOKE printText, addr msgAlienFire9
+    INVOKE printText, addr msgAlienFire10
+    INVOKE printText, addr msgAlienFire11
+    INVOKE printText, addr msgAlienFire12  
     ret
 
 doFailure:
-    print addr msgAlienFire13
-    print addr msgAlienFire14
-    print addr msgAlienFire15
-    print addr msgAlienFire16
-    print addr msgAlienFire17
-    print addr msgAlienFire18  
-    print addr msgAlienFire19
-    print addr msgAlienFire20
+    INVOKE printText, addr msgAlienFire13
+    INVOKE printText, addr msgAlienFire14
+    INVOKE printText, addr msgAlienFire15
+    INVOKE printText, addr msgAlienFire16
+    INVOKE printText, addr msgAlienFire17
+    INVOKE printText, addr msgAlienFire18  
+    INVOKE printText, addr msgAlienFire19
+    INVOKE printText, addr msgAlienFire20
 
     mov eax, [player.hp]
     sub eax, 1
@@ -1416,13 +1417,13 @@ doFailure:
     ret  
 
 choice1N:
-    print addr msgAlienFire21
-    print addr msgAlienFire22
-    print addr msgAlienFire23
-    print addr msgAlienFire24
-    print addr msgAlienFire25
-    print addr msgAlienFire26  
-    print addr msgAlienFire27
+    INVOKE printText, addr msgAlienFire21
+    INVOKE printText, addr msgAlienFire22
+    INVOKE printText, addr msgAlienFire23
+    INVOKE printText, addr msgAlienFire24
+    INVOKE printText, addr msgAlienFire25
+    INVOKE printText, addr msgAlienFire26  
+    INVOKE printText, addr msgAlienFire27
 
     mov eax, [player.hp]
     sub eax, 2
@@ -1430,13 +1431,13 @@ choice1N:
     ret 
 
 choice1None:
-    print addr msgAlienFire28
-    print addr msgAlienFire29
-    print addr msgAlienFire30
-    print addr msgAlienFire31
-    print addr msgAlienFire32
-    print addr msgAlienFire33  
-    print addr msgAlienFire34
+    INVOKE printText, addr msgAlienFire28
+    INVOKE printText, addr msgAlienFire29
+    INVOKE printText, addr msgAlienFire30
+    INVOKE printText, addr msgAlienFire31
+    INVOKE printText, addr msgAlienFire32
+    INVOKE printText, addr msgAlienFire33  
+    INVOKE printText, addr msgAlienFire34
 
 
     mov eax, [player.hp]
@@ -1449,9 +1450,9 @@ choice1None:
     jmp waterNotEmptyAsh
 
 waterNotEmptyAsh:
-    print addr msgAlienFire35  
-    print addr msgAlienFire36
-    print addr msgAlienFire37  
+    INVOKE printText, addr msgAlienFire35  
+    INVOKE printText, addr msgAlienFire36
+    INVOKE printText, addr msgAlienFire37  
 
     mov eax, [player.water]
     sub eax, 1
@@ -1461,8 +1462,8 @@ waterNotEmptyAsh:
 
 
 waterEmptyAsh:   
-    print addr msgAlienFire38  
-    print addr msgAlienFire39
+    INVOKE printText, addr msgAlienFire38  
+    INVOKE printText, addr msgAlienFire39
 
     mov eax, [player.hp]
     sub eax, 2
@@ -1473,8 +1474,8 @@ alienFire endp
 
 ;Event nothingHappens
 nothingHappens proc
-    print addr msgNothingHappens1
-    print addr msgNothingHappens2
+    INVOKE printText, addr msgNothingHappens1
+    INVOKE printText, addr msgNothingHappens2
     
     mov eax, [player.hp]
     sub eax, 1
@@ -1497,14 +1498,14 @@ ret
 
 isAllowed:
     ;mov byte ptr [esi+5], 0  
-    print addr msgMotherWater
-    print addr msgMotherWater2
-    print addr msgMotherWater3
+    INVOKE printText, addr msgMotherWater
+    INVOKE printText, addr msgMotherWater2
+    INVOKE printText, addr msgMotherWater3
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1523,15 +1524,15 @@ isAllowed:
     ret
 
 choice1Y:
-    print addr msgMotherWater4
-    print addr msgMotherWater5
-    print addr msgMotherWater6
-    print addr msgMotherWater7
-    print addr msgMotherWater8
-    print addr msgMotherWater9
-    print addr msgMotherWater10
-    print addr msgMotherWater11
-    print addr msgMotherWater12
+    INVOKE printText, addr msgMotherWater4
+    INVOKE printText, addr msgMotherWater5
+    INVOKE printText, addr msgMotherWater6
+    INVOKE printText, addr msgMotherWater7
+    INVOKE printText, addr msgMotherWater8
+    INVOKE printText, addr msgMotherWater9
+    INVOKE printText, addr msgMotherWater10
+    INVOKE printText, addr msgMotherWater11
+    INVOKE printText, addr msgMotherWater12
 
     mov eax, [player.water]
     add eax, 1
@@ -1539,20 +1540,20 @@ choice1Y:
     ret
 
 choice1N:
-    print addr msgMotherWater13
-    print addr msgMotherWater14
-    print addr msgMotherWater15
+    INVOKE printText, addr msgMotherWater13
+    INVOKE printText, addr msgMotherWater14
+    INVOKE printText, addr msgMotherWater15
     ret
 
 choice1None:
-    print addr msgMotherWater16
-    print addr msgMotherWater17
-    print addr msgMotherWater18
-    print addr msgMotherWater19
-    print addr msgMotherWater20
-    print addr msgMotherWater21
-    print addr msgMotherWater22
-    print addr msgMotherWater23
+    INVOKE printText, addr msgMotherWater16
+    INVOKE printText, addr msgMotherWater17
+    INVOKE printText, addr msgMotherWater18
+    INVOKE printText, addr msgMotherWater19
+    INVOKE printText, addr msgMotherWater20
+    INVOKE printText, addr msgMotherWater21
+    INVOKE printText, addr msgMotherWater22
+    INVOKE printText, addr msgMotherWater23
     
     mov eax, [player.water]
     add eax, 1
@@ -1575,9 +1576,9 @@ ret
 
 isAllowed:
     ;mov byte ptr [esi+5], 0  
-    print addr msgPodsFoundChemfuel
-    print addr msgPodsFoundChemfuel2
-    print addr msgPodsFoundChemfuel3
+    INVOKE printText, addr msgPodsFoundChemfuel
+    INVOKE printText, addr msgPodsFoundChemfuel2
+    INVOKE printText, addr msgPodsFoundChemfuel3
     
     INVOKE changeChemfuel, 1
 ;    mov eax, [chemfuel]
@@ -1591,13 +1592,13 @@ podsFoundChemfuel endp
 
 ;Event tooHot
 tooHot proc
-    print addr msgTooHot
-    print addr msgTooHot2
-    print addr msgTooHot3
+    INVOKE printText, addr msgTooHot
+    INVOKE printText, addr msgTooHot2
+    INVOKE printText, addr msgTooHot3
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1616,8 +1617,8 @@ tooHot proc
 
 
 choice1Y:
-    print addr msgTooHot4
-    print addr msgTooHot5
+    INVOKE printText, addr msgTooHot4
+    INVOKE printText, addr msgTooHot5
 
     mov eax, [player.water]
     sub eax, 2
@@ -1625,9 +1626,9 @@ choice1Y:
     ret
     
 choice1None:
-    print addr msgTooHot6
-    print addr msgTooHot7
-    print addr msgTooHot8
+    INVOKE printText, addr msgTooHot6
+    INVOKE printText, addr msgTooHot7
+    INVOKE printText, addr msgTooHot8
 
     mov eax, [player.hp]
     sub eax, 1
@@ -1637,12 +1638,12 @@ tooHot endp
 
 ;Event foundChemfuel
 foundChemfuel proc
-    print addr msgFoundChemFuel
-    print addr msgFoundChemFuel2
+    INVOKE printText, addr msgFoundChemFuel
+    INVOKE printText, addr msgFoundChemFuel2
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1661,9 +1662,9 @@ foundChemfuel proc
 
 
 choice1Y:
-    print addr msgFoundChemFuel3
-    print addr msgFoundChemFuel4
-    print addr msgFoundChemFuel5
+    INVOKE printText, addr msgFoundChemFuel3
+    INVOKE printText, addr msgFoundChemFuel4
+    INVOKE printText, addr msgFoundChemFuel5
  
     INVOKE changeChemfuel, 1
 ;    mov eax, [chemfuel]
@@ -1673,16 +1674,16 @@ choice1Y:
     ret
 
 choice1N:
-    print addr msgFoundChemFuel6
-    print addr msgFoundChemFuel7
+    INVOKE printText, addr msgFoundChemFuel6
+    INVOKE printText, addr msgFoundChemFuel7
     
     
     ret
     
 choice1None:
-    print addr msgFoundChemFuel8
-    print addr msgFoundChemFuel9
-    print addr msgFoundChemFuel10
+    INVOKE printText, addr msgFoundChemFuel8
+    INVOKE printText, addr msgFoundChemFuel9
+    INVOKE printText, addr msgFoundChemFuel10
 
     mov eax, [player.hp]
     sub eax, 1
@@ -1693,12 +1694,12 @@ foundChemfuel endp
 
 ;Event foundWater
 foundWater proc
-    print addr msgFoundWater
-    print addr msgFoundWater2
+    INVOKE printText, addr msgFoundWater
+    INVOKE printText, addr msgFoundWater2
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1717,9 +1718,9 @@ foundWater proc
 
 
 choice1Y:
-    print addr msgFoundWater3
-    print addr msgFoundWater4
-    print addr msgFoundWater5
+    INVOKE printText, addr msgFoundWater3
+    INVOKE printText, addr msgFoundWater4
+    INVOKE printText, addr msgFoundWater5
     
     mov eax, [player.water]
     add eax, 1
@@ -1728,17 +1729,17 @@ choice1Y:
     ret
 
 choice1N:
-    print addr msgFoundWater6
-    print addr msgFoundWater7
-    print addr msgFoundWater8
-    print addr msgFoundWater9
+    INVOKE printText, addr msgFoundWater6
+    INVOKE printText, addr msgFoundWater7
+    INVOKE printText, addr msgFoundWater8
+    INVOKE printText, addr msgFoundWater9
     
     ret
     
 choice1None:
-    print addr msgFoundWater10
-    print addr msgFoundWater11
-    print addr msgFoundWater12
+    INVOKE printText, addr msgFoundWater10
+    INVOKE printText, addr msgFoundWater11
+    INVOKE printText, addr msgFoundWater12
 
     mov eax, [player.hp]
     sub eax, 1
@@ -1758,14 +1759,14 @@ ret
 
 isAllowed:
     ;mov byte ptr [esi+5], 0  
-    print addr msgWCHiddenPassage
-    print addr msgWCHiddenPassage2
-    print addr msgWCHiddenPassage3
+    INVOKE printText, addr msgWCHiddenPassage
+    INVOKE printText, addr msgWCHiddenPassage2
+    INVOKE printText, addr msgWCHiddenPassage3
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1783,12 +1784,12 @@ isAllowed:
     
     ret
 choice1Y:
-    print addr msgWCHiddenPassage4
-    print addr msgWCHiddenPassage5
-    print addr msgWCHiddenPassage6
-    print addr msgWCHiddenPassage7
-    print addr msgWCHiddenPassage8
-    print addr msgWCHiddenPassage9
+    INVOKE printText, addr msgWCHiddenPassage4
+    INVOKE printText, addr msgWCHiddenPassage5
+    INVOKE printText, addr msgWCHiddenPassage6
+    INVOKE printText, addr msgWCHiddenPassage7
+    INVOKE printText, addr msgWCHiddenPassage8
+    INVOKE printText, addr msgWCHiddenPassage9
     invoke crt__getch
 
     INVOKE changeChemfuel, 1
@@ -1800,14 +1801,14 @@ choice1Y:
     add eax, 1
     mov [player.water], eax
     
-    print addr msgWCHiddenPassage10
-    print addr msgWCHiddenPassage11
-    print addr msgWCHiddenPassage12
+    INVOKE printText, addr msgWCHiddenPassage10
+    INVOKE printText, addr msgWCHiddenPassage11
+    INVOKE printText, addr msgWCHiddenPassage12
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1824,29 +1825,29 @@ choice1Y:
     jmp choice2None
     
 choice2Y:
-    print addr msgWCHiddenPassage13
-    print addr msgWCHiddenPassage14
+    INVOKE printText, addr msgWCHiddenPassage13
+    INVOKE printText, addr msgWCHiddenPassage14
     
     mov eax, [player.water]
     sub eax, 1
     mov [player.water], eax  
     ret
 choice2N:
-    print addr msgWCHiddenPassage15
-    print addr msgWCHiddenPassage16
-    print addr msgWCHiddenPassage17
-    print addr msgWCHiddenPassage18
-    print addr msgWCHiddenPassage19
+    INVOKE printText, addr msgWCHiddenPassage15
+    INVOKE printText, addr msgWCHiddenPassage16
+    INVOKE printText, addr msgWCHiddenPassage17
+    INVOKE printText, addr msgWCHiddenPassage18
+    INVOKE printText, addr msgWCHiddenPassage19
     
     mov eax, [player.hp]
     sub eax, 1
     mov [player.hp], eax 
     ret   
 choice2None:
-    print addr msgWCHiddenPassage20
-    print addr msgWCHiddenPassage21
-    print addr msgWCHiddenPassage22
-    print addr msgWCHiddenPassage23
+    INVOKE printText, addr msgWCHiddenPassage20
+    INVOKE printText, addr msgWCHiddenPassage21
+    INVOKE printText, addr msgWCHiddenPassage22
+    INVOKE printText, addr msgWCHiddenPassage23
     
     mov eax, [player.water]
     sub eax, 1
@@ -1859,21 +1860,21 @@ choice2None:
     ret 
     
 choice1N:
-    print addr msgWCHiddenPassage24
-    print addr msgWCHiddenPassage25
-    print addr msgWCHiddenPassage26
-    print addr msgWCHiddenPassage27
+    INVOKE printText, addr msgWCHiddenPassage24
+    INVOKE printText, addr msgWCHiddenPassage25
+    INVOKE printText, addr msgWCHiddenPassage26
+    INVOKE printText, addr msgWCHiddenPassage27
     ret
     
 choice1None:
-    print addr msgWCHiddenPassage28
-    print addr msgWCHiddenPassage29
-    print addr msgWCHiddenPassage30
-    print addr msgWCHiddenPassage31    
-    print addr msgWCHiddenPassage32
-    print addr msgWCHiddenPassage33
-    print addr msgWCHiddenPassage34
-    print addr msgWCHiddenPassage35
+    INVOKE printText, addr msgWCHiddenPassage28
+    INVOKE printText, addr msgWCHiddenPassage29
+    INVOKE printText, addr msgWCHiddenPassage30
+    INVOKE printText, addr msgWCHiddenPassage31    
+    INVOKE printText, addr msgWCHiddenPassage32
+    INVOKE printText, addr msgWCHiddenPassage33
+    INVOKE printText, addr msgWCHiddenPassage34
+    INVOKE printText, addr msgWCHiddenPassage35
     mov eax, [player.hp]
     sub eax, 1
     mov [player.hp], eax 
@@ -1892,13 +1893,13 @@ ret
 
 isAllowed:
     ;mov byte ptr [esi+10], 0  
-    print addr msgBridgeConsole1
-    print addr msgBridgeConsole2
-    print addr msgBridgeConsole3
+    INVOKE printText, addr msgBridgeConsole1
+    INVOKE printText, addr msgBridgeConsole2
+    INVOKE printText, addr msgBridgeConsole3
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi]   
@@ -1915,15 +1916,15 @@ isAllowed:
     jmp choice1None
 
 choice1Y:
-    print addr msgBridgeConsole4
-    print addr msgBridgeConsole5
-    print addr msgBridgeConsole6
-    print addr msgBridgeConsole7
+    INVOKE printText, addr msgBridgeConsole4
+    INVOKE printText, addr msgBridgeConsole5
+    INVOKE printText, addr msgBridgeConsole6
+    INVOKE printText, addr msgBridgeConsole7
 
 
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi] 
@@ -1942,21 +1943,21 @@ choice1Y:
 
     
 choice1N:
-    print addr msgBridgeConsole8
+    INVOKE printText, addr msgBridgeConsole8
     ret
     
 choice1None:
-    print addr msgBridgeConsole9
-    print addr msgBridgeConsole10
-    print addr msgBridgeConsole11
-    print addr msgBridgeConsole12
+    INVOKE printText, addr msgBridgeConsole9
+    INVOKE printText, addr msgBridgeConsole10
+    INVOKE printText, addr msgBridgeConsole11
+    INVOKE printText, addr msgBridgeConsole12
     ret  
     
 choice2Y:
-    print addr msgBridgeConsole13
-    print addr msgBridgeConsole14
-    print addr msgBridgeConsole15
-    print addr msgBridgeConsole16
+    INVOKE printText, addr msgBridgeConsole13
+    INVOKE printText, addr msgBridgeConsole14
+    INVOKE printText, addr msgBridgeConsole15
+    INVOKE printText, addr msgBridgeConsole16
  
     INVOKE changeChemfuel, 1
 ;    mov eax, [chemfuel]
@@ -1966,19 +1967,19 @@ choice2Y:
     ret
     
 choice2N:
-    print addr msgBridgeConsole17
-    print addr msgBridgeConsole18
-    print addr msgBridgeConsole19
-    print addr msgBridgeConsole20
+    INVOKE printText, addr msgBridgeConsole17
+    INVOKE printText, addr msgBridgeConsole18
+    INVOKE printText, addr msgBridgeConsole19
+    INVOKE printText, addr msgBridgeConsole20
     ret  
      
 choice2None:
-    print addr msgBridgeConsole21
-    print addr msgBridgeConsole22
-    print addr msgBridgeConsole23
-    print addr msgBridgeConsole24
-    print addr msgBridgeConsole25
-    print addr msgBridgeConsole26 
+    INVOKE printText, addr msgBridgeConsole21
+    INVOKE printText, addr msgBridgeConsole22
+    INVOKE printText, addr msgBridgeConsole23
+    INVOKE printText, addr msgBridgeConsole24
+    INVOKE printText, addr msgBridgeConsole25
+    INVOKE printText, addr msgBridgeConsole26 
  
     INVOKE changeChemfuel, 2
 ;    mov eax, [chemfuel]
@@ -1996,12 +1997,12 @@ bridgeConsole endp
 ;Event playerAttacked
 playerAttacked proc
 
-    print addr msgPlayerAttacked1
-    print addr msgPlayerAttacked2
+    INVOKE printText, addr msgPlayerAttacked1
+    INVOKE printText, addr msgPlayerAttacked2
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi] 
@@ -2015,12 +2016,12 @@ playerAttacked proc
     jmp choice1None
 
 choice1N:
-    print addr msgPlayerAttacked3
+    INVOKE printText, addr msgPlayerAttacked3
     
     ret
     
 choice1None:
-    print addr msgPlayerAttacked4
+    INVOKE printText, addr msgPlayerAttacked4
     mov eax, [player.hp]
     sub eax, 2
     mov [player.hp], eax  
@@ -2031,12 +2032,12 @@ playerAttacked endp
 ;Event thirst
 thirst proc
 
-    print addr msgThirst1
-    print addr msgThirst2
+    INVOKE printText, addr msgThirst1
+    INVOKE printText, addr msgThirst2
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi] 
@@ -2050,14 +2051,14 @@ thirst proc
     jmp choice1None
 
 choice1Y:
-    print addr msgThirst3
+    INVOKE printText, addr msgThirst3
     mov eax, [player.water]
     sub eax, 1
     mov [player.water], eax 
     ret
     
 choice1None:
-    print addr msgThirst4
+    INVOKE printText, addr msgThirst4
     mov eax, [player.hp]
     sub eax, 1
     mov [player.hp], eax  
@@ -2069,11 +2070,11 @@ thirst endp
 ;Event strangePassage
 strangePassage proc
 
-    print addr msgStrangePassage1
+    INVOKE printText, addr msgStrangePassage1
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi] 
@@ -2091,14 +2092,14 @@ strangePassage proc
     jmp choice1None
 
 choice1Y:
-    print addr msgStrangePassage2
+    INVOKE printText, addr msgStrangePassage2
     ret
     
 choice1N:
-    print addr msgStrangePassage3
+    INVOKE printText, addr msgStrangePassage3
     ret   
 choice1None:
-    print addr msgStrangePassage4
+    INVOKE printText, addr msgStrangePassage4
     mov eax, [player.hp]
     sub eax, 1
     mov [player.hp], eax  
@@ -2110,12 +2111,12 @@ strangePassage endp
 ;Event foundItem
 foundItem proc
 
-    print addr msgFoundItem1
-    print addr msgFoundItem2
+    INVOKE printText, addr msgFoundItem1
+    INVOKE printText, addr msgFoundItem2
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi] 
@@ -2127,7 +2128,7 @@ foundItem proc
     cmp al, 'n'
     jg checkY 
     
-    print addr msgFoundItem3
+    INVOKE printText, addr msgFoundItem3
     
     INVOKE changeChemfuel, 2
 ;    mov eax, [chemfuel]
@@ -2140,11 +2141,11 @@ checkY:
     cmp al, 'Y'
     je foundNothing
     
-    print addr msgFoundItem5
+    INVOKE printText, addr msgFoundItem5
     ret
       
 foundNothing:
-    print addr msgFoundItem4
+    INVOKE printText, addr msgFoundItem4
     ret  
 
 foundItem endp
@@ -2159,12 +2160,12 @@ blankEvent proc
 
 isAllowed:
     mov byte ptr [esi+10], 0  
-    print addr msgBlankEvent1
-    print addr msgBlankEvent2
+    INVOKE printText, addr msgBlankEvent1
+    INVOKE printText, addr msgBlankEvent2
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi] 
@@ -2178,7 +2179,7 @@ isAllowed:
     jmp choice1None
 
 choice1Y:
-    print addr msgBlankEvent3
+    INVOKE printText, addr msgBlankEvent3
 
     INVOKE changeChemfuel, 2
 ;    mov eax, [chemfuel]
@@ -2200,15 +2201,15 @@ medbayGlass proc
     ret
     
 isAllowed:
-    print addr msgMedbayGlass1
-    print addr msgMedbayGlass2
-    print addr msgMedbayGlass3
-    print addr msgMedbayGlass4
-    print addr msgMedbayGlass5
+    INVOKE printText, addr msgMedbayGlass1
+    INVOKE printText, addr msgMedbayGlass2
+    INVOKE printText, addr msgMedbayGlass3
+    INVOKE printText, addr msgMedbayGlass4
+    INVOKE printText, addr msgMedbayGlass5
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     mov esi, offset buffer
     movzx eax, byte ptr [esi] 
@@ -2232,7 +2233,7 @@ choice1Y:
     jmp showMsg2  ;                   jmp         cmp eax, 1
    
 showMsg1:
-    print addr msgMedbayGlass6
+    INVOKE printText, addr msgMedbayGlass6
     
 
     mov edi, offset buffer
@@ -2246,7 +2247,7 @@ showMsg1:
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     
     invoke GetTickCount
@@ -2262,7 +2263,7 @@ showMsg1:
     
     
 showMsg2:
-    print addr msgMedbayGlass7
+    INVOKE printText, addr msgMedbayGlass7
     
 
     mov edi, offset buffer
@@ -2276,7 +2277,7 @@ showMsg2:
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     
     invoke GetTickCount
@@ -2291,9 +2292,9 @@ showMsg2:
     jmp doSuccess
     
 doSuccess:
-    print addr msgMedbayGlass8
-    print addr msgMedbayGlass9
-    print addr msgMedbayGlass10
+    INVOKE printText, addr msgMedbayGlass8
+    INVOKE printText, addr msgMedbayGlass9
+    INVOKE printText, addr msgMedbayGlass10
 
     INVOKE changeChemfuel, 2
  
@@ -2312,10 +2313,10 @@ doSuccess:
     ret
     
 doFailure:  
-    print addr msgMedbayGlass11
-    print addr msgMedbayGlass12
-    print addr msgMedbayGlass13
-    print addr msgMedbayGlass14
+    INVOKE printText, addr msgMedbayGlass11
+    INVOKE printText, addr msgMedbayGlass12
+    INVOKE printText, addr msgMedbayGlass13
+    INVOKE printText, addr msgMedbayGlass14
     
     mov eax, [player.hp]
     sub eax, 1
@@ -2323,89 +2324,89 @@ doFailure:
     ret
   
 choice1N:
-    print addr msgMedbayGlass15
-    print addr msgMedbayGlass16
-    print addr msgMedbayGlass17
+    INVOKE printText, addr msgMedbayGlass15
+    INVOKE printText, addr msgMedbayGlass16
+    INVOKE printText, addr msgMedbayGlass17
     ret
          
 choice1None:
-    print addr msgMedbayGlass18
-    print addr msgMedbayGlass19
-    print addr msgMedbayGlass20
-    print addr msgMedbayGlass21
-    print addr msgMedbayGlass22
+    INVOKE printText, addr msgMedbayGlass18
+    INVOKE printText, addr msgMedbayGlass19
+    INVOKE printText, addr msgMedbayGlass20
+    INVOKE printText, addr msgMedbayGlass21
+    INVOKE printText, addr msgMedbayGlass22
     ret  
     
 medbayGlass endp
 
 ;Event help
 help proc
-    print addr msgHelp
-    print addr msgHelp2
-    print addr msgHelp3
-    print addr msgHelp4
-    print addr msgHelp5
-    print addr msgHelp6
-    print addr msgHelp7
-    print addr msgHelp8
-    print addr msgHelp9
-    print addr msgHelp10
-    print addr msgHelp11
-    print addr msgHelp12
-    print addr msgHelp13
-    print addr msgHelp14
-    print addr msgHelp15
-    print addr msgHelp16
-    print addr msgHelp17
-    print addr msgHelp18
-    print addr msgHelp19
-    print addr msgHelp20
-    print addr msgHelp21
-    print addr msgHelp22
-    print addr msgHelp23
-    print addr msgHelp24
-    print addr msgHelp25
-    print addr msgHelp26
-    print addr msgHelp27
-    print addr msgHelp28
-    print addr msgHelp29
-    print addr msgHelp30
-    print addr msgHelp31
-    print addr msgHelp32
-    print addr msgHelp33
-    print addr msgHelp34
-    print addr msgTypeAnything
+    INVOKE printText, addr msgHelp
+    INVOKE printText, addr msgHelp2
+    INVOKE printText, addr msgHelp3
+    INVOKE printText, addr msgHelp4
+    INVOKE printText, addr msgHelp5
+    INVOKE printText, addr msgHelp6
+    INVOKE printText, addr msgHelp7
+    INVOKE printText, addr msgHelp8
+    INVOKE printText, addr msgHelp9
+    INVOKE printText, addr msgHelp10
+    INVOKE printText, addr msgHelp11
+    INVOKE printText, addr msgHelp12
+    INVOKE printText, addr msgHelp13
+    INVOKE printText, addr msgHelp14
+    INVOKE printText, addr msgHelp15
+    INVOKE printText, addr msgHelp16
+    INVOKE printText, addr msgHelp17
+    INVOKE printText, addr msgHelp18
+    INVOKE printText, addr msgHelp19
+    INVOKE printText, addr msgHelp20
+    INVOKE printText, addr msgHelp21
+    INVOKE printText, addr msgHelp22
+    INVOKE printText, addr msgHelp23
+    INVOKE printText, addr msgHelp24
+    INVOKE printText, addr msgHelp25
+    INVOKE printText, addr msgHelp26
+    INVOKE printText, addr msgHelp27
+    INVOKE printText, addr msgHelp28
+    INVOKE printText, addr msgHelp29
+    INVOKE printText, addr msgHelp30
+    INVOKE printText, addr msgHelp31
+    INVOKE printText, addr msgHelp32
+    INVOKE printText, addr msgHelp33
+    INVOKE printText, addr msgHelp34
+    INVOKE printText, addr msgTypeAnything
     invoke crt__getch
     ret
 help endp
 
 ;Event map
 map proc
-    print addr msgMap
-    print addr msgMap2
-    print addr msgMap3
-    print addr msgMap4
-    print addr msgMap5
-    print addr msgMap6
-    print addr msgMap7
-    print addr msgMap8
-    print addr msgMap9
-    print addr msgMap10
-    print addr msgMap11
-    print addr msgMap12
-    print addr msgMap13
-    print addr msgMap14
-    print addr msgMap15
-    print addr msgMap16
-    print addr msgMap17
-    print addr msgMap18
-    print addr msgMap19
-    print addr msgMap20
-    print addr msgMap21
-    print addr msgMap22
-    print addr msgMap23
-    print addr msgMap24
-    print addr msgTypeAnything
+    INVOKE printText, addr msgMap
+    INVOKE printText, addr msgMap2
+    INVOKE printText, addr msgMap3
+    INVOKE printText, addr msgMap4
+    INVOKE printText, addr msgMap5
+    INVOKE printText, addr msgMap6
+    INVOKE printText, addr msgMap7
+    INVOKE printText, addr msgMap8
+    INVOKE printText, addr msgMap9
+    INVOKE printText, addr msgMap10
+    INVOKE printText, addr msgMap11
+    INVOKE printText, addr msgMap12
+    INVOKE printText, addr msgMap13
+    INVOKE printText, addr msgMap14
+    INVOKE printText, addr msgMap15
+    INVOKE printText, addr msgMap16
+    INVOKE printText, addr msgMap17
+    INVOKE printText, addr msgMap18
+    INVOKE printText, addr msgMap19
+    INVOKE printText, addr msgMap20
+    INVOKE printText, addr msgMap21
+    INVOKE printText, addr msgMap22
+    INVOKE printText, addr msgMap23
+    INVOKE printText, addr msgMap24
+    INVOKE printText, addr msgTypeAnything
     invoke crt__getch
     ret
 map endp
@@ -2413,24 +2414,24 @@ map endp
 
 ;Event openingScene
 openingScene proc
-    print addr msgOpeningScene
-    print addr msgOpeningScene2
-    print addr msgOpeningScene3
-    print addr msgOpeningScene4
-    print addr msgOpeningScene5
-    print addr msgOpeningScene6
-    print addr msgOpeningScene7
-    print addr msgOpeningScene8
-    print addr msgOpeningScene9
-    print addr msgOpeningScene10
-    print addr msgOpeningScene11
-    print addr msgOpeningScene12
-    print addr msgOpeningScene13
-    print addr msgOpeningScene14
-    print addr msgOpeningScene15
-    print addr msgOpeningScene16
-    print addr msgOpeningScene17
-    print addr msgTypeAnything
+    INVOKE printText, addr msgOpeningScene
+    INVOKE printText, addr msgOpeningScene2
+    INVOKE printText, addr msgOpeningScene3
+    INVOKE printText, addr msgOpeningScene4
+    INVOKE printText, addr msgOpeningScene5
+    INVOKE printText, addr msgOpeningScene6
+    INVOKE printText, addr msgOpeningScene7
+    INVOKE printText, addr msgOpeningScene8
+    INVOKE printText, addr msgOpeningScene9
+    INVOKE printText, addr msgOpeningScene10
+    INVOKE printText, addr msgOpeningScene11
+    INVOKE printText, addr msgOpeningScene12
+    INVOKE printText, addr msgOpeningScene13
+    INVOKE printText, addr msgOpeningScene14
+    INVOKE printText, addr msgOpeningScene15
+    INVOKE printText, addr msgOpeningScene16
+    INVOKE printText, addr msgOpeningScene17
+    INVOKE printText, addr msgTypeAnything
     invoke crt__getch
     ret
 openingScene endp
@@ -2438,88 +2439,88 @@ openingScene endp
 
 ;Event karaoke to play on your nerves
 karaokeProc proc
-    print addr msgKaraoke 
-    print addr msgKaraoke1 
+    INVOKE printText, addr msgKaraoke 
+    INVOKE printText, addr msgKaraoke1 
     invoke Sleep, 2000
-    print addr msgKaraoke2
+    INVOKE printText, addr msgKaraoke2
     invoke Sleep, 2000
     
-    print addr msgKaraoke3
+    INVOKE printText, addr msgKaraoke3
     invoke Sleep, 4000
-    print addr msgKaraoke4
+    INVOKE printText, addr msgKaraoke4
     invoke Sleep, 3000
-    print addr msgKaraoke4
+    INVOKE printText, addr msgKaraoke4
     invoke Sleep, 3000  
       
-    print addr msgKaraoke5
+    INVOKE printText, addr msgKaraoke5
     invoke Sleep, 4000
-    print addr msgKaraoke6
+    INVOKE printText, addr msgKaraoke6
     invoke Sleep, 3000
-    print addr msgKaraoke6
+    INVOKE printText, addr msgKaraoke6
     invoke Sleep, 3000  
 
-    print addr msgKaraoke7
+    INVOKE printText, addr msgKaraoke7
     invoke Sleep, 4000
-    print addr msgKaraoke8
+    INVOKE printText, addr msgKaraoke8
     invoke Sleep, 3000
-    print addr msgKaraoke8
+    INVOKE printText, addr msgKaraoke8
     invoke Sleep, 3000  
     
-    print addr msgKaraoke9
+    INVOKE printText, addr msgKaraoke9
     invoke Sleep, 4000
-    print addr msgKaraoke10
+    INVOKE printText, addr msgKaraoke10
     invoke Sleep, 3000
-    print addr msgKaraoke10
+    INVOKE printText, addr msgKaraoke10
     invoke Sleep, 3000 
 
-    print addr msgKaraoke11
+    INVOKE printText, addr msgKaraoke11
     invoke Sleep, 4000
-    print addr msgKaraoke12
+    INVOKE printText, addr msgKaraoke12
     invoke Sleep, 3000
-    print addr msgKaraoke12
+    INVOKE printText, addr msgKaraoke12
     invoke Sleep, 3000 
     
-    print addr msgKaraoke13
+    INVOKE printText, addr msgKaraoke13
     invoke Sleep, 4000
-    print addr msgKaraoke14
+    INVOKE printText, addr msgKaraoke14
     invoke Sleep, 3000
-    print addr msgKaraoke14
+    INVOKE printText, addr msgKaraoke14
     invoke Sleep, 3000 
 
-    print addr msgKaraoke15
+    INVOKE printText, addr msgKaraoke15
     invoke Sleep, 4000
-    print addr msgKaraoke16
+    INVOKE printText, addr msgKaraoke16
     invoke Sleep, 3000
-    print addr msgKaraoke16
+    INVOKE printText, addr msgKaraoke16
     invoke Sleep, 3000 
     
-    print addr msgKaraoke17
+    INVOKE printText, addr msgKaraoke17
     invoke Sleep, 5000
-    print addr msgKaraoke18
+    INVOKE printText, addr msgKaraoke18
     invoke Sleep, 4000
-    print addr msgKaraoke19
+    INVOKE printText, addr msgKaraoke19
     invoke Sleep, 4000 
-    print addr msgKaraoke20
+    INVOKE printText, addr msgKaraoke20
     invoke Sleep, 4000  
 karaokeProc endp
 
 ;Event openingMenu
 openingMenu proc
-    print addr msgOpeningMenu
-    print addr msgOpeningMenu2
-    print addr msgOpeningMenu3
-    print addr msgOpeningMenu4
-    print addr msgOpeningMenu5
-    print addr msgOpeningMenu6
-    print addr msgOpeningMenu7
-    print addr msgOpeningMenu8
-    print addr msgOpeningMenu9
-    print addr msgOpeningMenu10
-    print addr msgOpeningMenu11
-    print addr msgOpeningMenu12
-    print addr msgOpeningMenu13
-    print addr msgOpeningMenu14
-    print addr msgOpeningMenu15
+    INVOKE printText, addr msgOpeningMenu
+    INVOKE printText, addr msgOpeningMenu2
+    INVOKE printText, addr msgOpeningMenu3
+    INVOKE printText, addr msgOpeningMenu4
+    INVOKE printText, addr msgOpeningMenu5
+    INVOKE printText, addr msgOpeningMenu6
+    INVOKE printText, addr msgOpeningMenu7
+    INVOKE printText, addr msgOpeningMenu8
+    INVOKE printText, addr msgOpeningMenu9
+    INVOKE printText, addr msgOpeningMenu10
+    INVOKE printText, addr msgOpeningMenu11
+    INVOKE printText, addr msgOpeningMenu12
+    INVOKE printText, addr msgOpeningMenu13
+    INVOKE printText, addr msgOpeningMenu14
+    INVOKE printText, addr msgOpeningMenu15
 
     
     mov edi, offset buffer
@@ -2529,7 +2530,7 @@ openingMenu proc
     
     mov edx, offset buffer
     mov ecx, sizeof buffer
-    invoke StdIn, edx, ecx
+    INVOKE userInputC, edx, ecx
     
     invoke StripLF, addr buffer
     
@@ -2581,28 +2582,28 @@ openingMenu endp
 
 ;Event winningScreen
 winningScreen proc
-    print addr msgWinningScreen
-    print addr msgWinningScreen2
-    print addr msgWinningScreen3
-    print addr msgWinningScreen4
-    print addr msgWinningScreen5
-    print addr msgWinningScreen6
-    print addr msgWinningScreen7
+    INVOKE printText, addr msgWinningScreen
+    INVOKE printText, addr msgWinningScreen2
+    INVOKE printText, addr msgWinningScreen3
+    INVOKE printText, addr msgWinningScreen4
+    INVOKE printText, addr msgWinningScreen5
+    INVOKE printText, addr msgWinningScreen6
+    INVOKE printText, addr msgWinningScreen7
     invoke crt__getch
-    print addr msgWinningScreen8
+    INVOKE printText, addr msgWinningScreen8
     invoke crt__getch
-    print addr msgWinningScreen9
+    INVOKE printText, addr msgWinningScreen9
     invoke crt__getch
-    print addr msgWinningScreen10
+    INVOKE printText, addr msgWinningScreen10
     invoke crt__getch
-    print addr msgWinningScreen11
+    INVOKE printText, addr msgWinningScreen11
     invoke crt__getch
-    print addr msgWinningScreen12
-    print addr msgWinningScreen13
-    print addr msgWinningScreen14
-    print addr msgWinningScreen15
-    print addr msgWinningScreen16
-    print addr msgWinningScreen17
+    INVOKE printText, addr msgWinningScreen12
+    INVOKE printText, addr msgWinningScreen13
+    INVOKE printText, addr msgWinningScreen14
+    INVOKE printText, addr msgWinningScreen15
+    INVOKE printText, addr msgWinningScreen16
+    INVOKE printText, addr msgWinningScreen17
     ret
 
     
@@ -2611,20 +2612,20 @@ winningScreen endp
 ;Event gameoverScreen
 gameoverScreen proc
     invoke Sleep, 2500
-    print addr msgGameoverScreen
+    INVOKE printText, addr msgGameoverScreen
     invoke Sleep, 2500
-    print addr msgGameoverScreen2
+    INVOKE printText, addr msgGameoverScreen2
     invoke Sleep, 2500
-    print addr msgGameoverScreen3
+    INVOKE printText, addr msgGameoverScreen3
     invoke Sleep, 2500
-    print addr msgGameoverScreen4
+    INVOKE printText, addr msgGameoverScreen4
     invoke Sleep, 2500
-    print addr msgGameoverScreen5
-    print addr msgGameoverScreen6
-    print addr msgGameoverScreen7
-    print addr msgGameoverScreen8
-    print addr msgGameoverScreen9
-    print addr msgGameoverScreen10
+    INVOKE printText, addr msgGameoverScreen5
+    INVOKE printText, addr msgGameoverScreen6
+    INVOKE printText, addr msgGameoverScreen7
+    INVOKE printText, addr msgGameoverScreen8
+    INVOKE printText, addr msgGameoverScreen9
+    INVOKE printText, addr msgGameoverScreen10
     ret
 
     

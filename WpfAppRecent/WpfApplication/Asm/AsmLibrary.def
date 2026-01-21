@@ -7,3 +7,4 @@ printText
 updateInputBuffer
 StartGameLoop 
 registerCallbacks
+main

@@ -4,6 +4,7 @@ include player.inc
 include rooms.inc
 include utils.inc
 include events.inc
+include bridgeProcedures.inc
 
 include mainLoop.inc
 
@@ -59,9 +60,9 @@ NotWonYet:
 	mov eax, player.water
 	cmp eax, 0
 	jge NoWaterSuffer ; If water level is ok, dont take hp from player
-	print addr mainLoop1
+	INVOKE printText, addr mainLoop1
 	INVOKE changeHP, player.water ; I think that taking that muhc hp when total is 5 is a bit deadly
-	print addr inputPrompts6
+	INVOKE printText, addr inputPrompts6
 	INVOKE crt__getch
 	
 NoWaterSuffer:
@@ -72,9 +73,9 @@ NoWaterSuffer:
 	jg NoWaterWarning ; if player.water > 3, dont print warning message
 	;cmp eax, 0
 	;jl NoWaterWarning
-	print addr inputPrompts6
+	INVOKE printText, addr inputPrompts6
 	INVOKE crt__getch
-	print addr mainLoop2
+	INVOKE printText, addr mainLoop2
 
 NoWaterWarning:
 
@@ -83,7 +84,7 @@ NoWaterWarning:
 	cmp eax, 0
 	jg PlayerAlive ; If player.hp > 0, continue the game, dont show the ending screen
 	INVOKE gameoverScreen
-	print addr inputPrompts6
+	INVOKE printText, addr inputPrompts6
 	INVOKE crt__getch
 	jmp EndGame
 

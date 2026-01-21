@@ -97,7 +97,7 @@ getUserYNinput PROC USES esi eax, destBuf : PTR BYTE, message : PTR BYTE
 	
 	; Print the message and read all user input from the stdin.
 	INVOKE printText, message
-	INVOKE userInput, addr readBytes, 32
+	INVOKE userInputC, addr readBytes, 32
 
 	; Move the first character from the read stdin into the destination buffer
 	mov esi, destBuf 
@@ -161,7 +161,7 @@ getUserInputString PROC USES eax, destBuffer : PTR BYTE, bufferLength : DWORD, m
 
 	; Print the message and read the console input
 	INVOKE printText, message
-	INVOKE userInput, destBuffer, bufferLength
+	INVOKE userInputC, destBuffer, bufferLength
 
 	; Remove the 13, 10 from the end of the string 
 	; 

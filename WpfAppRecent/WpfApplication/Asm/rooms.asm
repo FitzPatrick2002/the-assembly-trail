@@ -4,6 +4,7 @@ include rooms.inc
 include player.inc
 include utils.inc
 include events.inc
+include bridgeProcedures.inc
 
 ; # -------------------------- DATA -------------------------- # ;
 
@@ -134,13 +135,13 @@ changeRoom PROC USES esi edx, room : PTR Room
 	LOCAL userInput[16] : BYTE ; User input, read from the console. In C++ prototype its char c
 	LOCAL roomOffset : DWORD   ; Offset in memomry expressed in bytes. Its equal: roomChsoen * SIZEOF Room
 	
-	print addr changeRoom1
+	INVOKE printText, addr changeRoom1
 	
 	; do - loop start
 
 RoomLoop:
 
-	print addr changeRoom2
+	INVOKE printText, addr changeRoom2
 	INVOKE getUserYNinput, addr userInput, addr inputPrompts5
 
 	;INVOKE StdIn, addr userInput, 16 ; Read the letter that we are interested in and potential 13, 10, 0 sequence. Read 16 bytes so as to avoid some bytes dangling in the buffer
@@ -172,9 +173,9 @@ NotLowercase:
 NotUpperCase:
 
 	; Print the info about the user input
-	print addr changeRoom3
-	print addr userInput 
-	print addr changeRoom4
+	INVOKE printText, addr changeRoom3
+	INVOKE printText, addr userInput 
+	INVOKE printText, addr changeRoom4
 
 	; Check the do while{} conditions 
 
@@ -223,12 +224,12 @@ changeRoom ENDP
 loadRoom PROC USES eax ecx esi edx, room : PTR Room
 	LOCAL roomIdxChar[12] : BYTE ; Stores the room index as ASCII character	
 
-	print addr loadRoom1
+	INVOKE printText, addr loadRoom1
 	mov esi, room								; Loads the string addrs of the info for this room
 	mov esi, [esi].Room.info
-	print esi									; References the string which contains info for this room
-	print addr loadRoom2
-	print addr loadRoom3
+	INVOKE printText, esi									; References the string which contains info for this room
+	INVOKE printText, addr loadRoom2
+	INVOKE printText, addr loadRoom3
 
 	; for (int8_t i = 0; i < MAX_ROOMS; i++)
 	xor ecx, ecx
@@ -258,8 +259,8 @@ Iterate:
 	;INVOKE dwtoa, edx, addr roomIdxChar
 	
 	; Print the room idx in hex format and the | sign
-	print addr roomIdxChar
-	print addr loadRoom4
+	INVOKE printText, addr roomIdxChar
+	INVOKE printText, addr loadRoom4
 	pop esi
 	pop ecx
 
@@ -272,7 +273,7 @@ Iterate:
 EndIteration:
 	
 	; Print ending bar
-	print addr loadRoom5
+	INVOKE printText, addr loadRoom5
 	ret
 loadRoom ENDP
 
@@ -329,7 +330,7 @@ testChangeRoom PROC
 	LOCAL currentRoomStr[4] : BYTE
 
 	INVOKE dwtoa, player.roomNumber, addr currentRoomStr
-	print addr currentRoomStr
+	INVOKE printText, addr currentRoomStr
 
 	; Choose room 
 	mov eax, player.roomNumber
@@ -342,7 +343,7 @@ testChangeRoom PROC
 
 	; Print the results
 	INVOKE dwtoa, player.roomNumber, addr currentRoomStr
-	print addr currentRoomStr
+	INVOKE printText, addr currentRoomStr
 
 	mov eax, player.roomNumber
 	mov ebx, SIZEOF Room
@@ -351,7 +352,7 @@ testChangeRoom PROC
 
 	INVOKE changeRoom, eax
 	INVOKE dwtoa, player.roomNumber, addr currentRoomStr
-	print addr currentRoomStr
+	INVOKE printText, addr currentRoomStr
 
 	;INVOKE checkIfInArray, 10, addr dummyString, 7
 
@@ -361,7 +362,7 @@ testChangeRoom PROC
 	;INVOKE testPlayer
 
 	mov esi, offset player
-	print addr player.roomHidingLocations
+	INVOKE printText, addr player.roomHidingLocations
 
 testChangeRoom ENDP
 
