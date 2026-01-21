@@ -27,6 +27,15 @@
     <None Include="utils.inc">
       <Filter>Pliki nagłówkowe</Filter>
     </None>
+    <None Include="events.inc">
+      <Filter>Pliki nagłówkowe</Filter>
+    </None>
+    <None Include="mainLoop.inc">
+      <Filter>Pliki nagłówkowe</Filter>
+    </None>
+    <None Include="rooms.inc">
+      <Filter>Pliki nagłówkowe</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="AsmLibrary.asm">
@@ -39,6 +48,18 @@
       <Filter>Pliki źródłowe</Filter>
     </MASM>
     <MASM Include="utils.asm">
+      <Filter>Pliki źródłowe</Filter>
+    </MASM>
+    <MASM Include="events.asm">
+      <Filter>Pliki źródłowe</Filter>
+    </MASM>
+    <MASM Include="main.asm">
+      <Filter>Pliki źródłowe</Filter>
+    </MASM>
+    <MASM Include="mainLoop.asm">
+      <Filter>Pliki źródłowe</Filter>
+    </MASM>
+    <MASM Include="rooms.asm">
       <Filter>Pliki źródłowe</Filter>
     </MASM>
   </ItemGroup>

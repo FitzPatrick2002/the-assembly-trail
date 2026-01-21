@@ -4,7 +4,7 @@
 option casemap : none
 
 include bridgeProcedures.inc
-include player.inc
+include 
 
 .const
 
@@ -21,17 +21,19 @@ StartGameLoop PROC
 
 StartLoop: 
 
+	
+
 	; Print the input to the textbox
-	INVOKE printText, OFFSET myMessage
+	;INVOKE printText, OFFSET myMessage
 
 	; Wait for user input
 	;call waitCallback
 
-	INVOKE userInput, ADDR someData, 5
+	;INVOKE userInput, ADDR someData, 5
 
-	INVOKE printText, ADDR someData
+	;INVOKE printText, ADDR someData
 
-	INVOKE printPlayerStatus
+	;INVOKE printPlayerStatus
 
 	;call printText
 	
