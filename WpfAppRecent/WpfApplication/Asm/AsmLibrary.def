@@ -5,3 +5,5 @@ EXPORTS
 
 printText
 updateInputBuffer
+StartGameLoop 
+registerCallbacks

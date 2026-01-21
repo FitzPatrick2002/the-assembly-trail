@@ -73,7 +73,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="563,0,0,170"
-                Click="Confirm_Button_Click"
+                Click="Continue_Main_Loop"
                 Panel.ZIndex="0"/>
         <!-- NO Button -->
         <Button x:Name="NoButton"
@@ -85,7 +85,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="559,0,0,138"
-                Click="DummyFunction"
+                Click="RunMainLoop"
                 Panel.ZIndex="0"/>
         <Image Margin="115,339,566,64" Source="pack://application:,,,/Image/Button-Blue-On.png" Stretch="Fill"/>
         <Image Margin="563,247,123,124" Source="pack://application:,,,/Image/Button-Red-Off.png" Stretch="Fill"/>

@@ -5,7 +5,27 @@ include globalBuffer.inc
 
 	inputBuffer BYTE 32 dup(0)
 
+	uiLogCallback DWORD 0
+
+	waitCallback DWORD 0
+
 .code
+
+; @brief Stores callbacks in global variables.
+; @param printCallback Will be used in #printText procedureto (it prints the inputBuffer string to the C# TextBox).
+; @param waitFunc Blocks the execution of program unitl semaphor is released by the C# side.
+registerCallbacks PROC printCallback : DWORD, waitFunc : DWORD
+
+	; Copy the printing callback
+	mov eax, printCallback
+	mov uiLogCallback, eax
+
+	; Copy the wait callback
+	mov eax, waitFunc
+	mov waitCallback, eax
+
+	ret
+registerCallbacks ENDP
 
 ; @brief Reads a string stored in the provided pointer
 ;		 into the #inputBuffer location. 
