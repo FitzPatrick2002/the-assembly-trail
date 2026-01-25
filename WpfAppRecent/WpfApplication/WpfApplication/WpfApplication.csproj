@@ -12,23 +12,37 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Image\Button-Blue-Off.png" />
     <None Remove="Image\Button-Blue-On.png" />
     <None Remove="Image\Button-Green-Off.png" />
     <None Remove="Image\Button-Green-On.png" />
+    <None Remove="Image\button-panel-with-hole.png" />
+    <None Remove="Image\button-panel.png" />
     <None Remove="Image\Button-Red-Off.png" />
     <None Remove="Image\Button-Red-On.png" />
+    <None Remove="Image\panel-bg-with-holes-2.png" />
+    <None Remove="Image\panel-bg-with-holes.png" />
     <None Remove="Image\panel-bg.png" />
     <None Remove="Image\seal.png" />
+    <None Remove="Image\коротше-блакитна-планочка.png" />
+    <None Remove="panel-bg-with-holes.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Image\Button-Blue-Off.png" />
     <Resource Include="Image\Button-Blue-On.png" />
     <Resource Include="Image\Button-Green-Off.png" />
     <Resource Include="Image\Button-Green-On.png" />
+    <Resource Include="Image\button-panel-with-hole.png" />
+    <Resource Include="Image\button-panel.png" />
     <Resource Include="Image\Button-Red-Off.png" />
     <Resource Include="Image\Button-Red-On.png" />
+    <Resource Include="Image\panel-bg-with-holes-2.png" />
+    <Resource Include="Image\panel-bg-with-holes.png" />
     <Resource Include="Image\panel-bg.png" />
     <Resource Include="Image\seal.png" />
+    <Resource Include="Image\коротше-блакитна-планочка.png" />
+    <Resource Include="panel-bg-with-holes.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -111,6 +111,7 @@
     <Content Include="ASCII_map.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="panel-bg-with-holes.png" />
     <Resource Include="Button-Red-Off.png" />
     <Resource Include="Button-Green-Off.png" />
   </ItemGroup>
