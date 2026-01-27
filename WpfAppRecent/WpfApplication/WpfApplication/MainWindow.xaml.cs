@@ -1,3 +1,6 @@
+using System;
+        using System.Runtime.InteropServices;
+using System.Security.RightsManagement;
         using System.Text;
         using System.Windows;
         using System.Windows.Controls;
@@ -8,8 +11,6 @@
         using System.Windows.Media.Imaging;
         using System.Windows.Navigation;
         using System.Windows.Shapes;
-        using System.Runtime.InteropServices;
-using System.Security.RightsManagement;
 
 namespace Test1
 {
@@ -200,6 +201,10 @@ namespace Test1
          */
         public void RunBackendLoop(MainWindow window)
         {
+            // -------------- DEBUG -------------- //
+            CppProxy cppProxy = new CppProxy();
+            int outcome = cppProxy.rollDiceWrapperWrapper();
+            Console.WriteLine(outcome);
 
             Task.Run(() =>
             {
@@ -257,6 +262,43 @@ namespace Test1
         }
 
         */
+    }
+
+    /**
+     * Access the C++ functions through this proxy.
+     * 
+     */
+    public unsafe class CppProxy
+    {
+        [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UInt32 scrambleSeed(int seed);
+
+        [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int rollDice(int seed, int seed_two);
+
+        [DllImport("CppDll.dll", CallingConvention=CallingConvention.Cdecl)]
+        public static extern int rollDiceWrapper();
+
+        /*
+         * Wrapper for calling the rollDiceWrapper() C++ function.
+         * Refer to the docs in utils.h regarding what it does. 
+         * 
+         */
+        public int rollDiceWrapperWrapper()
+        {
+            return rollDiceWrapper();
+        }
+
+        public int runRollDice(int seed, int seed_two)
+        {
+            return rollDice(seed, seed_two);
+        }
+
+        public UInt32 runScrambleSeed(int seed)
+        {
+            return scrambleSeed(seed);
+        }
+
     }
 
 

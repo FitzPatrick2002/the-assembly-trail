@@ -154,7 +154,7 @@ namespace utils {
 	int rollDiceWrapper()
 	{
 		int randomSeed = rand() % 2026 + (INT_MAX - 2026);
-		int randomSeedTwo = rand() % 2026 + (INT_MAX - 2026);
+		int randomSeedTwo = rand() % 2026 + (INT_MAX - 2026); 
 
 		return -rollDice(randomSeed, randomSeedTwo);
 	}

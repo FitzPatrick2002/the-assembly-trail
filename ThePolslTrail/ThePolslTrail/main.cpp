@@ -38,7 +38,7 @@ int main() {
 
 	int r_seed = -30000;
 	for (int i = 0; i < 10; i++) {
-		std::cout << utils::rollDice(r_seed, --r_seed) << "\n";
+		std::cout << utils::rollDice(r_seed, --r_seed) << "\n"; 
 			//std::cout << utils::rollDiceWrapper() << "\n";
 	}
 
