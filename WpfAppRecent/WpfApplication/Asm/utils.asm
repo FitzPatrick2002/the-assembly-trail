@@ -24,6 +24,14 @@ include bridgeProcedures.inc
 	inputPrompts5 BYTE "Room: ", 0
 	inputPrompts6 BYTE "Any: ", 0
 
+	; Static data used by rollDice procedure.
+	diceSides DWORD 2, 4, 3, 1, 
+					2, 0, 3, 5,
+					4, 0, 1, 5,
+					1, 0, 4, 5,
+					3, 0, 2, 5,
+					1, 3, 4, 2
+
 ; # -------------------------- CODE -------------------------- # ;
 
 .code 
@@ -217,7 +225,7 @@ scrambleSeed ENDP
 
 ; # -------------------------- rollDice Procedure -------------------------- # ;
 
-rollDice PROC seed : DWORD, seedTwo : DWORD USES ebx, edx
+rollDice PROC USES ebx edx, seed : DWORD, seedTwo : DWORD
 	LOCAL sideIndex : DWORD   ; Stores the index of the cube side
 	LOCAL complicator : DWORD ; Complicator factor which adds some randomness
 

@@ -15,6 +15,10 @@ EXTERNDEF inputPrompts4 : BYTE
 EXTERNDEF inputPrompts5 : BYTE
 EXTERNDEF inputPrompts6 : BYTE
 
+; # --------------- Static Data --------------- # ;
+
+EXTERNDEF diceSides : DWORD ; Used by rollDice procedure.
+
 ; --------------- Utility Procedures --------------- # ;
 
 ; @brief Compares elements of an array of DWORDs.
