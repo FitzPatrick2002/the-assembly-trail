@@ -7,4 +7,6 @@ printText
 updateInputBuffer
 StartGameLoop 
 registerCallbacks
+rollDice
+rollDiceWrapper
 main

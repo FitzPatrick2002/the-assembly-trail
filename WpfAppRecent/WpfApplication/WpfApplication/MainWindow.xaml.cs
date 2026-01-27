@@ -45,9 +45,41 @@ namespace Test1
         */
         bool game_run = false;
         bool is_benchmark = false;
-        private void DummyFunction(object sender, RoutedEventArgs e)
+
+        private void benchmark(ref double masm, ref double cpp, int number_of_rolls)
         {
-            // Do nothing for now
+            double average_masm = 0, average_cpp = 0;
+            Random rnd = new Random();
+            int seed_one = rnd.Next(2026, int.MaxValue - 2026);
+            int seed_two = rnd.Next(2026, int.MaxValue - 2026);
+            
+            int result_masm = AsmProxy.rollDice(seed_one, seed_two);
+            int result = CppProxy.rollDice(seed_one, seed_two);
+
+            for (int i = 0; i < number_of_rolls; i++)
+            {
+                seed_one = rnd.Next(2026, int.MaxValue - 2026);
+                seed_two = rnd.Next(2026, int.MaxValue - 2026);
+
+                var watch_masm = System.Diagnostics.Stopwatch.StartNew();
+                result_masm = AsmProxy.rollDice(seed_one, seed_two);
+                // the code that you want to measure comes here
+                watch_masm.Stop();
+                var elapsedMs = watch_masm.Elapsed.TotalMilliseconds;
+                average_masm += elapsedMs;
+
+                var watch_cpp = System.Diagnostics.Stopwatch.StartNew();
+                result = CppProxy.rollDice(seed_one, seed_two);
+                // the code that you want to measure comes here
+                watch_cpp.Stop();
+                elapsedMs = watch_cpp.Elapsed.TotalMilliseconds;
+                average_cpp += elapsedMs;
+
+            }
+            average_masm /= number_of_rolls;
+            average_cpp /= number_of_rolls;
+            masm = average_masm;
+            cpp = average_cpp;
         }
 
         //big red button
@@ -64,7 +96,7 @@ namespace Test1
             if (inputText.Equals(""))
                 inputText = "N";
             asmP.updateInputBufferFunc(inputText);
-
+                
             asmP.ReleaseMasmSemaphore();
         }
 
@@ -76,6 +108,30 @@ namespace Test1
 
             if (is_benchmark)
             {
+
+                int number_roll;
+
+                if (int.TryParse(this.InputTextBox.Text, out number_roll))
+                {
+                    if (number_roll < 0 || number_roll > 2147483)
+                    {
+                        this.StoryTextBox.Text += "Please enter a valid number\n";
+                        return;
+                    }
+
+                }
+                else
+                {
+                    this.StoryTextBox.Text += "Please enter a valid number\n";
+                    return;
+                }
+
+                double average_masm = 0, average_cpp = 0;
+                benchmark(ref average_masm,ref average_cpp, number_roll);
+
+
+                this.StoryTextBox.Text += "Average masm: " + average_masm + "\n";
+                this.StoryTextBox.Text += "Average c++: " + average_cpp + "\n";
                 return;
             }
 
@@ -108,8 +164,13 @@ namespace Test1
             is_benchmark = true;
             this.InputTextBox.Clear();
             this.StoryTextBox.Clear();
+            this.StoryTextBox.Text += "Benchmark test\n" +
+                "Comparison of masm and C++ code\n" +
+                "Dice rolling algorithm\n" +
+                "Type in the number of dice you want to roll [1-2147483]: ";
             
         }
+
 
         /*
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -241,6 +302,10 @@ namespace Test1
          */
         [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
         private static extern void main();
+
+        [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
+        public static extern int rollDice(int seed, int seedTwo);
+
 
         /**
          * Creates the callbacks for the main loop and invokes them.
