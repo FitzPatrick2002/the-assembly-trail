@@ -43,26 +43,71 @@ namespace Test1
             asmP.CallAsmUIUpdate(this);
         }
         */
-
+        bool game_run = false;
+        bool is_benchmark = false;
         private void DummyFunction(object sender, RoutedEventArgs e)
         {
             // Do nothing for now
         }
 
-        private void RunMainLoop(object sender, RoutedEventArgs e)
+        //big red button
+        private void Refuse_Main_Loop(object sender, RoutedEventArgs e)
         {
             AsmProxy asmP = new AsmProxy();
-            asmP.RunBackendLoop(this);
-        }
 
-        private void Continue_Main_Loop(object sender, RoutedEventArgs e)
-        {
-            AsmProxy asmP = new AsmProxy();
-            
+            if(is_benchmark)
+            {
+                return;
+            }
+
             string inputText = this.InputTextBox.Text;
+            if (inputText.Equals(""))
+                inputText = "N";
             asmP.updateInputBufferFunc(inputText);
 
             asmP.ReleaseMasmSemaphore();
+        }
+
+
+        //big green button
+        private void Confirm_Main_Loop(object sender, RoutedEventArgs e)
+        {
+            AsmProxy asmP = new AsmProxy();
+
+            if (is_benchmark)
+            {
+                return;
+            }
+
+            if (!game_run)
+            {
+                asmP.RunBackendLoop(this);
+                game_run = true;
+                return;
+            }
+            
+            string inputText = this.InputTextBox.Text;
+            if (inputText.Equals(""))
+                inputText = "Y";
+            asmP.updateInputBufferFunc(inputText);
+
+            asmP.ReleaseMasmSemaphore();
+        }
+
+        private void BenchmarkSwitch(object sender, RoutedEventArgs e)
+        {
+            AsmProxy asmP = new AsmProxy();
+            if(is_benchmark)
+            {
+                this.InputTextBox.Clear();
+                this.StoryTextBox.Clear();
+                game_run = false; //reset game
+                is_benchmark = false;
+                return;
+            }
+            this.InputTextBox.Clear();
+            this.StoryTextBox.Clear();
+            
         }
 
         /*

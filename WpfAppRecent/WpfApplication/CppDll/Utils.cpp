@@ -108,4 +108,3 @@ extern "C" __declspec(dllexport) int rollDiceWrapper()
 
 	return -rollDice(randomSeed, randomSeedTwo);
 }
-
