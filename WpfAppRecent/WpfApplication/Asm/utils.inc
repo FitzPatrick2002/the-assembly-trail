@@ -59,6 +59,23 @@ getUserInputString PROTO destBuffer : PTR BYTE, bufferLength : DWORD, message : 
 ;		 expressed in milliseconds.
 fitTimeframe PROTO startTime : DWORD, seconds : DWORD
 
+; @brief Return the bitwised XOR'ed seed with the bitwise shifted seed.
+; @param Seed Random seed for the dice rolling.
+; @return eax = The scrambled seed for further complications in random dice rolling.
+scrambleSeed PROTO seed : DWORD
+
+; @brief Returns a random number between 1 and 6 from two random seeds.
+;		 Simulates the dice roll.
+; @param seed Random seed.
+; @param seed_two Second random seed.
+; @returns eax = random dice value (0, 1, 2, 3, 4, 5 or 6).
+rollDice PROTO seed : DWORD, seed_two : DWORD
+
+; @brief Returns the random number from range 1 to 6.
+;	     Randomizes two numbers and uses them as seeds for the function rollDice.
+; @returns A number between 1 and 6 via eax register.
+rollDiceWrapper PROTO
+
 ; # -------------------------- CONST -------------------------- # ;
 
 .const 

@@ -8,6 +8,8 @@
 #include "Player.h"
 #include "Events.h"
 
+#include "Utils.h"
+
 // DONE:
 // // 0. Change events -> only function (ok)
 //	  - No array of events (ok)
@@ -33,6 +35,14 @@ bool gameOn = true;
 int main() {
 	//time(0); // Random numbers generation
 	srand(static_cast<unsigned int>(time(nullptr)));
+
+	int r_seed = -30000;
+	for (int i = 0; i < 10; i++) {
+		std::cout << utils::rollDice(r_seed, --r_seed) << "\n";
+			//std::cout << utils::rollDiceWrapper() << "\n";
+	}
+
+
 	openingMenu();
 	// Main loop is continued as long as the gameOn variable is set to true
 	while (gameOn) {

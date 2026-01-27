@@ -12,8 +12,7 @@
     <Viewbox Stretch="Uniform" Width="705" Height="400">
         <Canvas Width="705" Height="400" Background="Black">
 
-            <Image Source="/Image/êîðîòøå-áëàêèòíà-ïëàíî÷êà.png" Canvas.Left="96" Canvas.Top="306" Width="124" Height="63" HorizontalAlignment="Center" VerticalAlignment="Top" IsHitTestVisible="False"/>
-
+            <Image Source="/Image/ãƒ»î‚­îˆ¯ãƒ»ç¡´ç‘•é ¸æµ¯-ãƒ»ç‘™â…¸ãƒ».png" Canvas.Left="96" Canvas.Top="306" Width="124" Height="63" HorizontalAlignment="Center" VerticalAlignment="Top" IsHitTestVisible="False"/>
 
             <ToggleButton x:Name="CoreStatButton"
               Width="95" Height="31"
@@ -63,7 +62,9 @@
             <Button x:Name="YesButton"
         Width="100" Height="48"
         Canvas.Left="485" Canvas.Top="206" 
-        HorizontalAlignment="Left" VerticalAlignment="Center">
+        HorizontalAlignment="Left" VerticalAlignment="Center"
+        Click="Continue_Main_Loop"       
+             >
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="ButtonContent">
@@ -109,10 +110,12 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Button x:Name="NoButton"
+            <Button x:Name="NoButton" 
         Width="102" Height="48"
         Canvas.Left="489" Canvas.Top="233" 
-        HorizontalAlignment="Left" VerticalAlignment="Center">
+        HorizontalAlignment="Left" VerticalAlignment="Center"
+        Click="RunMainLoop"
+        >
                 <Button.Template>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="ButtonContent">

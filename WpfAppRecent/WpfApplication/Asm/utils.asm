@@ -191,4 +191,99 @@ fitTimeframe PROC timeStamp : DWORD, milisecThreshold : DWORD
 	ret
 fitTimeframe ENDP
 
+; # -------------------------- scrambleSeed Procedure -------------------------- # ;
+
+scrambleSeed PROC USES ebx, seed : DWORD
+
+	; Store the seed values
+	mov ebx, seed
+	mov eax, seed
+	
+	shl eax, 3
+	xor eax, ebx ; eax = xor(seed, seed << 3)
+
+	mov ebx, eax ; Save the new seed value
+
+	shr eax, 7 
+	xor eax, ebx 
+
+	mov ebx, eax
+
+	shl eax, 5
+	xor eax, ebx
+
+	ret
+scrambleSeed ENDP
+
+; # -------------------------- rollDice Procedure -------------------------- # ;
+
+rollDice PROC seed : DWORD, seedTwo : DWORD USES ebx, edx
+	LOCAL sideIndex : DWORD   ; Stores the index of the cube side
+	LOCAL complicator : DWORD ; Complicator factor which adds some randomness
+
+	; 1. sideIndex = seed % 6
+	mov eax, seed	   ; Prepare for division
+	xor edx, edx	   ; Zero edx before division
+	mov ebx, 6         ; Divide seed by 6
+	div ebx			   ; divide eax / ebx (seed / 6)
+	mov sideIndex, edx ; Move the remainder to sideIndex
+	
+	; 2. complicator = seed ^ seed_two
+	mov eax, seed        ; Save the seed to eax
+	xor eax, seedTwo     ; eax = eax ^ ebx
+	mov complicator, eax ; complicator = eax
+
+GenerateSide: ; Loop beginning label
+
+	; 3. Loop condition: seed != 0
+	cmp seed, 0     ; Check if seed is zero
+	je FinishedLoop ; If it is then finish the loop
+
+	; 4. complicator = scrambleSeed(complicator)
+	INVOKE scrambleSeed, complicator ; Invoke the procedure
+	mov complicator, eax			 ; Store the result in the complicator variable
+
+	; 5. randomDir = (complicator + seed) & 3
+	mov eax, complicator ; eax = complicator
+	add eax, seed		 ; eax = complicator + seed	     
+	and eax, 3		     ; eax = (complicator + seed) & 3
+
+	; 6. sideIndex = diceSides[sideIndex][randomDir]
+	mov ecx, sideIndex ; Store sideIndex in ecx
+	shl ecx, 4		   ; ecx = sideIndex * 16, (4 * sizeof(DWORD))
+	mov ebx, diceSides[ecx + eax * 4] ; Save the value of the dice side in ebx
+	mov sideIndex, ebx ; Store the side value in sideIndex
+
+	; 7. Adjust the new values of the seed and complicator
+	shr seed, 1        ; Shift right by 1 position
+	shr complicator, 1 ; Shift right by 1 position
+
+	; 8. complicator += seed
+	mov eax, seed	     ; Store the seed in eax, preapre for addition
+	add complicator, eax ; Add seed to complicator and store in complicator variable
+	
+	jmp GenerateSide ; Repeat the loop
+
+FinishedLoop: ; Loop end label
+
+	mov eax, sideIndex ; Store the sideIndex in eax
+	inc eax			   ; Return sideIndex + 1.
+
+	ret
+rollDice ENDP
+
+; # -------------------------- rollDiceWrapper Procedure -------------------------- # ;
+
+rollDiceWrapper PROC
+	
+	; I suppose these should be called once only at the beginning of the program?
+	; invoke GetTickCount ; Reads the number of ticks into the eax register
+    ; invoke nseed, eax
+
+    invoke nrandom, 2026 ; Generates the random number based on the seed in eax
+	add eax, 7FFFFFFFh   
+
+	ret
+rollDiceWrapper ENDP
+
 END

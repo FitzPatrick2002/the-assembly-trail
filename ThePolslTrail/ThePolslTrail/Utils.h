@@ -131,7 +131,9 @@ namespace utils {
 
 		int sideIndex = seed % 6;
 		uint32_t complicator = seed ^ seed_two;
-		while (seed)
+
+		//int previousSeed 
+		while (seed) 
 		{
 			complicator = scrambleSeed(complicator);
 			int randomDir = (complicator + seed) & 3;
