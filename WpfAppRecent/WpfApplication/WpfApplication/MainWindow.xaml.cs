@@ -105,6 +105,7 @@ namespace Test1
                 is_benchmark = false;
                 return;
             }
+            is_benchmark = true;
             this.InputTextBox.Clear();
             this.StoryTextBox.Clear();
             
