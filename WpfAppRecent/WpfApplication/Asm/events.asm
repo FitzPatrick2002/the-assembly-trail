@@ -2555,7 +2555,7 @@ openingMenu proc
     jne exitRoute
     
 
-    jmp karaoke
+    ;jmp karaoke
 startRoute:
     call openingScene
     ret
