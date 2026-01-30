@@ -20,6 +20,8 @@
     <None Remove="Image\button-panel.png" />
     <None Remove="Image\Button-Red-Off.png" />
     <None Remove="Image\Button-Red-On.png" />
+    <None Remove="Image\panel-bg-with-holes-2-alt1.png" />
+    <None Remove="Image\panel-bg-with-holes-2-alt2.png" />
     <None Remove="Image\panel-bg-with-holes-2.png" />
     <None Remove="Image\panel-bg-with-holes.png" />
     <None Remove="Image\panel-bg.png" />
@@ -37,6 +39,8 @@
     <Resource Include="Image\button-panel.png" />
     <Resource Include="Image\Button-Red-Off.png" />
     <Resource Include="Image\Button-Red-On.png" />
+    <Resource Include="Image\panel-bg-with-holes-2-alt1.png" />
+    <Resource Include="Image\panel-bg-with-holes-2-alt2.png" />
     <Resource Include="Image\panel-bg-with-holes-2.png" />
     <Resource Include="Image\panel-bg-with-holes.png" />
     <Resource Include="Image\panel-bg.png" />
