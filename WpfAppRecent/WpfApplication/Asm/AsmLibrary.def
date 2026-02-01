@@ -10,3 +10,8 @@ registerCallbacks
 rollDice
 rollDiceWrapper
 main
+
+setupStable
+nextStep
+jumpStep
+valueFromRange

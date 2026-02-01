@@ -1,14 +1,10 @@
-.486 
+.686
 .model flat, stdcall
+.XMM
 .stack 4096
 option casemap : none
 
-include masm32rt.inc
-include player.inc
-include utils.inc
-include rooms.inc
 include mainLoop.inc
-include events.inc
 
 ExitProcess PROTO, dwExitCode: DWORD
 

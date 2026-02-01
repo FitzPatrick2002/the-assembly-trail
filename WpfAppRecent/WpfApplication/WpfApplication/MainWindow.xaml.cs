@@ -48,28 +48,37 @@ namespace Test1
 
         private void benchmark(ref double masm, ref double cpp, int number_of_rolls)
         {
+            AsmProxy asmProxy = new AsmProxy();
+            CppProxy cppProxy = new CppProxy();
+
             double average_masm = 0, average_cpp = 0;
             Random rnd = new Random();
-            int seed_one = rnd.Next(2026, int.MaxValue - 2026);
-            int seed_two = rnd.Next(2026, int.MaxValue - 2026);
-            
-            int result_masm = AsmProxy.rollDice(seed_one, seed_two);
-            int result = CppProxy.rollDice(seed_one, seed_two);
+            UInt64 seed_one = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
+            UInt64 seed_two = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
+
+
+            asmProxy.runSetupStable(seed_one, seed_two);
+
+            int result_masm = asmProxy.runValueFromRange(-10, 10);
+            int result = cppProxy.runValueFromRangeXorshift(-10, 10);
+
+            // int result_masm = AsmProxy.rollDice(seed_one, seed_two);
+            // int result = CppProxy.rollDice(seed_one, seed_two);
 
             for (int i = 0; i < number_of_rolls; i++)
             {
-                seed_one = rnd.Next(2026, int.MaxValue - 2026);
-                seed_two = rnd.Next(2026, int.MaxValue - 2026);
+                seed_one = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
+                seed_two = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
 
                 var watch_masm = System.Diagnostics.Stopwatch.StartNew();
-                result_masm = AsmProxy.rollDice(seed_one, seed_two);
+                result_masm = asmProxy.runValueFromRange(-10, 10); //AsmProxy.rollDice(seed_one, seed_two);
                 // the code that you want to measure comes here
                 watch_masm.Stop();
                 var elapsedMs = watch_masm.Elapsed.TotalMilliseconds;
                 average_masm += elapsedMs;
 
                 var watch_cpp = System.Diagnostics.Stopwatch.StartNew();
-                result = CppProxy.rollDice(seed_one, seed_two);
+                result = cppProxy.runValueFromRangeXorshift(-10, 10); //CppProxy.rollDice(seed_one, seed_two);
                 // the code that you want to measure comes here
                 watch_cpp.Stop();
                 elapsedMs = watch_cpp.Elapsed.TotalMilliseconds;
@@ -99,7 +108,6 @@ namespace Test1
                 
             asmP.ReleaseMasmSemaphore();
         }
-
 
         //big green button
         private void Confirm_Main_Loop(object sender, RoutedEventArgs e)
@@ -223,6 +231,50 @@ namespace Test1
 
     public unsafe class AsmProxy
     {
+        // # -------------------------------------------------------------- # //
+        // # --------------------- External functions --------------------- # //
+        // # -------------------------------------------------------------- # //
+
+        // # --------------------- Xorshift128+ MASM  --------------------- # //
+
+        [DllImport("Asm.dll")]
+        private static extern void nextStep();
+
+        [DllImport("Asm.dll")]
+        private static extern void jumpStep();
+
+        [DllImport("Asm.dll")]
+        private static extern Int32 valueFromRange(int lower, int higher);
+
+        [DllImport("Asm.dll")]
+        private static extern void setupStable(UInt64 val0, UInt64 val1);
+
+        // # -------------------------------------------------------------- # //
+        // # -------------------------- Wrappers -------------------------- # //
+        // # -------------------------------------------------------------- # //
+
+        // # --------------------- Xorshift128+ MASM  --------------------- # //
+
+        public void runJumpStep()
+        {
+            jumpStep();
+        }
+
+        public void runNextStep()
+        {
+            nextStep();
+        }
+
+        public Int32 runValueFromRange(int lower, int higher)
+        {
+            return valueFromRange(lower, higher);
+        }
+
+        public void runSetupStable(UInt64 val0, UInt64 val1)
+        {
+            setupStable(val0, val1);
+        }
+
         // ------------ REGISTER CALLBACKS ------------ //
 
         /**
@@ -280,10 +332,10 @@ namespace Test1
         }
         */
 
-      
 
-        // ------------ ASM MAIN LOOP ------------ //
-        
+
+        // # ----------------------- ASM MAIN LOOP ----------------------- # //
+
         /**
          * Semaphore is used to stop the execution of ifinite masm function
          */
@@ -312,11 +364,6 @@ namespace Test1
          */
         public void RunBackendLoop(MainWindow window)
         {
-            // -------------- DEBUG -------------- //
-            CppProxy cppProxy = new CppProxy();
-            int outcome = cppProxy.rollDiceWrapperWrapper();
-            Console.WriteLine(outcome);
-
             Task.Run(() =>
             {
                 // Create the callbacks
@@ -348,7 +395,7 @@ namespace Test1
             masmSemaphore.Release();
         }
 
-        // ------------ ASM MAIN LOOP END ------------ //
+        
 
         /*
 
@@ -381,6 +428,12 @@ namespace Test1
      */
     public unsafe class CppProxy
     {
+        // # -------------------------------------------------------------- # //
+        // # --------------------- External functions --------------------- # //
+        // # -------------------------------------------------------------- # //
+
+        // # ------------------------ Dice Rolling ------------------------ # //
+
         [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern UInt32 scrambleSeed(int seed);
 
@@ -390,11 +443,27 @@ namespace Test1
         [DllImport("CppDll.dll", CallingConvention=CallingConvention.Cdecl)]
         public static extern int rollDiceWrapper();
 
-        /*
-         * Wrapper for calling the rollDiceWrapper() C++ function.
-         * Refer to the docs in utils.h regarding what it does. 
-         * 
-         */
+
+        // # ------------------------ XorShift128+ ----------------------- # //
+
+        [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void next();
+
+        [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void jump();
+
+        [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern Int32 valueFromRange(Int32 lower, Int32 higher);
+
+        [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void setuStable(UInt64 val0, UInt64 val1);
+
+        // # -------------------------------------------------------------- # //
+        // # -------------------------- Wrappers -------------------------- # //
+        // # -------------------------------------------------------------- # //
+
+        // # ------------------------ Dice Rolling ------------------------ # //
+
         public int rollDiceWrapperWrapper()
         {
             return rollDiceWrapper();
@@ -409,6 +478,29 @@ namespace Test1
         {
             return scrambleSeed(seed);
         }
+
+        // # ------------------------ XorShift128+ ----------------------- # //
+
+        public void runNextXorshift()
+        {
+            next();
+        }
+
+        public void runJumpXorshift()
+        {
+            jump();
+        }
+
+        public Int32 runValueFromRangeXorshift(Int32 lower, Int32 higher)
+        {
+            return valueFromRange(lower, higher);
+        }
+
+        public void runSetupStable(UInt64 val0, UInt64 val1)
+        {
+            setuStable(val0, val1);
+        }
+
 
     }
 

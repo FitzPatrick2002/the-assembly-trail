@@ -1,4 +1,3 @@
-
 include masm32rt.inc
 include player.inc
 include rooms.inc

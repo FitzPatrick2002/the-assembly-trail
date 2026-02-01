@@ -63,7 +63,9 @@ getUserInputString PROTO destBuffer : PTR BYTE, bufferLength : DWORD, message : 
 ;		 expressed in milliseconds.
 fitTimeframe PROTO startTime : DWORD, seconds : DWORD
 
-; @brief Return the bitwised XOR'ed seed with the bitwise shifted seed.
+; # -------------------------- Dice Rolling (Deprecated) -------------------------- # ;
+
+; @brief Return the bitwised XORed seed with the bitwise shifted seed.
 ; @param Seed Random seed for the dice rolling.
 ; @return eax = The scrambled seed for further complications in random dice rolling.
 scrambleSeed PROTO seed : DWORD
@@ -79,6 +81,28 @@ rollDice PROTO seed : DWORD, seed_two : DWORD
 ;	     Randomizes two numbers and uses them as seeds for the function rollDice.
 ; @returns A number between 1 and 6 via eax register.
 rollDiceWrapper PROTO
+
+; # -------------------------- Xorshift128+ -------------------------- # ;
+
+; @brief Saves provided values to the sTable.
+; @param val0 64 bit value saved at sTable[0].
+; @param val1 64 bit value saved at sTable[1].
+; @uses  xmm0.
+setupStable PROTO val0 : QWORD, val1 : QWORD
+
+; Uses registers: eax, edx to return the value
+; Uses xmm registers: xmm0, xmm1, xmm2, xmm3, xmm4
+nextStep PROTO
+
+; @brief Performs a jump by 2^64 steps of the generator.
+;		 Use that when starting a new thread so that the 2 generators values will not overlap
+jumpStep PROTO
+
+; @brief Specifies the lower and upper bound for generated number.
+; @param lower Lower bound of the generated naumber.
+; @param higher Higher bound of the generated number.
+; @return eax = Random number from range [lower ; higher], including lower and higher values.
+valueFromRange PROTO lower : SDWORD, higher : SDWORD 
 
 ; # -------------------------- CONST -------------------------- # ;
 

@@ -1,4 +1,8 @@
 include masm32rt.inc
+
+.686
+.XMM
+
 include utils.inc
 include bridgeProcedures.inc
 
@@ -31,6 +35,19 @@ include bridgeProcedures.inc
 					1, 0, 4, 5,
 					3, 0, 2, 5,
 					1, 3, 4, 2
+
+	; Tables, 64 & 128 bit values used by the Xorshift128+
+	ALIGN 16
+	sTable DWORD 1, 0, 2, 0 ; Table of states of the Xorshift128+ generator
+
+	ALIGN 16
+	jmpVal QWORD 8a5cd789635d2dffh, 121fd2155c472f96h ; Used by the jumpStep procedure in Xorshift128+ generator
+
+	ALIGN 16
+	one8byte QWORD 1h ; Store cosntant 1 in memory as quadword (64 bits)
+
+	ALIGN 16
+	zero16byte QWORD 0h, 0h ; Store 0 as a 128 bit value
 
 ; # -------------------------- CODE -------------------------- # ;
 
@@ -293,5 +310,214 @@ rollDiceWrapper PROC
 
 	ret
 rollDiceWrapper ENDP
+
+; # -------------------------------------------------------- # ;
+; # --------------------- Xorshift128+ --------------------- # ;
+; # -------------------------------------------------------- # ;
+
+; # ------------------- steupStable Proc -------------------- # ;
+
+setupStable PROC val0 : QWORD, val1 : QWORD
+
+	; Preserve the value of xmm0 on stack
+	sub esp, 16
+	movdqu XMMWORD PTR [esp], xmm0
+
+	; Move the 64 bit value to the sTable[0]
+	movq xmm0, val0
+	movq QWORD PTR [sTable], xmm0
+
+	; Move the second 64 bit value to sTable[1]
+	movq xmm0, val1
+	movq QWORD PTR [sTable + 8], xmm0
+
+	; Restore the value of xmm0
+	movdqu xmm0, XMMWORD PTR [esp]
+	add esp, 16
+
+	ret
+setupStable ENDP
+
+; # ------------------ nextStep Procedure ------------------ # ;
+
+; Uses registers: eax, edx to return the value
+; Uses xmm registers: xmm0, xmm1, xmm2, xmm3, xmm4
+nextStep PROC
+
+	; Move the 64 bit values to lower bytes of 2 xmm registers
+	movq xmm0, QWORD PTR [sTable]     ; xmm0 = (0 , sTable[0]) ; s1
+	movq xmm1, QWORD PTR [sTable + 8] ; xmm1 = (0 , sTable[1]) ; s0
+
+	; Add the registers
+	movdqa xmm2, xmm0 ; xmm2 = s1
+	paddq xmm2, xmm1 ; xmm2 = s0 + s1
+
+	; s[0] = s0 (xmm1)
+	movq QWORD PTR [sTable], xmm1
+
+	; s1 = s1 ^ (s1 << 23)
+	movdqa xmm3, xmm0 ; xmm3 = xmm0 (s1)
+	psllq  xmm0, 23   ; s1 = s1 << 23
+	pxor   xmm0, xmm3 ; s1 = s1 ^ (s1 << 23)
+
+	; Preserve s1 and s0
+	movdqa xmm3, xmm0 ; xmm3 = s1
+	movdqa xmm4, xmm1 ; xmm4 = s0
+
+	psrlq  xmm4, 5  ; xmm4 = s0 >> 5
+	psrlq  xmm3, 18 ; xmm3 = s1 >> 18
+
+	pxor xmm0, xmm1 ; xmm0 = s1 ^ s2 
+	pxor xmm0, xmm3 ; xmm0 = xmm0 ^ (s1 >> 18)
+	pxor xmm0, xmm4 ; xmm0 = xmm0 ^ (s0 >> 5)
+
+	movq QWORD PTR [sTable + 8], xmm0
+
+	; Return through [edx, eax] -> [high, low] 32 bits
+	movd eax, xmm2  ; Low 32 bits
+	;psrldq xmm2, 32
+	psrlq xmm2, 32
+	movd edx, xmm2 ; high 32 bits
+
+	ret
+nextStep ENDP
+
+; # ------------------ jumpStep Procedure ------------------ # ;
+
+jumpStep PROC
+	
+	; Preapre the 64 bit variables
+	;xorpd xmm0, xmm0 ; s0 = 0, xmm0 = (0, s0)
+	;xorpd xmm1, xmm1 ; s1 = 0, xmm1 = (0, s1)
+
+	xorpd xmm0, xmm0 ; xmm0 = (s1, s0) = (0, 0)
+
+; Prepare the counters for loop
+mov ecx, 0 ; i = 0, Outer loop counter
+OuterLoop:
+	
+	mov ebx, 0 ; b = 0, inner loop counter
+	InnerLoop:	
+
+		; if(JUMP[i] & UINT64_C(1) << b)
+		movq xmm5, QWORD PTR jmpVal[ecx * 8]    ; xmm5 = JUMP[i]
+		movq xmm6, QWORD PTR one8byte ; xmm6 = UINT64_C(1)
+		movd xmm7, ebx   ; xmm7 = b
+		psllq xmm6, xmm7 ; xmm6 = xmm6 << xmm7 ; IUNT64_C(1) << b
+		pand xmm5, xmm6  ; xmm5 = xmm5 & xmm6 ; xmm5 = JUMP[i] & (UINT64_C(1) << b)
+
+		ptest xmm5, xmm5 ; Check if xmm == 0
+		je DontXor		 ; If so, skip the xor operation inside the if()
+
+		; Perform xor operation inside the if
+		xorpd xmm0, XMMWORD PTR [sTable]
+
+		DontXor: ; Omit the if(JUMP[i] & UINT64_C(1) << b), condition was not met 
+		
+		; Preapre for calling next(), preserve the xmm0 register (holding (s1, s0))
+		sub esp, 16 ; Preapre space on stack for 16*8 = 128 bit value
+		movdqu XMMWORD PTR [esp], xmm0 ; Sace xmm0 + (s1, s0) to stack
+
+		; Preserve the volatile registers
+		push ecx
+		push ebx
+
+		INVOKE nextStep ; next()
+
+		; Read back the stored values of volatile registers
+		pop ebx
+		pop ecx
+
+		movdqu xmm0, XMMWORD PTR [esp] ; Restore the xmm0 = (s1, s0) value
+		add esp, 16 ; Restore the stack
+
+		; for(int b = 0; b < 64; b++)
+		inc ebx		  ; b++
+		cmp ebx, 64   ; b < 64
+		jne InnerLoop ; Repeat the inner loop
+		; End of innerLoop
+
+	; for(int i = 0; i < sizeof jump / sizeof *jump; i++)
+	inc ecx				     ; i++
+	cmp ecx, LENGTHOF jmpVal ; i < sizeof jump / sizeof *jump
+	jne OuterLoop		     ; Repeat the outer loop
+	; End of outer loop
+
+	; Overwrite the sTable values with s1, s0.
+	movdqa XMMWORD PTR [sTable], xmm0
+
+	ret
+jumpStep ENDP
+
+; # ------------------ valueFromRange Procedure ------------------ # ;
+
+; @brief Specifies the lower and upper bound for generated number.
+; @param lower Lower bound of the generated naumber.
+; @param higher Higher bound of the generated number.
+; @return eax = Random number from range [lower ; higher], including lower and higher values.
+valueFromRange PROC USES ebx edx ecx lower : SDWORD, higher : SDWORD 
+	LOCAL randomVal : QWORD ; Stores the values of a generated random number	
+
+	; Check if lower == higher, if so, return that value
+
+	; if (lower == higher)
+	mov eax, lower  ; eax = lower
+	cmp eax, higher ; compare lower with higher 
+	jne ValsDiffer  ; If values are different, dont return
+
+	; return lower;
+	mov eax, lower ; eax = lower
+	ret
+
+ValsDiffer:
+
+	; If values are different, check if lower < higher
+	; If no, then swap them
+
+	; if (higher < lower)
+	mov eax, lower  ; eax = lower
+	cmp eax, higher ; compare(lower, higher)
+	jl OrderOk	    ; If order is okay, skip swapping
+
+	; swap(higher, lower)
+	mov eax, higher ; eax = higher
+	mov ebx, lower  ; eax = lower
+	mov lower, eax  ; lower = eax (higher)
+	mov higher, ebx ; higher = ebx (lower)
+
+OrderOk: 
+
+	; If the order of values is okay then generate the random values
+
+	; Calculate the range
+	mov ebx, higher ; ebx = higher
+	sub ebx, lower  ; range = ebx = ebx - lower. ebx now stores the range of generation
+
+	; Generate next random number
+	INVOKE nextStep ; Generates random value and stores it in (edx, eax) -> (high dw, low dw)
+
+	; Random value is stored in pair edx:eax (higher:lower) bits
+	; We will first divide the higher part and then the lower part (long division)
+
+	inc ebx ; ebx = range + 1, so that we get value from [lower ; higher] and not [lower ; higher)
+
+	; Divide the higer bits (edx) and obtain the remainder
+	mov ecx, eax ; Save the lower 32 bits in ecx
+	mov eax, edx ; Sotre the higher 32 bits in eax
+	xor edx, edx ; edx = 0
+	div ebx		 ; Divide edx:eax = (0, higher bits) / (range + 1)
+
+	; Divide the lower bits
+	mov eax, ecx ; Move the lower bits to eax 
+	div ebx		 ; Divide edx:eax = (higher bits rem, lower bits) / (range + 1)
+
+	; Shift it by the 'lower' offset
+	add edx, lower ; edx = edx + lower, 
+
+	; Return through eax
+	mov eax, edx ; eax = edx = random value from range [lower ; higher]
+
+	ret
+valueFromRange ENDP
 
 END
