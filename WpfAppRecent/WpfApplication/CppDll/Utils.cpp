@@ -120,7 +120,7 @@ uint64_t s[2] = { 12342, 22342 };
 /// @brief Sets the values of the initial state of the generator.
 /// @param val0 Value set as the 0'th state element.
 /// @param val1 Value set as the 1'st state element.
-extern "C" __declspec(dllexport) void setupStable(uint64_t val0, uint64_t val1) {
+extern "C" __declspec(dllexport) void setupStableCpp(uint64_t val0, uint64_t val1) {
 	s[0] = val0;
 	s[1] = val1;
 }

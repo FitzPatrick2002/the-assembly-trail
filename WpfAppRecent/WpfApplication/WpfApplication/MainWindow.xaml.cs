@@ -69,8 +69,13 @@ namespace Test1
             UInt64 seed_one = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
             UInt64 seed_two = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
 
-            asmProxy.runSetupStable(seed_one, seed_two);
-            cppProxy.runSetupStable(seed_one, seed_two);
+            Int32 seed_one_h = (Int32)(seed_one >> 32);
+            Int32 seed_one_l = (Int32)seed_one;
+            Int32 seed_two_h = (Int32)(seed_two >> 32);
+            Int32 seed_two_l = (Int32)seed_two;
+
+            asmProxy.runSetupStable(seed_one_l, seed_one_h, seed_two_l, seed_two_h);
+            cppProxy.runSetupStableCpp(seed_one, seed_two);
 
             int result_masm = asmProxy.runValueFromRange(-10, 10);
             int result = cppProxy.runValueFromRangeXorshift(-10, 10);
@@ -80,9 +85,6 @@ namespace Test1
 
             for (int i = 0; i < number_of_rolls; i++)
             {
-                seed_one = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
-                seed_two = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
-
                 var watch_masm = System.Diagnostics.Stopwatch.StartNew();
                 result_masm = asmProxy.runValueFromRange(-10, 10); //AsmProxy.rollDice(seed_one, seed_two);
                 // the code that you want to measure comes here
@@ -292,17 +294,17 @@ namespace Test1
 
         // # --------------------- Xorshift128+ MASM  --------------------- # //
 
-        [DllImport("Asm.dll")]
+        [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
         private static extern void nextStep();
 
-        [DllImport("Asm.dll")]
+        [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
         private static extern void jumpStep();
 
-        [DllImport("Asm.dll")]
+        [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
         private static extern Int32 valueFromRange(int lower, int higher);
 
-        [DllImport("Asm.dll")]
-        private static extern void setupStable(UInt64 val0, UInt64 val1);
+        [DllImport("Asm.dll", CallingConvention = CallingConvention.Cdecl)]
+        private static extern void setupStable(Int32 val00, Int32 val01, Int32 val10, Int32 val11);
 
         // # -------------------------------------------------------------- # //
         // # -------------------------- Wrappers -------------------------- # //
@@ -325,9 +327,9 @@ namespace Test1
             return valueFromRange(lower, higher);
         }
 
-        public void runSetupStable(UInt64 val0, UInt64 val1)
+        public void runSetupStable(Int32 val00, Int32 val01, Int32 val10, Int32 val11)
         {
-            setupStable(val0, val1);
+            setupStable(val00, val01, val10, val11);
         }
 
         // ------------ REGISTER CALLBACKS ------------ //
@@ -335,11 +337,11 @@ namespace Test1
         /**
          * Registers the callbacks on the masm side so that they don't have to be passed as function parameters to each procedure call.
          */
-        [DllImport("Asm.dll")]
+        [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
         private static extern void registerCallbacks(UIUpdater uiCallback, WaitCallbackFunc waitCallbackFunc);
 
         // ------------ ASM INPUT CALLBACK ------------ //
-        [DllImport("Asm.dll")]
+        [DllImport("Asm.dll", CallingConvention = CallingConvention.StdCall)]
         private static extern void updateInputBuffer(string s);
 
         /**
@@ -419,6 +421,29 @@ namespace Test1
          */
         public void RunBackendLoop(MainWindow window)
         {
+            // Create the callbacks
+
+            UIUpdater logDelegate = (msg) =>
+            {
+                window.Dispatcher.Invoke(() => {
+                    // byte[] txt = Encoding.UTF8.GetBytes(msg);
+                    window.StoryTextBox.Text += msg; // Encoding.UTF8.GetString(txt);
+                });
+            };
+
+            WaitCallbackFunc waitDelegate = () =>
+            {
+                masmSemaphore.Wait();
+            };
+
+            // Register them on the masm side
+            registerCallbacks(logDelegate, waitDelegate);
+
+            double dummy = Math.Sqrt(2.0); // Forces SSE usage on the current thread
+
+            // Run the main loop indefinitely
+            main();
+            /*
             Task.Run(() =>
             {
                 // Create the callbacks
@@ -439,9 +464,12 @@ namespace Test1
                 // Register them on the masm side
                 registerCallbacks(logDelegate, waitDelegate);
 
+                double dummy = Math.Sqrt(2.0); // Forces SSE usage on the current thread
+
                 // Run the main loop indefinitely
                 main();
             });
+            */
         }
 
         /**
@@ -514,7 +542,7 @@ namespace Test1
         public static extern Int32 valueFromRange(Int32 lower, Int32 higher);
 
         [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void setupStable(UInt64 val0, UInt64 val1);
+        public static extern void setupStableCpp(UInt64 val0, UInt64 val1);
 
         // # -------------------------------------------------------------- # //
         // # -------------------------- Wrappers -------------------------- # //
@@ -554,9 +582,9 @@ namespace Test1
             return valueFromRange(lower, higher);
         }
 
-        public void runSetupStable(UInt64 val0, UInt64 val1)
+        public void runSetupStableCpp(UInt64 val0, UInt64 val1)
         {
-            setupStable(val0, val1);
+            setupStableCpp(val0, val1);
         }
 
 

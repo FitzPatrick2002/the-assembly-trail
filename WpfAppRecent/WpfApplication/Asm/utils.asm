@@ -317,23 +317,14 @@ rollDiceWrapper ENDP
 
 ; # ------------------- steupStable Proc -------------------- # ;
 
-setupStable PROC val0 : QWORD, val1 : QWORD
+setupStable PROC val00 : DWORD, val01 : DWORD, val10 : DWORD, val11 : DWORD
 
-	; Preserve the value of xmm0 on stack
-	sub esp, 16
-	movdqu XMMWORD PTR [esp], xmm0
+	pinsrd xmm0, val00, 0
+	pinsrd xmm0, val01, 1
+	pinsrd xmm0, val10, 2
+	pinsrd xmm0, val11, 3
 
-	; Move the 64 bit value to the sTable[0]
-	movq xmm0, val0
-	movq QWORD PTR [sTable], xmm0
-
-	; Move the second 64 bit value to sTable[1]
-	movq xmm0, val1
-	movq QWORD PTR [sTable + 8], xmm0
-
-	; Restore the value of xmm0
-	movdqu xmm0, XMMWORD PTR [esp]
-	add esp, 16
+	movdqa XMMWORD PTR [sTable], xmm0
 
 	ret
 setupStable ENDP

@@ -6,6 +6,8 @@ include utils.inc
 include events.inc
 include bridgeProcedures.inc
 
+.XMM
+
 ; # -------------------------- DATA -------------------------- # ;
 
 .data

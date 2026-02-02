@@ -7,6 +7,8 @@ include bridgeProcedures.inc
 
 include mainLoop.inc
 
+.XMM
+
 .data 
 	;gameOn BYTE 1
 	mainLoop1 BYTE "Your water level is too low, you're suffering!", 13, 10, 0

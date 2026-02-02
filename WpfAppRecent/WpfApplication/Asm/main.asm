@@ -21,8 +21,8 @@ ExitProcess PROTO, dwExitCode: DWORD
 .code
 
 main PROC
-	LOCAL seed_1 : QWORD
-	LOCAL seed_2 : QWORD
+	LOCAL seed_1 : DWORD
+	LOCAL seed_2 : DWORD
 
 	; Seed the Xorshift 
 
@@ -32,7 +32,7 @@ main PROC
 	xor eax, ebx					   ; xor the seed with whatever is in ebx
 	mov DWORD PTR [seed_2], eax		   ; Save the xored version of the 0th seed as the seed 1
 
-	INVOKE setupStable, seed_1, seed_2 ; Seed the xorshift generator
+	INVOKE setupStable, seed_1, seed_2, 3, 5 ; Seed the xorshift generator
 
 	; Start the main loop
 

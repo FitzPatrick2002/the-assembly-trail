@@ -88,7 +88,7 @@ rollDiceWrapper PROTO
 ; @param val0 64 bit value saved at sTable[0].
 ; @param val1 64 bit value saved at sTable[1].
 ; @uses  xmm0.
-setupStable PROTO val0 : QWORD, val1 : QWORD
+setupStable PROTO val00 : DWORD, val01 : DWORD, val10 : DWORD, val11 : DWORD
 
 ; Uses registers: eax, edx to return the value
 ; Uses xmm registers: xmm0, xmm1, xmm2, xmm3, xmm4

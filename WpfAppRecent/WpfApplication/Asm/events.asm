@@ -3,6 +3,8 @@ include utils.inc
 include player.inc
 include bridgeProcedures.inc
 
+.XMM
+
 .data
 
 msgAsh db "A strange feeling creeps into your mind, as if someone is watching you.", 13, 10, 0
