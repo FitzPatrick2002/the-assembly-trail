@@ -1,4 +1,4 @@
-include \masm32\include\masm32rt.inc
+include masm32rt.inc;\masm32\include\masm32rt.inc
 include utils.inc
 include player.inc
 include bridgeProcedures.inc
@@ -692,9 +692,10 @@ choice22:
     INVOKE printText, addr msgAsh37
     INVOKE printText, addr msgAsh38
 
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx  
     jmp Continue
 
 choice23:
@@ -785,9 +786,10 @@ choice1None:
     INVOKE printText, addr msgAsh84
     INVOKE printText, addr msgAsh85
 
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax   
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx    
     ret
 
 
@@ -967,9 +969,10 @@ choceBad:
     INVOKE printText, addr msgAlienHide17
     INVOKE printText, addr msgAlienHide18
 
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret
 
 
@@ -983,9 +986,10 @@ choice2:
     INVOKE printText, addr msgAlienHide17
     INVOKE printText, addr msgAlienHide18 
 
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx  
     ret
 choice3:
     INVOKE printText, addr msgAlienHide19
@@ -994,9 +998,10 @@ choice3:
     INVOKE printText, addr msgAlienHide17
     INVOKE printText, addr msgAlienHide18 
 
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx  
     ret
 alienHide endp
 
@@ -1411,9 +1416,10 @@ doFailure:
     INVOKE printText, addr msgAlienFire19
     INVOKE printText, addr msgAlienFire20
 
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret  
 
 choice1N:
@@ -1425,9 +1431,10 @@ choice1N:
     INVOKE printText, addr msgAlienFire26  
     INVOKE printText, addr msgAlienFire27
 
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax   
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx   
     ret 
 
 choice1None:
@@ -1440,9 +1447,10 @@ choice1None:
     INVOKE printText, addr msgAlienFire34
 
 
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
 
     mov eax, [player.water]          
     cmp eax, 0              
@@ -1465,9 +1473,10 @@ waterEmptyAsh:
     INVOKE printText, addr msgAlienFire38  
     INVOKE printText, addr msgAlienFire39
 
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret
 
 alienFire endp
@@ -1477,9 +1486,10 @@ nothingHappens proc
     INVOKE printText, addr msgNothingHappens1
     INVOKE printText, addr msgNothingHappens2
     
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     
 ;    print str$(hp)   
 ;    print chr$(13,10)
@@ -1559,9 +1569,10 @@ choice1None:
     add eax, 1
     mov [player.water], eax 
 
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx  
     ret
 
 motherWater endp
@@ -1630,9 +1641,10 @@ choice1None:
     INVOKE printText, addr msgTooHot7
     INVOKE printText, addr msgTooHot8
 
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret
 tooHot endp
 
@@ -1685,9 +1697,10 @@ choice1None:
     INVOKE printText, addr msgFoundChemFuel9
     INVOKE printText, addr msgFoundChemFuel10
 
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret
 foundChemfuel endp
 
@@ -1741,9 +1754,10 @@ choice1None:
     INVOKE printText, addr msgFoundWater11
     INVOKE printText, addr msgFoundWater12
 
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret
 foundWater endp
 
@@ -1839,9 +1853,10 @@ choice2N:
     INVOKE printText, addr msgWCHiddenPassage18
     INVOKE printText, addr msgWCHiddenPassage19
     
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax 
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret   
 choice2None:
     INVOKE printText, addr msgWCHiddenPassage20
@@ -1853,9 +1868,10 @@ choice2None:
     sub eax, 1
     mov [player.water], eax  
     
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax 
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     
     ret 
     
@@ -1875,9 +1891,10 @@ choice1None:
     INVOKE printText, addr msgWCHiddenPassage33
     INVOKE printText, addr msgWCHiddenPassage34
     INVOKE printText, addr msgWCHiddenPassage35
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax 
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     
     ret
 WCHiddenPassage endp
@@ -1986,9 +2003,10 @@ choice2None:
 ;    add eax, 2
 ;    mov [chemfuel], eax
     
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx   
     ret 
 
 bridgeConsole endp
@@ -2022,9 +2040,10 @@ choice1N:
     
 choice1None:
     INVOKE printText, addr msgPlayerAttacked4
-    mov eax, [player.hp]
-    sub eax, 2
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret  
 
 playerAttacked endp
@@ -2059,9 +2078,10 @@ choice1Y:
     
 choice1None:
     INVOKE printText, addr msgThirst4
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret  
 
 thirst endp
@@ -2100,9 +2120,10 @@ choice1N:
     ret   
 choice1None:
     INVOKE printText, addr msgStrangePassage4
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx  
     ret  
 
 strangePassage endp
@@ -2318,9 +2339,10 @@ doFailure:
     INVOKE printText, addr msgMedbayGlass13
     INVOKE printText, addr msgMedbayGlass14
     
-    mov eax, [player.hp]
-    sub eax, 1
-    mov [player.hp], eax  
+    mov ebx, [player.hp]
+    INVOKE valueFromRange, 1, 6
+    sub ebx, eax
+    mov [player.hp], ebx 
     ret
   
 choice1N:
@@ -2670,100 +2692,3 @@ start:
     ;call gameoverScreen
     exit
 end start
-
-
-
-
-
-
-
-
-
-;$&&&&&&&&&&&XX$$Xx+;+xxX$$$$&$&$$$$$$$&$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$X$$$$$$$$XXX+;+x+;:+$$$$$$$$xx$&&&&&&&&&&
-;&&$$&&&&&&$$X$$&$x;;+X$&$$$X$$&$$$$$$$$$$$$$$$&$$$$$$$$$$$$$$$$$$$$$$$$$$$$XX$XX$$$$$$x+++;;+;:;X$$$$$$$&$+X&&&&&&&&&&
-;&&&&&$&&&&&&$$&$Xx;+X$$$$$&&&$&&&$$$$$&$&$$$&$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$XX$+XXXX$$Xx;;;;;+$$$$$$X$&$X+X&&&&&&&&&
-;&&&&&&&&$&&&&&$&X+x$$&$&&&&&&$&$$$&&$$$$$$$$&$&$$$$$$$$$$$&$$$$$$$$$$$$$$$$$$$$$X$XXxX$$$x++;;;XX$$&$$&$&$$X+X&&&&&&&&
-;&&&&&$&&&$$$&&&&X+$$$&&&&&&&&&$$$&$$$$$$$$&$$$&&&$$$&$$$$$$$&$$$&$$$$$$$$$$$$$$$$$XX$$$$$$Xx;:;x$$$&&$$$&&&&$++$&&&&&&
-;&&&&&&&&&&&&&&&$XX&&&&$&&&&&&&&&&&&$$&$$&&$$$$$$$$&$$$$$$$$$$$$$$$&$$$$$$$$$$$$$$$$X$&$$$XXx;;;:x$$$$$$&$$$$&$X;X&&&&&
-;&&&&&&&&&&&&&&&X;X$X$$$&$&$&$&&$$&&$$&&$$$$$XX$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$X$+++;;:;X$$$$$$$$&$$$&$&++&&&$;
-;&&&&&&&&&&&&&$$+x$&$$&$&$$&&$&&&&&&&&$&&XX$Xx$$$$$XX+;;;;:;;;;;+XX$$$$$$$$$$$$$$$$$$$$X+++++::+$$$&$&&&$&$&&$$&X+x&&X;
-;&&&&&&&&&&&&&&x+X$&&&&&&&&&&$&&&$&&&$&$$X$$x$$$$X+;::;;;:;;x$&&$x;;xX$$$$$$$$$$$$$$$$$$$Xx+;;xX&$$$$X$$$$$$$$$$$X++$$;
-;XXX$$$&&&&&&&&+$&&&&&&&&&&$&&&&&&&$&$&$$xXX+$$X+;;::;:;;;X$X$&&$$x;;;+$$$$$$$$$$$X$$XX$XXXx;;xX$$$$$$$XX$$$&$&&&$$X+x&
-;&&$$$XXXXXXXXXX$$&&&&&&&&&&&&&&&&&&&$&&$+X+XX+;::;:;:;+X$$$&&&&$x;;;;:;+X$$$$$$$&$$$X$$$XX+;;+X&$$XX$$$&$$$$$$$$&$$$++
-;&&&&&&&&&&&&$$$&$$$$$&&&&&&&&&$&$$&&$&$$x;;;;:;:::::;;+X&&&&&&&&&X;:::;;;+$$$$$$$$$$$XXXXx+;+XXxX$XXX$$$$$$$$X$$$$$$$+
-;&&&&&&&&&&&&XX&&&&&&&$$&&&&$&&$&&&$&&&&&X+;:;:;::;;xX+;+X&&$X$$&$X+;;;:::;+X$$$$$$$$XX+$$$+;+;++X$Xxx$$&$XXXX&$$&$$$$+
-;&&&&&&&&&&&$X$&&&&&&&&&&&&&$&&$$&$$&$&&$+;;:::;:;;;X&&$$$&&$x+;+x+;;:::::;:+X$$$$$X$$$X$&X;;++X$$$XxxX$$$$$$XX$&$&$x+;
-;$&&&$$&$$$$+X$&$&&&&&&&&&&&&&&$&&$&&$&X+;;:::::;::;+X&&&&&&$X;;::;::;;;;::;;x$$$$$$$$$$$X;;;+X$$$X+X$$$&$$$XXX$$$$++;;
-;x+$$X+$&$$xx$&&&&&&&&&&&&&&&&$&&&&&&&$x++::;;:;XX+;;X&&&&&$$$+;;::::::::;;:;+$$$&$$$$$$$x;:;;++++;;;;;;;;;;;;+++x++;;:
-;X+X$X++xXX+X&&&$&&&&&$&&&&&&&&&&&&&&$$x$x;;:::;+$&$X++XXX$$X+;::;;:::;:::::;;X$$&$&$$$$$+:;;xx++XXXXXX$XXX$$$$$$X++;:;
-;xXXXX+++Xxx$&&&$&&&&&$&$$$$$&&&&&&&&&$X&$+:;:::;x$&&&$x;;;;+x;::::::;:;:;::;;X$$$$&$$$$X+;xx+xXxXXxXXX$$$$$&&$$&X++;::
-;x;+XXx++;;X&&&&$&&&&&$&$&$&&&&&&&&&&&$$&$X;:;::::;X&$XXx+::;;;:::;::::::::;;+X&&$$$$$$$+:;XXXX$$$X$$$$$&$&$&&&$$X+;;;:
-;x+++++++;+$$&&&&&$&$&$&&$$&$&$$$&&&&&$$&$$+;::::::;X&&X+;;;:;:;;::::::::;:;+x$$$$$$$$$$+;+$$X$&$$$$&$$&&&&$&&$$$+;;;;;
-;++Xx+++:;$$&&&&&&&&&&$&$&$&$&$&$&$&$&$&&$$X;:::;::;X&&&$Xx+;;;:;;:::::::::;;+X$$$$$$$$X;;X$$$$&$$X$$&$$&$$$$$X+;+xxXXX
-;++Xx+++:+$&&&&$&&&$$&&$$$X$$&$&$$$&$$$&&&&$X;;;::::;+X&&&&&X;::::;:::::;;;+X$$xxX$$$$$X;;x$$$$$X&$$$$$$$$$$X++$$$$$$XX
-;x;++++;;x$&&&&$&&&&&$$$x+X$XX$&$$$&$&$&&&&&$X;;::;;::;X$&&&&X;;::;::;::;x$$X&&&&$$XxXX+;+XXX$$$$$XX$$$$$$$$X+++xXXxXX$
-;+;++;;;+$$&&&&$&&&$&$X+++X$&$XX$$$&$&$&$&&$$&x;;:::::;;;;+X$+;::::::;;;x$&&$$&&&&&&&$$+;X$$$$$$$$$$$$$&$$$$X++;;;;;+;;
-;X++;;;+$$$$$$$$&$&&&X+xX+;+X$X+;x$$$$$$$$$$$$$X+;::;;;;:;X$&$;;::::::;+$&&&XX$&&&&&&$$&$xX$$$$&$$$$$$$$$&$$$$$XXX+;:;;
-;+;;;;;X&$$$$$&$&$$$$++Xx$X+;;+++++X$$$$$$$&$$$$X+;;;+:;;xX$$$;:::;;;;;X&&&&$X$&&&&&$$&&&&xX$$$$$&$&$&$&$&$$$$$$X++;;:;
-;;++;;+$$$$$&$&$&&$&$X;xXxX+++xXXXXXXX$$$$$&$$$&$X+;;Xx;X$$X+;;;;::;;;+XX$&X+xX$&&&$$&&&&&Xx$$$$$$$$$$&$$$$$$$x+;;;;;;;
-;X$X;+X$$X$$&$$$$$$$$$X;xXx+;:+xx+x$&$XX$$$$$&$$$+;;+xx;;+xX+;;;:;;;;+xx+X$&$X&&&&$$&&$&&&$+X$$$$&$$$$&&$&$$X+;;;+;;;;+
-;$$+;x$$&$$$&$$$&$&$$$$X;+Xxx;;:;;;;x$&$++++xX$XxXXx+x+++X$&X;;;;;;;;x&&$xxxX+X$&$$&&$XXX$$$XX$$&$$$&&$$$&$$+;;;;;;;;;;
-;$+;;X$&$$&$$$&&&$$$$$&$X++XxX+;:::;++;+$$&&$X+x$&&&$$X;+X&$+;;;;;;;;X&&&Xx+xX$X+x$$XX$$&XX$X+$$$$$$$$$&$&$X;;;;;;;;;;;
-;+;;X$X$$$$$$$$$$$&$$&&$&X;+X+$+;;;$$X$&&&&&X+XXX$XxxxXx;X&X;;;;;;;;+$&&&$XX$$$XXx+XX$&&&&&&&$xX&$$X$$&&$$$X;;:;;;;;;;;
-;+;+$$$$&$&$$$$$&$&&&$&$&$X++$+X++$$X$&&&$xX&&&&&XXxx;+++X$x;;;;;;;;x&&&&$X$$x+X&$+x$$x+X&&&&&Xx&$$$&&$&&$$X;;:;;;;;;;;
-;;;X$$$&$$$$$$$$&$$$$$$$$$$X;;X++X$X&&Xx+$$$x+X$&&&X++X++xXX;;:::;;:X&&&$$$XxXxxxX$$xx$&&X$X$Xx+$$$$$$&$$$$X;;;:;;::::;
-;;x$$$&&$&$$$$$$&$&$&&&$&$&$X+;;xXX$&&&&X+++++x+X&&&&$x;+$xX;:;;::;;X&$X++X$&$xx$&$$XX&&&&XXXX$xX$$$$$$$$$$X;;:;:;;;;::
-;+X$$&$&$&$&&&$&&$$&$$$$&$&$$$;;;+$&&$$$xx++++X&&$$&&&&$xXX++::;;;;;+$X++X&&$Xx$$$&$X+X$$$$XXX$X;x$$$X+++X$X;;;;;;;;;;;
-;x$$$&$&$&$$$$$&&$$$$$&$&$$$&$$+;:;+X$xx$&$XxXXX+++X$&&&&$X+;;;;::;;;Xx;++XxxXx+xX$$$;;+XXX$$$$X;;xx+;+x++Xx+++XX+++xXX
-;XX$$$&&$&$&$&&&$$$&&$&$&$&$$$$$X+;;;;+xX$&&&Xx++X$&$XX$&&&$x;;;;;:;;;+Xx;+$&$++$X+xx+++$&&XxXXx;;;++XXXXXXXXX$&$$X$&$$
-;XX$$$&&$&$&$&$&$&$$$$&$$$$$$$&$$$X+;;;+$$$$&&$XXXX+XxxxX$&&&$X;;;;::;++++XXx;+xxX$&&&&&$$$&$$&$x+;;+++;+++++xXXxx+Xxx+
-;$X$&&$&$&$&$&$&$&$&$&&&&&&&$&&&&$$$X+;;;x$X+$&&$XX+++XX$$$$&&&$X;:;::;++;+$$&&&&&&&&&&&&&&$$$$$;$x;+xXxXXXXXX$&$$X$$X$
-;$X$&$$&$&&&$&$&&&&&$$$$$$$&$&$$&&&&&$X+;;;+X&$$&$X$$X$Xxxxx$&&&&&X;;:;::;;x&&&&&&&&&&&&&&&&X+;+X$x++++++++++;+x+;;;;;+
-;xX$$&&&$&$&$&$&$$$&&&&&&$&&&&&&&&&&$&&$X+;;;+$&$X$&$&$++X$&XxX$&&&$+;:;;;;;;X&&&&&&&&&&$Xx+xX$&$$$$$X+;+X$x;;;;;:;::;;
-;XXX$$$$$$$&&&$&&&&&&&&&&&&$$&&$$$$&&&$$&$X+;;;+$&$X$&&&$X+++++xX$XX;;;:;:;;;;+++XXXX+;;;+X$$$&$&&&&$$$$$$$X;:;:;::;::;
-;X+x$$$$&$$&&&&&&$$&$&&&&&$&$&&&$&$$$&$&&&$$$+;;;+$&&X$&&&$+x++X$X+X;:;:;;;:;x$&&&$X+;+;;+$&$$$&&$&$$&$$$$&X+;:;:;;:;:;
-;X$&$$$X$&&$&&&&&&$$$&&&$&$$$&&&&&$$$&$&&&&&&&X+;;;x$&$X$&&&$xX$x+x+;:;;;:;:;x$&$+;;;;;++x$&$$$$$$$&$XXXXxx+;;;;;;;;;++
-;&&&&$$$&&$&$&&&$&&&$&&&&&$&$&$&&&$&$&$&&&&&&$&$x;;:;+++X&$X++++++XX++;;;;:+++X$+;;;;+Xx+$$$$$$$$&$x;++x+X$XX+X+X$&&$X$
-;$$$$$&$$$$$$&&&$&&&&&&&&&&&&&&&&&$$$&$$$$$$$$$$$Xx;:;;+xx$&&&XXXXx+++xXx++xX&$X+;;x$X+x$$$$$$$&$$$+;;;+;+++xxx;;;++;++
-;$&&&&&&&&&&&&&&&&&&$&&&$&$$$&$&$$$Xx+++XxXxxx+++++;;;:;;;+X&&&$XXXx;;;++X$++&&&$+;+;;;+$$$&$$$X;+xxx;;;;+x+++;+;;X$&&&
-;&&&&&&&&&&&$&&&&&&&&&&$&&&&$&$&$x++X$x$$$$$$$$$$$$$$X+;;;;+x$&&&$XXXx++X$X+xX$&&$x;;;;+X$&$+;;;X&&&Xx+x+X&&&&&XXx+++X$
-;$$&&&&&&&&&&&&&&&&&&&&$$&&&&&$$++X$&XX$$$$$$$$$$X$$$&$X+;:;;+x$&&&$XXXX++xxx$$$XX$&$+;;X$x+++++;$$$X++++$&&&X++;+++++x
-;$&&&&&&&&&&&&&$&&&$&&&&&&&&&&$x+X$$$xX&$$$$$$$$$$$$X$$XX+;;;;;+$&&&X+$$X;+$$$X$&&&&&x;+x++XXxxXX$X$$$$XXxxXXXx;++X$x++
-;&&&&&&$&&&&&&&$&&&&&$&&$&&&&&$+xXXXx$$&$$$$$$$$X$XXXXXxx+++;;;:;+xx+$&&$Xx+++xX$&&&$X+x$&&&&&&&&&&&&&&&&&$Xx++++x&&$X+
-;$&&&&&$&$&&&&&$&&$$&$$$&&$&&$$x;;;x$$&$$X++xXXXXXXXXx+x++;;;:::;:;+$&&&X++xXXX++X&X$XX&&&&&&&&&&&&&&&&&&&&&&Xxx$&&&&$X
-;&&$&&&&&$&$&&&$&&&&$$&$&&&$&$$X;;;X$$&$$x+XXXXx;;;;++;+;;;;;;;;;;;;;x$X++$$$$XXx+x$Xx$&&&&&&&&&&&&&&&&&&&&&&&$xX$$XXXx
-;$$$&&&$&$&&&$&$&&&&$$&&&&$&$$$$+;X$$X$$$X+$$X++;;+;;;;;;;:;:;;;;;:;:;;;++$$X$Xx+x$XX$$&&&&&&&&&&&&&&&&&&&&&&&$$++++x+;
-;$&&&$&$&$&&&$&$&$$$&$$$&&$$$$$$X;x$$$$$$$X;;;++;;;;;;;;;::;;;::;;:;:;;;;;+++;++x$++X$$&&&&&&&&&&&$&&&&&&$$$&$$$+;++xX;
-;$$$&$&$&$&$$$$$&&&&&$&$&$$&&$$&$x+XX$XX$XX+;;;;;;;;::;::;;;::;;;;;;;;;;:;;+$$XX++x+$$$$&&&&&&&&$&&&&$$X$&&$XXxX+++x++x
-;X$&$$&$&$&$&&&&&&&$&$&$&$&$&&&$$X+xXX$XXxx+;:;;;;;;;;;;;;;::;;++;;++++++;;+;;;;+x+XX$$&$&$&&&&&&$&&$$&$$$$$$XXX+++XXXX
-;&$$$&&&&$&$&&&&&&&$&$&$&$&$&$&&$X;+XXX++x+;;;;:;;;;:;;;::;;;+;++++X++Xxx+;x+;xXXXxXXXXX$&$$$$&&$$&&&&&$XX&$X+++;++X$Xx
-;$$$$$$&$&&$$$$&$$&&$&$$&$&$$&$x++X++++x;;;;;::;::;:;;:;;;+++xXx++X$$$XX$XXXxX+XXXxXXx$X$$$$$$XX$$$$XXxxxXX;;;++;;;+++X
-;$$XxXX$$X&$&$$$$$$$$&&$&$&&$x++++xx;+;;;;;;;;;;;+xXX+;;;+xXXXX$$$$$&$$XXXXX$x++xx++xxXXxxXxXx+++xx++++;;+;;;;;:;;+++++
-;&$$$&XX$$X$$$&$$$$&&&&$&&$$x+X$X+XX+;;;;;;;;;;;+XXx;xXXXX$$x$&&&$$&&&&&&$$XX$XX+++++++X++++++++++;;;;;:;;;;;;;:;;++++x
-;$$$&$$$$$&$&$$&&$&&&&&$&$$x+X$Xx+xX+;;;;;;;;;:;;x+++XXXX$$&&$&&&$&&&&&&$$XXX$Xxx+xXx++++;;;;;;;;;;;;::;;;;;::::;;;;;;+
-;&$$$$$&$$$$&&$&&&&&&&&&&$X+x$Xx+Xx++;;;;:;;;;;;;;;;+xXXX$$$&$&&&&&&&&&&&&&&XXXx++;++;;;;;;::;::;;;:;;;;:::;;;;:;;++++X
-;&$&$&&&$&$&&&&&$&&&&&&&$$+;;;++XXx+;+x;;;;;;:;::;;;+++XX$&&&&&&&&&&&&&&&&&&$$xx++++;;;:;:;;;::;:;:;;;;;;;:;::;;;;+x+X+
-;&$&&$$&&&$&&&&$$&$$$&$$$X+;;;+Xxx+;x$$x;;;;;;;;;;;+++X$&&&&&&&&&&&&&&&&&&&&$$XXx++:;;:;;;;;;::;::;;::;;;:;;;;;;+;+xx+X
-;$$&&&&&$&&&$&$$$&$$$&&$$++XXXXxx+;+$$&$+;;;;;;:;;;++X$$$&&&&&&&&&&&&&&&&&&$$Xxx+;;;;:;;;;;:;;;;:++;;;;;+;;;;;;;;+x+xx;
-;&&&&&$&$&$&$$&&$&$&$$$&X+XXXXXx+;;+$&$$X;;;;;;;;;;;+x$&&&&&&&&&&&&&&&&&&$$$XX+;;:::;;;:;++xX++++;;++++;+;;;;;;+++++;;;
-;&&$&$$&$$$&&$$&&&&&&&$$+X$XXXx+;;;X$$&$$+;;;:;;;;:;;+$&&&&&&&&&&&&&&&&&&&$Xx;;:;;;;;+xX$$$&$$$X++;;;;+;+;+;;;;;;+XXXx+
-;$$$$$$&&&&$&&$&$&$&&&$++XXXX++++;;X$&$$$X;;;:;;::;;+$$&&&&&&&&&&&&&&&&&&&X+;;;;:;+X$$$$$&&&&&$$&$$XX+++;;;++xX$$$$$$$$
-;$&&&&&&$&$&$$&&$&$$$$++XXX+++;+;;;X$$&&$X;;;;;;;:;;;X&&&&&&&&&&&&&&&&&&$x+;;;;+X$$&$$$$$&&&$$$$&$&$$$$&$$$$$$$$$$$$&$$
-;&&&&&$$&&&&&&&$&&$$$X;XXXx+++;;;;x$&&$&$x;;:;::;;::;+&&&&&&&&&&&&&&&&&X+;;;;+X$$$$$$$$$$$$&&&$&$$$$$$$$$$$$$$$$&&&$$$&
-;$&$&&&&&$$$&&&$$&$$$x+XXxx+;;;;;+X$$&$$X+;;;:;;:;;::;+$&&&&&&&&&&&&&&$X+;;+X$&$$$$$$$$$$$$&$&$$&&$$$&$&$$$$$$$$$$&$$$$
-;$&$&&&$&$&$$$$$$&&$X+xxx+++;;;;+$$$&$$$X;;;;;:;;::;;;;x&&&&&&&&&&&&$XX+;;+X$$$$$$$$$$$$$$$&$&$&$$$$$$$$$$$$$$$&$$&$$$$
-;$$$$$&$&$&&&$&$$&&X++xx++;;;;;x$$$$$$$$++++;;:;:;;:;;;+&&&&&&&&&&&&$$X+;+$$$&&$$$$$$$$$$$$&$$$$$$$$$$$&$$$$$$$&$$$$$$$
-;$$X$&&$&$$$&&$X$&$x+xx++;;;;x$$$$$$$&$X;;++;;;:;::;;;;+$&&&&&&&&&&$$++;x$$$$$$$$$$$X$$X$$$$$$$$X$$$X$XXXXXXXXXXXXXX+++
-;$$$$$$XXX$$$$&$&$X++x++;;;;X$$$$$$$$$$X;;;;+;;;::;::;;+$&&&&&&&&&&$$+;+X$$$$$$$$$$$$$$$XXX$XXXX+xxx+++;;++++;++;+xXXXX
-;$$$$$$xX$$$&&&$$Xx+++;;;;;x$$$$$$$$$$X;;;++x+:;;;::;:;x$&&&&&&&&&$$++;x$X$X$$$$$$$$$$&$$$$$$$$$&$$$$$x:+X$$$$XXX$$&$$$
-;$$$$XX+X$XX$$$$$X+++;;;;;+X$$&$$$$$$$X;;;;++;;;::;:;;X&&&&&&&&&&&&X;;+X&$$$$$&$$$&$$$$$$$$$$$$$&$$$$$+;+$$$$$$&&$$$$$$
-;&$XXXXx$$&$$$$$x;:;;;;:;;;X$$&&$$&$$$x;+++xx;:;;;;:;+&&&&&&&&&&&&$x+;x$$X$$&$&&&$$$$$&$&&&$$$$$$$$$&$+;+X$X$$$$$$$$$$$
-;$XX$$XX$$$&$$x;:;;;;:;;:;+X$$&$$$$$$$+;;++++;;;;;;;;+&&&&&&&&&&$Xx++;X$$$$$$$&&&$&$&&&$&$$$$&&$&$$&$X;;+x$$$XXX$$$$$$$
-;$$$X$$$$&&$$$+:;;;;;:;:;x$$$$$$$$$$$$+;;+Xx+;;:;;;;;X&&&&&&&&&&$Xx;+;X$&$$$$&&&&&&$$$&$&&$$&$&$&$&$$x;+x$$$$$$$$$$$$$X
-;$$$X$&$$&$$$x;:;;;;;:::+X$$$$$$$$$$$$++++xx;;;:;;;+X&&&&&&&&&&&&&$x++$$$$$&$&&&&&&$$$$&$&XX$$$$&$$$$+;+Xx$$$$$X+++XXXx
-;$&&$$$$$$$$X;;;;:;;;;;;XX$$$$&$$$$$$$++x+xXx;;;++$&&&&&&&&&&&$$&X+++x$$$$&$X$$$$&&$$&$&&&$$x+x$$XXXx;;xXXXXXXXxxx++xxx
-;&$$$&$$$$$$X;;;;;;;;;;+$X$$$$$$&$&$$$+;+XXXXx$$$$$&&&&&&&&&&&&$$Xx+++$$$&$$$$$$$$$$$$&$&$XXX$&&&&&$$$&$&&$&&&&&&$&&$$&
-;$$$$$$$$$$X;;:::;;;;;;x$$$$$$$$$$$$&X+++++xX$&&&&&&&&&&&&&&&&&&$X++++X$$$$$+$XX$&&$&&$$$x$$$$$$$X$$$$$$$X$$$$$X$X$X$$X
-;$$$$$$$$$x;;;;;;;;;;;X$$$$$$&$$$$$$$$+;;+xXXX$$&&&&&&&&&&&&&&X$XXx+x+$$$XXxXXX$$&$$&&$$$x$XX$$$$$$$$$$$&$$$$$$X$X$XXX$
-;$$$$$XX$$+;;;;::;;;;+X$X$$$$$$$&$$$$X+;+XXXX$&X$$$&&&&&&&&&&&$$Xx+++;X$XXXXXxX$$&$$&$$$$X$$$$$$$$$$$XXX&$&$$$$X$$$$$X$
-;Big Generator - Moving through the night!

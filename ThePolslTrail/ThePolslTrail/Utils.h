@@ -127,7 +127,12 @@ namespace utils {
 	   internal parallelization from the CPU. The resulting streams are off by
 	   one step. */
 
-	uint64_t s[2];
+	uint64_t s[2] = { 1, 2 };
+
+	void setupStable(uint64_t val0, uint64_t val1) {
+		s[0] = val0;
+		s[1] = val1;
+	}
 
 	uint64_t next(void) {
 		uint64_t s1 = s[0];
@@ -160,6 +165,31 @@ namespace utils {
 
 		s[0] = s0;
 		s[1] = s1;
+	}
+
+	int32_t valueFromRange(int32_t lower, int32_t higher) {
+		// Swap if ranges are incorrect
+		if (higher < lower) {
+			int temp = higher;
+			higher = lower;
+			lower = temp;
+		}
+
+		// If range contains only single value, return it
+		if (lower == higher)
+			return lower;
+
+		// Calculate the range
+		int32_t range = higher - lower;
+
+		// Generate random value from the range
+		uint64_t randomVal = next();
+		randomVal = randomVal % ((uint64_t)range + 1);
+
+		// Shift by 'lower' value
+		int32_t outcome = (int32_t)randomVal + lower;
+
+		return outcome;
 	}
 
 

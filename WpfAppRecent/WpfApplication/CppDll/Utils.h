@@ -80,7 +80,7 @@ extern uint64_t s[2];
 /// @brief Sets up the states table 's' table for xorshift128+ cipher.
 /// @param val0 64 bit value which will be placed at s[0].
 /// @param val1 64 bit value which will be placed at s[1].
-extern "C" __declspec(dllexport) void setuStable(uint64_t val0, uint64_t val1);
+extern "C" __declspec(dllexport) void setupStable(uint64_t val0, uint64_t val1);
 
 /// @brief Returns a new random number from range [0 ; 2^64 - 1]
 extern "C" __declspec(dllexport) uint64_t next(void);

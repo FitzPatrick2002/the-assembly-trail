@@ -115,7 +115,7 @@ extern "C" __declspec(dllexport) int rollDiceWrapper()
 
 uint64_t s[2] = { 12342, 22342 };
 
-extern "C" __declspec(dllexport) void setuStable(uint64_t val0, uint64_t val1) {
+extern "C" __declspec(dllexport) void setupStable(uint64_t val0, uint64_t val1) {
 	s[0] = val0;
 	s[1] = val1;
 }

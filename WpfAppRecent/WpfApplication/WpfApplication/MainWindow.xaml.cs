@@ -370,7 +370,10 @@ namespace Test1
 
                 UIUpdater logDelegate = (msg) =>
                 {
-                    window.Dispatcher.Invoke(() => window.StoryTextBox.Text += msg);
+                    window.Dispatcher.Invoke(() => {
+                        // byte[] txt = Encoding.UTF8.GetBytes(msg);
+                        window.StoryTextBox.Text += msg; // Encoding.UTF8.GetString(txt);
+                    });
                 };
 
                 WaitCallbackFunc waitDelegate = () =>
@@ -456,7 +459,7 @@ namespace Test1
         public static extern Int32 valueFromRange(Int32 lower, Int32 higher);
 
         [DllImport("CppDll.dll", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void setuStable(UInt64 val0, UInt64 val1);
+        public static extern void setupStable(UInt64 val0, UInt64 val1);
 
         // # -------------------------------------------------------------- # //
         // # -------------------------- Wrappers -------------------------- # //
@@ -498,7 +501,7 @@ namespace Test1
 
         public void runSetupStable(UInt64 val0, UInt64 val1)
         {
-            setuStable(val0, val1);
+            setupStable(val0, val1);
         }
 
 

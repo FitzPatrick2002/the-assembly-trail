@@ -32,7 +32,7 @@ GameLoop:
 	INVOKE ClearScreen ; Clears the console screen, cursor at (0, 0)
 	INVOKE printPlayerStatus
 
-	; Calculate the address of the room in which player is currently occupying
+	; Calculate the address of the room in which player is currently located
 	mov eax, TYPE Room
 	mul player.roomNumber
 	lea esi, rooms[eax]

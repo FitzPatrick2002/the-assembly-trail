@@ -36,12 +36,8 @@ int main() {
 	//time(0); // Random numbers generation
 	srand(static_cast<unsigned int>(time(nullptr)));
 
-	int r_seed = -30000;
-	for (int i = 0; i < 10; i++) {
-		std::cout << utils::rollDice(r_seed, --r_seed) << "\n"; 
-			//std::cout << utils::rollDiceWrapper() << "\n";
-	}
-
+	// Move the front of the rng algorithm by 2^64 - 1 steps
+	utils::jump();
 
 	openingMenu();
 	// Main loop is continued as long as the gameOn variable is set to true
@@ -49,9 +45,6 @@ int main() {
 
 		system("cls");
 		printPlayerStatus();
-		/*for (int i = 0; i < 10; i++) {
-			std::cout << utils::rollDiceWrapper() << std::endl;
-		}*/
 		loadRoom(&rooms[player.roomNumber]);
 		loadEvent(&rooms[player.roomNumber]);
 		changeRoom(&rooms[player.roomNumber]);
