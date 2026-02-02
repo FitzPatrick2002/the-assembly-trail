@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:Test1"
         mc:Ignorable="d"
         Title="MainWindow" 
-        Height="395" Width="705" 
+        Height="790" Width="1410" 
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
-    <Viewbox Stretch="Uniform" Width="705" Height="400">
-        <Canvas Width="705" Height="400" Background="Black">
+    <Viewbox Stretch="Uniform" Width="1410" Height="800">
+        <Canvas Width="1410" Height="800" Background="Black">
 
-            <Image Source="/Image/it_was_ukrainian.png" Canvas.Left="96" Canvas.Top="306" Width="124" Height="63" HorizontalAlignment="Center" VerticalAlignment="Top" IsHitTestVisible="False"/>
+            <Image Source="/Image/it_was_ukrainian.png" Canvas.Left="182" Canvas.Top="597" Width="248" Height="63" HorizontalAlignment="Center" VerticalAlignment="Top" IsHitTestVisible="False"/>
 
             <ToggleButton x:Name="CoreStatButton"
-              Width="95" Height="31"
-              Canvas.Left="111" Canvas.Top="304" 
-              HorizontalAlignment="Left" VerticalAlignment="Top"
+              Width="190" Height="62"
+              Canvas.Left="214" Canvas.Top="614" 
+              HorizontalAlignment="Center" VerticalAlignment="Top"
               Click="BenchmarkSwitch" >
                 <ToggleButton.Template>
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -61,8 +61,8 @@
                 </ToggleButton.Template>
             </ToggleButton>
             <Button x:Name="YesButton"
-        Width="100" Height="48"
-        Canvas.Left="485" Canvas.Top="206" 
+        Width="200" Height="96"
+        Canvas.Left="969" Canvas.Top="410" 
         HorizontalAlignment="Left" VerticalAlignment="Center"
         Click="Confirm_Main_Loop"       
              >
@@ -112,8 +112,8 @@
                 </Button.Template>
             </Button>
             <Button x:Name="NoButton" 
-        Width="102" Height="48"
-        Canvas.Left="489" Canvas.Top="233" 
+        Width="204" Height="96"
+        Canvas.Left="977" Canvas.Top="465" 
         HorizontalAlignment="Left" VerticalAlignment="Center"
         Click="Refuse_Main_Loop"
         >
@@ -163,18 +163,39 @@
                 </Button.Template>
             </Button>
             <Image Source="/Image/panel-bg-with-holes-2.png" 
-       Width="705" Height="400" 
-       Canvas.Left="0" Canvas.Top="0" 
+       Width="1410" Height="800" 
+       Canvas.Left="-1" Canvas.Top="0" 
        Stretch="Fill"
-       IsHitTestVisible="False"
+       IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Center"
        />
+            <TextBox x:Name="StoryTextBox"
+                     
+                     Width="524" Height="366"
+                     Canvas.Left="335" Canvas.Top="199"
+                     Background="Black" Foreground="Lime"
+                     FontSize="15.0"
+                     FontFamily="OCR A Extended"
+                     TextWrapping="Wrap"
+                     
+                     BorderThickness="0" HorizontalAlignment="Left" VerticalAlignment="Center" RenderTransformOrigin="0.072,0.013"
+                     TextChanged="Text_Changed"
+                     >
+                <TextBox.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="0.99999999999999989" ScaleY="0.99999999999999989"/>
+                        <SkewTransform AngleX="-1.103"/>
+                        <RotateTransform Angle="0.205"/>
+                        <TranslateTransform X="-0.054" Y="0.072"/>
+                    </TransformGroup>
+                </TextBox.RenderTransform>
+            </TextBox>
             <TextBox x:Name="InputTextBox"
-                Width="131"
-                Height="78"
+                Width="262"
+                Height="156"
                 Background="Black"
                 Foreground="Lime"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
                 FontSize="20.0"
                 FontFamily="OCR A Extended"
                 TextWrapping="Wrap"
@@ -185,32 +206,13 @@
                 RenderTransformOrigin="0.5,0.5"
                 CaretBrush="Lime"
                 TextOptions.TextFormattingMode="Display"
-                TextOptions.TextRenderingMode="Aliased" Canvas.Left="469" Canvas.Top="105">
+                TextOptions.TextRenderingMode="Aliased" Canvas.Left="935" Canvas.Top="205">
                 <TextBox.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform Angle="-1.17"/>
                         <TranslateTransform/>
-                    </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-
-            <TextBox x:Name="StoryTextBox"
-                     Width="262" Height="183"
-                     Canvas.Left="169" Canvas.Top="96"
-                     Background="Black" Foreground="Lime"
-                     FontSize="15.0"
-                     FontFamily="OCR A Extended"
-                     TextWrapping="Wrap"
-                     BorderThickness="0" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.072,0.013"
-                     >
-                <TextBox.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="0.99999999999999989" ScaleY="0.99999999999999989"/>
-                        <SkewTransform AngleX="-1.103"/>
-                        <RotateTransform Angle="0.205"/>
-                        <TranslateTransform X="-0.054" Y="0.072"/>
                     </TransformGroup>
                 </TextBox.RenderTransform>
             </TextBox>

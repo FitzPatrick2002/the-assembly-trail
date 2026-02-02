@@ -46,6 +46,13 @@ namespace Test1
         bool game_run = false;
         bool is_benchmark = false;
 
+        public void Text_Changed(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            if (sender is System.Windows.Controls.TextBox tb)
+            {
+                tb.ScrollToEnd();
+            }
+        }
         private void benchmark(ref double masm, ref double cpp, int number_of_rolls)
         {
             AsmProxy asmProxy = new AsmProxy();
@@ -503,6 +510,7 @@ namespace Test1
         {
             setupStable(val0, val1);
         }
+
 
 
     }

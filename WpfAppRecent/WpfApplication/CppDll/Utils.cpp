@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+
 void getUserInputString(char dest[], int8_t len, const char* message) {
 	// Print the message
 
@@ -186,3 +187,4 @@ extern "C" __declspec(dllexport) int32_t valueFromRange(int32_t lower, int32_t h
 
 	return outcome;
 }
+
