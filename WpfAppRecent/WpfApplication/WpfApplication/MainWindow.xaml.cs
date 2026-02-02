@@ -56,8 +56,8 @@ namespace Test1
             UInt64 seed_one = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
             UInt64 seed_two = (UInt64)(rnd.Next(2026, int.MaxValue - 2026));
 
-
             asmProxy.runSetupStable(seed_one, seed_two);
+            cppProxy.runSetupStable(seed_one, seed_two);
 
             int result_masm = asmProxy.runValueFromRange(-10, 10);
             int result = cppProxy.runValueFromRangeXorshift(-10, 10);
