@@ -113,26 +113,37 @@ extern "C" __declspec(dllexport) int rollDiceWrapper()
 // ---------------------------------- Xorshift128+ ---------------------------------- //
 // ---------------------------------------------------------------------------------- //
 
+/// @brief Contains the state of the generator
 uint64_t s[2] = { 12342, 22342 };
 
+/// @brief Sets the values of the initial state of the generator.
+/// @param val0 Value set as the 0'th state element.
+/// @param val1 Value set as the 1'st state element.
 extern "C" __declspec(dllexport) void setupStable(uint64_t val0, uint64_t val1) {
 	s[0] = val0;
 	s[1] = val1;
 }
 
+/// @brief Generates a new random value and advances the generator by one step.
+/// @return Random value from range [0, 2^64 - 1].
 extern "C" __declspec(dllexport) uint64_t next(void) {
 	uint64_t s1 = s[0];
 	const uint64_t s0 = s[1];
+	// Calculate the result
 	const uint64_t result = s0 + s1;
+	// Update the state of the generator (xor & shift)
 	s[0] = s0;
 	s1 ^= s1 << 23; // a
 	s[1] = s1 ^ s0 ^ (s1 >> 18) ^ (s0 >> 5); // b, c
+	// Return result
 	return result;
 }
 
+/// @brief Advances the generator by 2^64 - 1 steps ahead. 
+///		   Use it to initialize the generator before using next().
+///		   It's equivalent to 2^64 calls to next() function.
 extern "C" __declspec(dllexport) void jump(void) {
 	static const uint64_t JUMP[] = { 0x8a5cd789635d2dff, 0x121fd2155c472f96 };
-
 	uint64_t s0 = 0;
 	uint64_t s1 = 0;
 	for (int i = 0; i < sizeof JUMP / sizeof * JUMP; i++)
@@ -143,7 +154,6 @@ extern "C" __declspec(dllexport) void jump(void) {
 			}
 			next();
 		}
-
 	s[0] = s0;
 	s[1] = s1;
 }

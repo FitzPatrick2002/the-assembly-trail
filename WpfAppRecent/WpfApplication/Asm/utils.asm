@@ -342,6 +342,7 @@ setupStable ENDP
 
 ; Uses registers: eax, edx to return the value
 ; Uses xmm registers: xmm0, xmm1, xmm2, xmm3, xmm4
+
 nextStep PROC
 
 	; Move the 64 bit values to lower bytes of 2 xmm registers
