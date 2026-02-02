@@ -93,11 +93,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>AsmLibrary.def</ModuleDefinitionFile>
       <NoEntryPoint>true</NoEntryPoint>
-      <AdditionalLibraryDirectories>$(SolutionDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/masm32/lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <MASM>
-      <IncludePaths>$(SolutionDir)</IncludePaths>
+      <IncludePaths>$(SolutionDir)/masm32/include;$(SolutionDir)/masm32/macros</IncludePaths>
     </MASM>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -116,11 +116,11 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ModuleDefinitionFile>AsmLibrary.def</ModuleDefinitionFile>
       <NoEntryPoint>true</NoEntryPoint>
-      <AdditionalLibraryDirectories>$(SolutionDir)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)/masm32/lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);</AdditionalDependencies>
     </Link>
     <MASM>
-      <IncludePaths>$(SolutionDir)</IncludePaths>
+      <IncludePaths>$(SolutionDir)/masm32/include;$(SolutionDir)/masm32/macros</IncludePaths>
     </MASM>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
