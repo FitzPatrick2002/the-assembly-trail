@@ -12,6 +12,10 @@ using System.Security.RightsManagement;
         using System.Windows.Navigation;
         using System.Windows.Shapes;
 
+using System.IO;
+using System.Globalization;
+
+
 namespace Test1
 {
     /// <summary>
@@ -19,6 +23,8 @@ namespace Test1
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        StreamWriter writer;
         public MainWindow()
         {
             InitializeComponent();
@@ -74,14 +80,14 @@ namespace Test1
                 result_masm = asmProxy.runValueFromRange(-10, 10); //AsmProxy.rollDice(seed_one, seed_two);
                 // the code that you want to measure comes here
                 watch_masm.Stop();
-                var elapsedMs = watch_masm.Elapsed.TotalMilliseconds;
+                var elapsedMs = watch_masm.Elapsed.TotalNanoseconds;
                 average_masm += elapsedMs;
 
                 var watch_cpp = System.Diagnostics.Stopwatch.StartNew();
                 result = cppProxy.runValueFromRangeXorshift(-10, 10); //CppProxy.rollDice(seed_one, seed_two);
                 // the code that you want to measure comes here
                 watch_cpp.Stop();
-                elapsedMs = watch_cpp.Elapsed.TotalMilliseconds;
+                elapsedMs = watch_cpp.Elapsed.TotalNanoseconds;
                 average_cpp += elapsedMs;
 
             }
@@ -136,10 +142,29 @@ namespace Test1
 
                 double average_masm = 0, average_cpp = 0;
                 benchmark(ref average_masm,ref average_cpp, number_roll);
+                this.StoryTextBox.Clear();
+                this.StoryTextBox.Text += "Benchmark test for\n" +
+                    "The execution times of\n" +
+                    "Masm and C++\n" +
+                    "Implementation of Xorshift128+ algorithm\n" +
+                    "Used in dice rolling in the game\n" +
+                    "Type in the number of rolls [1-2147483]: ";
 
-
-                this.StoryTextBox.Text += "Average masm: " + average_masm + "\n";
-                this.StoryTextBox.Text += "Average c++: " + average_cpp + "\n";
+                this.StoryTextBox.Text += "\n\nThe average execution times\nFor " + number_roll + " rolls:\n\n";
+                this.StoryTextBox.Text += "Masm version: " + average_masm.ToString("F4") + "ns\n";
+                this.StoryTextBox.Text += "C++ version:  " + average_cpp.ToString("F4") + "ns\n\n";
+                if(average_masm < average_cpp)
+                {
+                    this.StoryTextBox.Text += "Masm faster by: " + (average_cpp - average_masm).ToString("F4") + "ns\n";
+                }
+                else if(average_masm > average_cpp)
+                {
+                    this.StoryTextBox.Text += "C++ faster by: " + (average_masm - average_cpp).ToString("F4") + "ns\n";
+                }
+                else
+                {
+                    this.StoryTextBox.Text += "The execution times are the same\n";
+                }
                 return;
             }
 
@@ -158,6 +183,24 @@ namespace Test1
             asmP.ReleaseMasmSemaphore();
         }
 
+        private void BenchmarkTestCsv()
+        {
+            int number_roll = 2147483; //insert your desired number
+            double average_masm = 0, average_cpp = 0;
+            for(int repeat = 0; repeat < 100; repeat++)
+            {
+                for (int i = 1; i <= 1; i++)
+                {
+                    benchmark(ref average_masm, ref average_cpp, number_roll);
+                    writer.WriteLine($"{repeat}," +
+                        $"{average_cpp.ToString("F4", CultureInfo.InvariantCulture)}," +
+                        $"{average_masm.ToString("F4", CultureInfo.InvariantCulture)}");
+                }
+            }
+            writer.Close();
+
+        }
+
         private void BenchmarkSwitch(object sender, RoutedEventArgs e)
         {
             AsmProxy asmP = new AsmProxy();
@@ -167,16 +210,22 @@ namespace Test1
                 this.StoryTextBox.Clear();
                 game_run = false; //reset game
                 is_benchmark = false;
+                writer.Close();
                 return;
             }
             is_benchmark = true;
             this.InputTextBox.Clear();
             this.StoryTextBox.Clear();
-            this.StoryTextBox.Text += "Benchmark test\n" +
-                "Comparison of masm and C++ code\n" +
-                "Dice rolling algorithm\n" +
-                "Type in the number of dice you want to roll [1-2147483]: ";
-            
+            this.StoryTextBox.Text += "Benchmark test for\n" +
+                    "The execution times of\n" +
+                    "Masm and C++\n" +
+                    "Implementation of Xorshift128+ algorithm\n" +
+                    "Used in dice rolling in the game\n" +
+                    "Type in the number of rolls [1-2147483]: ";
+
+            //writer = new StreamWriter("benchmark.csv");
+            //writer.WriteLine("Rolls,Cpp,Masm");
+            //BenchmarkTestCsv();
         }
 
 
