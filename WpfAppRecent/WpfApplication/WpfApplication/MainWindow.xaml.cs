@@ -217,7 +217,6 @@ namespace Test1
                 this.StoryTextBox.Clear();
                 game_run = false; //reset game
                 is_benchmark = false;
-                writer.Close();
                 return;
             }
             is_benchmark = true;
