@@ -14,7 +14,6 @@ include mainLoop.inc
 	mainLoop1 BYTE "Your water level is too low, you're suffering!", 13, 10, 0
 	mainLoop2 BYTE "Your water level is low, watch out!", 13, 10, 0
 	
-
 .code
 
 ; TO DO:

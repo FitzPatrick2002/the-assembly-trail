@@ -173,7 +173,7 @@
                      Width="524" Height="366"
                      Canvas.Left="335" Canvas.Top="199"
                      Background="Black" Foreground="Lime"
-                     FontSize="15.0"
+                     FontSize="12.0"
                      FontFamily="OCR A Extended"
                      TextWrapping="Wrap"
                      

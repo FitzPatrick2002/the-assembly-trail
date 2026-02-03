@@ -63,45 +63,34 @@ getUserInputString PROTO destBuffer : PTR BYTE, bufferLength : DWORD, message : 
 ;		 expressed in milliseconds.
 fitTimeframe PROTO startTime : DWORD, seconds : DWORD
 
-; # -------------------------- Dice Rolling (Deprecated) -------------------------- # ;
-
-; @brief Return the bitwised XORed seed with the bitwise shifted seed.
-; @param Seed Random seed for the dice rolling.
-; @return eax = The scrambled seed for further complications in random dice rolling.
-scrambleSeed PROTO seed : DWORD
-
-; @brief Returns a random number between 1 and 6 from two random seeds.
-;		 Simulates the dice roll.
-; @param seed Random seed.
-; @param seed_two Second random seed.
-; @returns eax = random dice value (0, 1, 2, 3, 4, 5 or 6).
-rollDice PROTO seed : DWORD, seed_two : DWORD
-
-; @brief Returns the random number from range 1 to 6.
-;	     Randomizes two numbers and uses them as seeds for the function rollDice.
-; @returns A number between 1 and 6 via eax register.
-rollDiceWrapper PROTO
-
 ; # -------------------------- Xorshift128+ -------------------------- # ;
 
 ; @brief Saves provided values to the sTable.
-; @param val0 64 bit value saved at sTable[0].
-; @param val1 64 bit value saved at sTable[1].
+; @param val00 Low DWORD of the 0th element of the sTable.
+; @param val01 High DWORD of the 0th element of the sTable.
+; @param val10 Low DWORD of the 1st element of the sTable.
+; @param val11 High DWORD of the 1st element of the sTable.
 ; @uses  xmm0.
 setupStable PROTO val00 : DWORD, val01 : DWORD, val10 : DWORD, val11 : DWORD
 
-; Uses registers: eax, edx to return the value
-; Uses xmm registers: xmm0, xmm1, xmm2, xmm3, xmm4
+; @brief Generates a 64-bit random value based on the generator state in sTable.
+;		 Advances the generator by one step.
+; @return edx:eax = (high : low) random 64 bit value.
+; @uses  xmm0, xmm1, xmm2, xmm3, xmm4, eax, edx
 nextStep PROTO
 
 ; @brief Performs a jump by 2^64 steps of the generator.
-;		 Use that when starting a new thread so that the 2 generators values will not overlap
+;		 Its equivalent to using nextStep procedure 2^64 times.
+;		 It can be used to desynchronize 2 generators working on different threads.
+; @uses xmm5, xmm6, xmm7, ebx, ecx, edx
 jumpStep PROTO
 
-; @brief Specifies the lower and upper bound for generated number.
+; @brief Generates a 32 bit random number from the given range.
+;		 It can include negative numbers.
 ; @param lower Lower bound of the generated naumber.
 ; @param higher Higher bound of the generated number.
 ; @return eax = Random number from range [lower ; higher], including lower and higher values.
+; @uses  eax, ebx, ecx, edx
 valueFromRange PROTO lower : SDWORD, higher : SDWORD 
 
 ; # -------------------------- CONST -------------------------- # ;

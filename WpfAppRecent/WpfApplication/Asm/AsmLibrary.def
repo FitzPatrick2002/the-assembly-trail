@@ -1,14 +1,10 @@
 LIBRARY "Asm"
 EXPORTS
-; asmAddTwoDoubles
-; asmWeightedAverage
 
 printText
 updateInputBuffer
 StartGameLoop 
 registerCallbacks
-rollDice
-rollDiceWrapper
 main
 
 setupStable
