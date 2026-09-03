@@ -1,0 +1,13 @@
+LIBRARY "Asm"
+EXPORTS
+
+printText
+updateInputBuffer
+StartGameLoop 
+registerCallbacks
+main
+
+setupStable
+nextStep
+jumpStep
+valueFromRange
