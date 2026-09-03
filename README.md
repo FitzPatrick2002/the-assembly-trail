@@ -19,10 +19,10 @@ Nostromo Escape is a survival text game, where player must escape from the ship 
 * Random events
 
 ### Map
-!(Very cool map in ASCII)[media/map.PNG]
+![Very cool map in ASCII](media/map.PNG)
 
 ### GUI
-!(Very cool GUI)[media/GUI2.png]
+![Very cool GUI](media/GUI2.png)
 
 Interface consists of:
 1 "Confirm" Button - In choices automaticaly chooses accept-option
@@ -32,7 +32,7 @@ Interface consists of:
 5 Input panel (right corner) - Needed for command input. After each keyword, ENTER should be pressed
 
 ### Gameplay
-!(Fantastic game process)[media/GUI2.PNG]
+![Fantastic game process](media/GUI2.PNG)
 
 To start game, press "Confirm" or "Refuse" button on GUI.
 Player will spawn in room 0. In order to travel through out the ship, player have to enter the number of available room in input pannel.
