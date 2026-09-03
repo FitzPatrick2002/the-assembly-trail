@@ -22,7 +22,7 @@ Nostromo Escape is a survival text game, where player must escape from the ship 
 ![Very cool map in ASCII](media/map.PNG)
 
 ### GUI
-![Very cool GUI](media/GUI2.png)
+![Very cool GUI](media/GUI1.png)
 
 Interface consists of:
 1 "Confirm" Button - In choices automaticaly chooses accept-option
